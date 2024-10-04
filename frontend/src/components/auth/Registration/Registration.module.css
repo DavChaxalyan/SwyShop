@@ -1,0 +1,89 @@
+.registrationPage {
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, #f0f0f0, #d8d8d8);
+  }
+  
+  .formContainer {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: center;
+  }
+  
+  .title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .subtitle {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 30px;
+  }
+  
+  .registrationForm {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .inputGroup {
+    position: relative;
+  }
+  
+  .icon {
+    position: absolute;
+    top: 12px;
+    left: 10px;
+    color: #888;
+  }
+  
+  .inputField {
+    width: 88% !important;
+    padding: 12px 10px 12px 35px !important;
+    font-size: 14px !important;
+    border: 1px solid #ddd !important;
+    border-radius: 5px !important;
+    transition: border-color 0.3s !important;
+  }
+  
+  .inputField:focus {
+    border-color: #00aaff;
+    outline: none;
+  }
+  
+  .submitButton {
+    background-color: #00aaff;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+  
+  .submitButton:hover {
+    background-color: #0077cc;
+  }
+  
+  .alreadyHaveAccount {
+    margin-top: 20px;
+    font-size: 14px;
+  }
+  
+  .loginLink {
+    color: #00aaff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .loginLink:hover {
+    text-decoration: underline;
+  }

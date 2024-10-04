@@ -1,0 +1,148 @@
+/* src/styles/Cart.css */
+.cart-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .cart-items {
+    background-color: #f3f3f3;
+    border-radius: 20px;
+    max-width: 900px;
+    width: 100%;
+    margin-right: 50px;
+    margin-left: 115px;
+    padding: 20px;
+  }
+  
+  .cart-summary-section {
+    flex: 1;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 30px;
+    margin-right: 110px;
+  }
+
+  .summary-block-count {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    font-size: 15px;
+    color: gray;
+  }
+
+  .summary-block {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    font-size: 30px;
+    font-weight:bold
+  }
+  
+  .cart-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    align-items: start;
+  }
+  
+  .title-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .title-card h3 {
+    margin: 0;
+  }
+
+  .title-card span {
+    color: gray;
+  }
+  
+  .cart-item-image {
+    width: 170px;
+    height: 200px;
+  }
+  
+  .cart-item-details {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .cart-item-quantity {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .cart-item-quantity button {
+    margin: 0 10px;
+  }
+  
+  .cart-item-price {
+    color: #000000;
+  }
+
+  .cart-item-price p {
+    margin: 0;
+    font-weight: 500;
+    font-size: 20px;
+  }
+
+  .like-and-delete-block {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-top: 20px;
+  }
+
+  .main-items-cart h3 {
+    margin: 0;
+  }
+  
+  .order-button {
+    padding: 10px;
+    background-color: #6200ea;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .order-button:hover {
+    background-color: #3700b3;
+  }
+
+  .button-decrement {
+    width: 35px;
+    height: 35px;
+    border-radius: 7px;
+    font-size: 20px;
+    color: gray;
+    border: none;
+    background-color: white;
+    cursor: pointer;
+  }
+
+  .button-increment {
+    width: 35px;
+    height: 35px;
+    border-radius: 7px;
+    font-size: 20px;
+    color: rgb(0, 0, 0);
+    border: none;
+    background-color: white;
+    cursor: pointer;
+  }
+  
+  .checkout-section {
+    margin-top: 30px;
+  }
+  
+  .checkout-section h3 {
+    margin-bottom: 10px;
+  }
+  
