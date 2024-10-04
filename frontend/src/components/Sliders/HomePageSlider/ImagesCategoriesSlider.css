@@ -1,0 +1,32 @@
+.slider-container {
+    width: 100%;
+    max-width: 86%;
+    height: 100%;
+    max-height: 200px; 
+    margin: auto; 
+    margin-top: 30px;
+}
+
+.slide {
+    position: relative;
+}
+
+.slide img {
+    width: 100%; 
+    height: auto;
+}
+
+.slide-text {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: white; 
+    background-color: rgba(0, 0, 0, 0.5); 
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 18px; 
+}
+
+.slider-container .slick-slider .slick-list {
+    max-height: 200px;
+}
