@@ -101,7 +101,7 @@ const AddProduct = () => {
       {imagePreview && (
         <div>
           <h4>Image Preview:</h4>
-          <img src={imagePreview} alt="Preview" />
+          <img src={imagePreview} className={styles.imagePreview} alt="Preview" />
         </div>
       )}
       <label>
