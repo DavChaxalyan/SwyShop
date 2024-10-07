@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { register } from "../../../redux/actions/authActions";
 import styles from "./Registration.module.css";
 
 const Registration = () => {
+    const navigate = useNavigate()
     const state = useSelector((state) => state)
   const [formData, setFormData] = useState({
     username: "",
@@ -20,13 +22,16 @@ const Registration = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
       alert("Пароли не совпадают");
       return;
     }
-    dispatch(register(formData));
+    await dispatch(register(formData));
+    if (localStorage.getItem('token')) {
+        navigate('/')
+    }
 console.log(state);
 
     console.log("Submitted:", formData);

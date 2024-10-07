@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addNewProduct } from "../../redux/actions/productActions";
-import "./AddProduct.css";
+import { addProduct } from "../../redux/actions/addProductActions";
+import styles from "./AddProduct.module.css";
 
 const AddProduct = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [selectedCategory, setSelectedCategory] = useState("");
   const [productData, setProductData] = useState({
     name: "",
     price: "",
@@ -41,13 +40,19 @@ const AddProduct = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const newProduct = {
-      ...productData,
-      image: imagePreview,
-    };
-    dispatch(addNewProduct(newProduct));
+
+    const formData = new FormData();
+    formData.append('name', productData.name);
+    formData.append('price', productData.price);
+    formData.append('image', productData.image); 
+    formData.append('category', productData.category);
+    formData.append('color', productData.color);
+    formData.append('date', new Date().toLocaleDateString());
+
+    const token = localStorage.getItem('token');
+    await dispatch(addProduct(formData, token));
     setProductData({
       name: "",
       price: "",
@@ -61,7 +66,7 @@ const AddProduct = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="formContainer">
+    <form onSubmit={handleSubmit} className={styles.formContainer}>
       <label>
         Product Name:
         <input
@@ -109,16 +114,6 @@ const AddProduct = () => {
           placeholder="Enter product category"
           required
         />
-        <select
-            onChange={(e) => setSelectedCategory(e.target.value)}
-            value={selectedCategory}
-          >
-            <option value="">All Categories</option>
-            <option value="Electronics">Electronics</option>
-            <option value="Gadgets">Gadgets</option>
-            <option value="Clothing">Clothing</option>
-            <option value="Audio">Audio</option>
-          </select>
       </label>
       <label>
         Color:

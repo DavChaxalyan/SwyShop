@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './ContactPage.css';
+import styles from './ContactPage.module.css';
 
 const Contact = () => {
   const [name, setName] = useState('');
@@ -15,15 +15,15 @@ const Contact = () => {
   };
 
   return (
-    <div className="contact-container">
+    <div className={styles.contactContainer}>
       <h1>Contact Us</h1>
-      <div className="contact-info">
+      <div className={styles.contactInfo}>
         <h2>Contact Information</h2>
         <p>Email: support@onlineshop.com</p>
         <p>Phone: +1 234 567 890</p>
         <p>Address: 123 Online St, Shop City, Shopland</p>
       </div>
-      <form onSubmit={handleSubmit} className="contact-form">
+      <form onSubmit={handleSubmit} className={styles.contactForm}>
         <label htmlFor="name">Name:</label>
         <input
           type="text"
@@ -48,7 +48,7 @@ const Contact = () => {
           required
           style={{resize: 'none'}}
         />
-        <button type="submit">Send</button>
+        <button type="submit" className={styles.formButton}>Send</button>
       </form>
     </div>
   );
