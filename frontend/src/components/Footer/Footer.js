@@ -1,19 +1,19 @@
 // src/components/Footer.js
 import React from 'react';
-import './Footer.css';
+import styles from './Footer.module.css';
 
 const Footer = () => {
   return (
-    <footer className="footer">
-      <div className="footer-content">
-        <div className="footer-section about">
+    <footer className={styles.footer}>
+      <div className={styles.footerContent}>
+        <div className={styles.footerSection}>
           <h2>About Us</h2>
           <p>
             We are an online shop offering the best selection of products at affordable prices. Our customers are always satisfied with the quality of service and fast delivery.
           </p>
         </div>
 
-        <div className="footer-section links">
+        <div className={styles.footerSection}>
           <h2>Useful Links</h2>
           <ul>
             <li><a href="/about">About Us</a></li>
@@ -23,7 +23,7 @@ const Footer = () => {
           </ul>
         </div>
 
-        <div className="footer-section contact">
+        <div className={styles.footerSection}>
           <h2>Contact</h2>
           <p><i className="fas fa-phone"></i> +1 234 567 890</p>
           <p><i className="fas fa-envelope"></i> info@onlineshop.com</p>
@@ -31,7 +31,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="footer-bottom">
+      <div className={styles.footerBottom}>
         &copy; 2024 SwyShop | All Rights Reserved
       </div>
     </footer>

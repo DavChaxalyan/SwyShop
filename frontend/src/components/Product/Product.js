@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
-import "./Product.css";
+import styles from "./Product.module.css";
 
 function Product() {
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ function Product() {
   }
 
   return (
-    <div className="product-details">
+    <div className={styles.productDetails}>
       <img src={product.image} alt={product.name} />
       <div>
         <h2>{product.name}</h2>

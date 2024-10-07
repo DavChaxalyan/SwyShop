@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import ProductCard from "../ProductCard/ProductCard";
-import "./Products.css";
+import styles from "./Products.module.css";
 
 const Products = () => {
   const products = useSelector((state) => state.products.items);
@@ -44,11 +44,11 @@ const Products = () => {
   });
 
   return (
-    <div className="products">
+    <div className={styles.products}>
       <h1>Products</h1>
 
       {/* Форма фильтрации */}
-      <div className="filter-form">
+      <div className={styles.filterForm}>
         <input
           type="text"
           placeholder="Search for a product..."
