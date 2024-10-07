@@ -1,0 +1,24 @@
+.modalContainer{
+    display: flex;
+}
+
+
+
+.blockTextPrice{
+}
+
+
+.priceBlock{
+
+}
+
+.imageBox{
+    max-width: 512px !important;
+
+}
+
+.containerBlock{
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+}
