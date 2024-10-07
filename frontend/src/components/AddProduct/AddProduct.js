@@ -131,7 +131,7 @@ const AddProduct = () => {
           required
         />
       </label>
-      <button type="submit">Add Product</button>
+      <button className="formButton" type="submit">Add Product</button>
     </form>
   );
 };
