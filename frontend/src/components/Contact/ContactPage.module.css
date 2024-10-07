@@ -1,4 +1,4 @@
-.contact-container {
+.contactContainer {
     max-width: 600px;
     margin: 30px auto;
     padding: 20px;
@@ -13,11 +13,11 @@
     color: #333;
   }
   
-  .contact-info {
+  .contactInfo {
     margin-bottom: 20px;
   }
   
-  .contact-info h2 {
+  .contactInfo h2 {
     color: #444;
   }
   
@@ -37,7 +37,7 @@
     font-size: 16px;
   }
   
-  button {
+  .formButton {
     width: 100%;
     padding: 10px;
     background-color: #5cb85c;
@@ -48,7 +48,7 @@
     cursor: pointer;
   }
   
-  button:hover {
+  .formButton:hover {
     background-color: #4cae4c;
   }
   

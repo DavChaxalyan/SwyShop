@@ -1,6 +1,6 @@
 import React from 'react';
 import Slider from 'react-slick';
-import './ImagesCategoriesSlider.css'; 
+import styles from './ImagesCategoriesSlider.module.css'; 
 import shoos from "../../../assets/images/shoos.jpg"
 import drinks from "../../../assets/images/napitki.jpeg"
 import sale from "../../../assets/images/sale.jpg"
@@ -32,12 +32,12 @@ const ImageSlider = () => {
     };
 
     return (
-        <div className="slider-container">
+        <div className={styles.sliderContainer}>
             <Slider {...settings}>
                 {images.map((image, index) => (
-                    <div key={index} className="slide">
+                    <div key={index} className={styles.slide}>
                         <img src={image.url} alt={`Slide ${index + 1}`} style={{maxHeight: '200px'}}/>
-                        <div className="slide-text">{image.text}</div>
+                        <div className={styles.slideText}>{image.text}</div>
                     </div>
                 ))}
             </Slider>

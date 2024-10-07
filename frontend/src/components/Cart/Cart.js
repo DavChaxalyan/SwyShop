@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import CartItem from "./CartItems";
 import CartSummary from "./CartSummary";
 import CheckoutSection from "./CheckoutSection";
-import "./Cart.css";
+import styles from "./Cart.module.css";
 import EmptyCart from "./EmptyCart";
 
 const Cart = () => {
@@ -16,11 +16,11 @@ const Cart = () => {
   }, [cartItems]);
 
   return (
-    <div className="cart-container">
+    <div className={styles.cartContainer}>
       {cartItems.length > 0 ? (
         <>
-          <div className="cart-items">
-            <div className="title-card">
+          <div className={styles.cartItems}>
+            <div className={styles.titleCard}>
               <h3>Cart</h3>
               <span>
                 {cartItems.reduce((total, item) => total + item.quantity, 0)}{" "}
@@ -31,7 +31,7 @@ const Cart = () => {
               <CartItem key={item.id} item={item} />
             ))}
           </div>
-          <div className="cart-summary-section">
+          <div className={styles.cartSummarySection}>
             <CartSummary />
             <CheckoutSection />
           </div>

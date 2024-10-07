@@ -1,4 +1,4 @@
-.slider-container {
+.sliderContainer {
     width: 100%;
     max-width: 86%;
     height: 100%;
@@ -16,7 +16,7 @@
     height: auto;
 }
 
-.slide-text {
+.slideText {
     position: absolute;
     bottom: 20px;
     left: 20px;
@@ -27,6 +27,6 @@
     font-size: 18px; 
 }
 
-.slider-container .slick-slider .slick-list {
+.sliderContainer .slickSlider .slickList {
     max-height: 200px;
 }
