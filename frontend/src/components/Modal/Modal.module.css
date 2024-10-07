@@ -1,0 +1,119 @@
+.modalContainer {
+    display: flex;
+    padding: 15px;
+
+}
+
+.modal-body {
+    padding: 0 !important;
+}
+
+.imageBlock {
+    width: 50%;
+    height: 100%;
+}
+
+.imageBlock img {
+    width: 100%;
+    height: 600px;
+}
+
+
+.star {
+    margin-top: 2px;
+}
+
+.containerBlock {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    padding: 0 18px 20px 20px;
+    width: 50%;
+    gap: 15px;
+}
+
+.ratingBox {
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+}
+
+.priceBlock del p {
+    color: #868695;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+p {
+    margin-bottom: 0 !important;
+    margin-top: 0 !important;
+}
+
+.ratingBox p,
+svg {
+    font-size: 14px;
+}
+
+.addToCart {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.priceBlock {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.priceBlock p {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+}
+
+.blockTextName h2 {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+    color: #242424;
+    cursor: pointer;
+}
+
+.ratingBlock {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.ratingBloc svg {
+    margin-top: 2px;
+}
+
+.ratingBlock i {
+    font-size: 14px;
+    line-height: 20px;
+    text-decoration: none;
+    border-color: hsla(240, 7%, 55%, .4);
+    background-color: initial;
+    border-bottom: 1px dashed;
+    color: #868695;
+    cursor: pointer;
+}
+
+.inCart {
+    display: flex !important;
+    gap: 10px !important;
+    justify-content: center !important;
+    align-items: center !important;
+    background-color: #242424 !important;
+    border-color: #242424 !important;
+
+}
+
+.ratingBlock i:hover {
+    border-color: #868695;
+    color: #242424;
+}

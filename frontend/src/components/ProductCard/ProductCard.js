@@ -1,4 +1,3 @@
-// frontend/src/components/ProductCard.js
 import React, { useState } from "react";
 import styles from "./ProductCard.module.css";
 import { useNavigate } from "react-router-dom";
@@ -6,11 +5,16 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/actions/productActions";
 import { FaStar } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
+import ProductModal from "../Modal/Modal";
+import Button from "react-bootstrap/Button";
 
 const ProductCard = ({ products }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [liked, setLiked] = useState(false);
+  const [modalShow, setModalShow] = useState(false);
+  const [product, setProduct] = useState(null);
+
 
   const handleLike = () => {
     setLiked(!liked);
@@ -26,6 +30,13 @@ const ProductCard = ({ products }) => {
 
   return (
     <div className={styles.mainProductsBlock}>
+
+      <ProductModal
+        products={products}
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        product={product}
+      />
       {products?.map((product) => {
         return (
           <div
@@ -33,11 +44,22 @@ const ProductCard = ({ products }) => {
             className={styles.productCard}
             onClick={() => handleProductPage(product.id)}
           >
-            <img
-              src={product.image}
-              alt={product.name}
-              className={styles.productImage}
-            />
+            <div className={styles.imageContainer}>
+              <img
+                src={product.image}
+                alt={product.name}
+                className={styles.productImage}
+              />
+              <div className={styles.seeButton}>
+                <Button variant="light" onClick={(e) => {
+                  e.stopPropagation();
+                  setModalShow(true);
+                  setProduct(product)
+                }}>
+                  fast see
+                </Button>
+              </div>
+            </div>
             <p className={styles.price}>
               <span className={styles.oldPrice}>${product.oldPrice}</span> $
               {product.price}
@@ -54,31 +76,33 @@ const ProductCard = ({ products }) => {
             </div>
             <div className={styles.buttonContainer}>
               {!product.isInCart ? (
-                <button
+                <Button
                   className={styles.addToCart}
                   onClick={(e) => {
                     e.stopPropagation();
                     handleAddToCart(product.id)
-                }}
+                  }}
                 >
                   <FaShoppingCart />
                   Add to cart
-                </button>
+                </Button>
               ) : (
-                  <button className={styles.inCart} onClick={(e) => {
-                        e.stopPropagation()
-                        navigate('/cart')
-                    }}>
-                    <FaShoppingCart />
-                    In cart
-                  </button>
-              )}
-              <button className={styles.like} onClick={(e) => {
-                    e.stopPropagation()
-                    handleLike()
+                <Button className={styles.inCart} onClick={(e) => {
+                  e.stopPropagation()
+                  navigate('/cart')
                 }}>
-                {liked ? "❤️" : "🤍"}
-              </button>
+                  <FaShoppingCart />
+                  In cart
+                </Button>
+              )}
+              <div className={styles.heartButtonBlock}>
+                <button className={styles.like} onClick={(e) => {
+                  e.stopPropagation()
+                  handleLike()
+                }}>
+                  {liked ? "❤️" : "🤍"}
+                </button>
+              </div>
             </div>
           </div>
         );

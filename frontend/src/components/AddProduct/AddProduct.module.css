@@ -32,7 +32,7 @@
     outline: none; 
   }
   
-  button {
+  .formButton{
     background-color: #007bff; 
     color: white; 
     border: none; 
@@ -51,9 +51,10 @@
     margin: 10px 0; 
   }
   
-  img {
+  .imagePreview{
     max-width: 100%; 
     height: auto; 
     border-radius: 4px; 
   }
-  
+
+ 
