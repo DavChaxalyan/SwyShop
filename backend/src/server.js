@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const authRoutes = require('./routes/routes');
+const authRoutes = require('./routes/authRoutes');
+const productsRoute = require('./routes/productsRoute');
 const app = express();
 const path = require('path');
 const cors = require('cors');
@@ -14,8 +15,9 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
 // Middlewares
 app.use(express.json());
 
-// Роуты
+// Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/product', productsRoute);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 const PORT = process.env.PORT || 5000;
