@@ -1,4 +1,3 @@
-// frontend/src/components/ProductCard.js
 import React, { useState } from "react";
 import styles from "./ProductCard.module.css";
 import { useNavigate } from "react-router-dom";
@@ -7,6 +6,7 @@ import { addToCart } from "../../redux/actions/productActions";
 import { FaStar } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
 import ProductModal from "../Modal/Modal";
+import Button from "react-bootstrap/Button";
 
 const ProductCard = ({ products }) => {
   const navigate = useNavigate();
@@ -32,6 +32,7 @@ const ProductCard = ({ products }) => {
     <div className={styles.mainProductsBlock}>
 
       <ProductModal
+        products={products}
         show={modalShow}
         onHide={() => setModalShow(false)}
         product={product}
@@ -50,13 +51,13 @@ const ProductCard = ({ products }) => {
                 className={styles.productImage}
               />
               <div className={styles.seeButton}>
-                <button onClick={(e) => {
+                <Button variant="light" onClick={(e) => {
                   e.stopPropagation();
                   setModalShow(true);
                   setProduct(product)
                 }}>
                   fast see
-                </button>
+                </Button>
               </div>
             </div>
             <p className={styles.price}>
@@ -75,7 +76,7 @@ const ProductCard = ({ products }) => {
             </div>
             <div className={styles.buttonContainer}>
               {!product.isInCart ? (
-                <button
+                <Button
                   className={styles.addToCart}
                   onClick={(e) => {
                     e.stopPropagation();
@@ -84,24 +85,24 @@ const ProductCard = ({ products }) => {
                 >
                   <FaShoppingCart />
                   Add to cart
-                </button>
+                </Button>
               ) : (
-                <button className={styles.inCart} onClick={(e) => {
+                <Button className={styles.inCart} onClick={(e) => {
                   e.stopPropagation()
                   navigate('/cart')
                 }}>
                   <FaShoppingCart />
                   In cart
-                </button>
+                </Button>
               )}
-                  <div className={styles.heartButtonBlock}>
+              <div className={styles.heartButtonBlock}>
                 <button className={styles.like} onClick={(e) => {
                   e.stopPropagation()
                   handleLike()
                 }}>
                   {liked ? "❤️" : "🤍"}
                 </button>
-                  </div>
+              </div>
             </div>
           </div>
         );
