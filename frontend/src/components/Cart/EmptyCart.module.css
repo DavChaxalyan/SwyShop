@@ -1,4 +1,4 @@
-.empty-cart-container {
+.emptyCartContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,20 +12,20 @@
     max-width: 1500px;
   }
   
-  .empty-cart-container h2 {
+  .emptyCartContainer h2 {
     font-size: 24px;
     font-weight: 700;
     color: #333;
     margin-bottom: 10px;
   }
   
-  .empty-cart-container p {
+  .emptyCartContainer p {
     font-size: 16px;
     color: #888;
     margin-bottom: 20px;
   }
   
-  .go-to-main-button {
+  .goToMainButton {
     background-color: #a64eff;
     color: #fff;
     border: none;
@@ -35,7 +35,7 @@
     cursor: pointer;
   }
   
-  .go-to-main-button:hover {
+  .goToMainButton:hover {
     background-color: #9224eb;
   }
   

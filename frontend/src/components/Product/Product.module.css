@@ -1,17 +1,17 @@
-.product-list {
+.productList {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
   }
   
-  .product-item {
+  .productItem {
     border: 1px solid #ccc;
     padding: 10px;
     width: 200px;
     text-align: center;
   }
   
-  .product-details {
+  .productDetails {
     display: flex;
     gap: 30px;
     align-items: center;
@@ -19,7 +19,7 @@
     padding: 20px;
   }
   
-  .product-details img {
+  .productDetails img {
     width: 300px;
     height: auto;
   }
