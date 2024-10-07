@@ -1,6 +1,3 @@
-/* frontend/src/components/ProductCard/ProductCard.module.css */
-
-
 .mainProductsBlock {
   display: flex;
   justify-content: center;
@@ -27,9 +24,8 @@
 
 .seeButton {
   width: 100%;
-  max-width: 190px;
   position: absolute;
-  bottom: 180px;
+  bottom: 170px;
   left: 50%;
   transform: translateX(-50%);
   opacity: 0;
@@ -41,16 +37,18 @@
   border-radius: 8px;
   color: #242424;
   line-height: 20px;
+  width: 80%;
+  border: none;
 }
 
-.imageContainer:hover .seeButton {
+.productCard:hover .seeButton {
   opacity: 1;
 }
 
-.heartButtonBlock{
+.heartButtonBlock {
   position: absolute;
   right: 0;
-    top: 0;
+  top: 0;
 }
 
 .productImage {
@@ -96,9 +94,9 @@
 }
 
 .addToCart {
-  display: flex;
+  display: flex !important;
   align-items: center;
-  gap: 10px;
+  gap: 10px !important;
   margin-top: 10px;
 }
 
@@ -107,10 +105,12 @@
 }
 
 .inCart {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
   margin-top: 10px;
+  background-color: #242424 !important;
+  border-color: #242424 !important;
 }
 
 .like:hover {
