@@ -1,28 +1,91 @@
-import React from 'react';
-import CartIcon from '../Cart/CartIcon';
-import { Link } from 'react-router-dom';
-import './Header.css';
-import appLogo from "../../assets/images/swayshop-logo.png"
+import React from "react";
+import CartIcon from "../Cart/CartIcon";
+import { Link } from "react-router-dom";
+import styles from "./Header.module.css";
+import { NavDropdown } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import appLogo from "../../assets/images/swayshop-logo.png";
 import { useSelector } from "react-redux";
+import { IoLogOutSharp } from "react-icons/io5";
+import { RiProfileFill } from "react-icons/ri";
 import { IoMdAdd } from "react-icons/io";
+import imageProfile from "../../assets/images/sale.jpg"
 
 const Header = () => {
   const cartItemsCount = useSelector((state) => state.products.cart.length);
-
+  const navigate = useNavigate();
+  const handlePage = (url) => {
+    navigate(`/${url}`);
+    if (url === "login") {
+      localStorage.removeItem("token");
+    }
+  };
   return (
-    <header className="header">
-      <div className="logo">
-        <img src={appLogo} alt='logo'/>
+    <header className={styles.header}>
+      <div className={styles.logo}>
+        <img src={appLogo} alt="logo" />
         SwayShop
       </div>
-      <nav className="nav">
+      <nav className={styles.nav}>
         <ul>
-          <li><Link to="/add-product" style={{display: 'flex', alignItems: 'center', gap: '3px'}}><IoMdAdd />Post an add</Link></li>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/products">Products</Link></li>
-          <li><Link to="/contact">Contact</Link></li>
-          <li><Link to="/cart"><CartIcon itemCount={cartItemsCount} /></Link></li>
-          <li><Link to="/login">Sign In</Link></li>
+          <li>
+            <Link
+              to="/add-product"
+              style={{ display: "flex", alignItems: "center", gap: "3px" }}
+            >
+              <IoMdAdd />
+              Post an add
+            </Link>
+          </li>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/products">Products</Link>
+          </li>
+          <li>
+            <Link to="/contact">Contact</Link>
+          </li>
+          <li>
+            <Link to="/cart">
+              <CartIcon itemCount={cartItemsCount} />
+            </Link>
+          </li>
+          {!localStorage.getItem("token") ? (
+            <li>
+              <Link to="/login">Sign In</Link>
+            </li>
+          ) : (
+            <li>
+              <NavDropdown
+                title={
+                  <img
+                    src={imageProfile}
+                    className={styles.roundedCircle}
+                    height="40"
+                    width="40"
+                    alt="Profile"
+                  />
+                }
+                id="basic-nav-dropdown"
+              >
+                <NavDropdown.Item
+                  onClick={() => handlePage("profile")}
+                  className="d-flex align-items-center gap-2 text-black"
+                >
+                  <RiProfileFill />
+                  Your Profile
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  onClick={() => handlePage("login")}
+                  className="d-flex align-items-center gap-2 text-black"
+                >
+                  <IoLogOutSharp />
+                  Log Out
+                </NavDropdown.Item>
+              </NavDropdown>
+            </li>
+          )}
         </ul>
       </nav>
     </header>
