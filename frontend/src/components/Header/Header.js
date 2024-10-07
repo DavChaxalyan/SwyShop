@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 import { IoLogOutSharp } from "react-icons/io5";
 import { RiProfileFill } from "react-icons/ri";
 import { IoMdAdd } from "react-icons/io";
-import imageProfile from "../../assets/images/sale.jpg"
+import imageProfile from "../../assets/images/sale.jpg";
 
 const Header = () => {
   const cartItemsCount = useSelector((state) => state.products.cart.length);
@@ -18,6 +18,17 @@ const Header = () => {
     navigate(`/${url}`);
     if (url === "login") {
       localStorage.removeItem("token");
+    }
+  };
+
+  const handleAddProduct = () => {
+    if (localStorage.getItem("token")) {
+      navigate("/add-product");
+    } else {
+      navigate("/login");
+      setTimeout(() => {
+          alert("You need to log in or register to post an ad.");
+      }, 300)
     }
   };
   return (
@@ -29,13 +40,19 @@ const Header = () => {
       <nav className={styles.nav}>
         <ul>
           <li>
-            <Link
+            <div
+              onClick={handleAddProduct}
               to="/add-product"
-              style={{ display: "flex", alignItems: "center", gap: "3px" }}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "3px",
+                cursor: "pointer",
+              }}
             >
               <IoMdAdd />
               Post an add
-            </Link>
+            </div>
           </li>
           <li>
             <Link to="/">Home</Link>
