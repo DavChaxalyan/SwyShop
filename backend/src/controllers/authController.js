@@ -53,7 +53,7 @@ exports.register = async (req, res) => {
         await user.save();
 
         // Создание токена
-        const token = jwt.sign({ userId: user._id }, 'yourSecretKey', { expiresIn: '1h' });
+        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
         res.status(201).json({ token, userId: user._id });
 
@@ -80,7 +80,7 @@ exports.login = async (req, res) => {
         }
 
         // Создание токена
-        const token = jwt.sign({ userId: user._id }, 'yourSecretKey', { expiresIn: '1h' });
+        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
         res.json({ token, userId: user._id });
 

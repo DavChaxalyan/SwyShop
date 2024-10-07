@@ -2,21 +2,22 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { AiOutlineDelete } from "react-icons/ai";
 import { FaRegHeart } from "react-icons/fa";
+import styles from "./Cart.module.css"
 
 const CartItem = ({ item }) => {
   const dispatch = useDispatch();
 
   return (
-    <div className="cart-item">
-      <div className="cart-item-details">
-        <img src={item.image} alt={item.name} className="cart-item-image" />
+    <div className={styles.cartItem}>
+      <div className={styles.cartItemDetails}>
+        <img src={item.image} alt={item.name} className={styles.cartItemImage} />
         <div>
-          <div className="main-items-cart">
+          <div className={styles.mainItemsCart}>
             <h3>{item.name}</h3>
             <p style={{ color: "gray" }}>{item.color}</p>
             <p style={{ color: "gray" }}>{item.date}</p>
           </div>
-          <div className="like-and-delete-block">
+          <div className={styles.likeAndDeleteBlock}>
             <FaRegHeart
               style={{ color: "gray", cursor: "pointer", fontSize: "20px" }}
             />
@@ -29,9 +30,9 @@ const CartItem = ({ item }) => {
           </div>
         </div>
       </div>
-      <div className="cart-item-quantity">
+      <div className={styles.cartItemQuantity}>
         <button
-          className="button-decrement"
+          className={styles.buttonDecrement}
           onClick={() =>
             dispatch({ type: "DECREMENT_QUANTITY", payload: item.id })
           }
@@ -40,7 +41,7 @@ const CartItem = ({ item }) => {
         </button>
         <span>{item.quantity}</span>
         <button
-          className="button-increment"
+          className={styles.buttonIncrement}
           onClick={() =>
             dispatch({ type: "INCREMENT_QUANTITY", payload: item.id })
           }
@@ -48,7 +49,7 @@ const CartItem = ({ item }) => {
           +
         </button>
       </div>
-      <div className="cart-item-price">
+      <div className={styles.cartItemPrice}>
         <p>{(item.price * item.quantity).toFixed(1)} AMD</p>
       </div>
     </div>

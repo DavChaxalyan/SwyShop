@@ -3,20 +3,20 @@
     padding: 20px;
   }
   
-  .filter-form {
+  .filterForm {
     display: flex;
     flex-direction: column;
     gap: 10px;
     margin-bottom: 20px;
   }
   
-  .product-list {
+  .productList {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
   }
   
-  .product-card {
+  .productCard {
     border: 1px solid #ddd;
     border-radius: 5px;
     padding: 10px;
@@ -24,7 +24,7 @@
     text-align: center;
   }
   
-  .product-card img {
+  .productCard img {
     width: 100%;
     height: auto;
     border-radius: 5px;

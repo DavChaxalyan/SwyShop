@@ -1,8 +1,9 @@
 import React from "react";
+import styles from "./Cart.module.css"
 
 const CheckoutSection = () => {
   return (
-    <div className="checkout-section">
+    <div className={styles.checkoutSection}>
       <h3>Delivery method</h3>
       <p style={{ color: "green", cursor: "pointer" }}>
         <strong>Select delivery address</strong>
