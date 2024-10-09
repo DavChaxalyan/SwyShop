@@ -1,23 +1,24 @@
 // frontend/src/redux/reducers/productReducer.js
 import {
   ADD_TO_CART_SUCCESS,
+  ADD_TO_FAVORITE_SUCCESS,
   GET_PRODUCT_IN_CART,
+  GET_PRODUCT_IN_FAVORITE,
   GET_PRODUCT_SUCCESS,
   REMOVE_FROM_CART,
+  DECREMENT_QUANTITY,
+  INCREMENT_QUANTITY,
+  ADD_NEW_PRODUCT,
 } from "../actions/types";
 import products from "../../data/product";
-import { DECREMENT_QUANTITY } from "../actions/types";
-import { INCREMENT_QUANTITY } from "../actions/types";
-import { ADD_NEW_PRODUCT } from "../actions/types";
 
 const initialState = {
   items: products,
   cart: [],
+  favorites: [],
 };
 
 const productReducer = (state = initialState, action) => {
-  console.log(state, action.payload);
-
   switch (action.type) {
     case GET_PRODUCT_SUCCESS:
       return {
@@ -28,6 +29,11 @@ const productReducer = (state = initialState, action) => {
       return {
         ...state,
         cart: [...action.payload],
+      };
+    case GET_PRODUCT_IN_FAVORITE:
+      return {
+        ...state,
+        favorites: [...action.payload],
       };
     case ADD_TO_CART_SUCCESS:
       const addedProduct = state.items.find(
@@ -46,6 +52,29 @@ const productReducer = (state = initialState, action) => {
           (item.id || item._id) === action.payload ? updatedProduct : item
         ),
         cart: [...state.cart, updatedProduct],
+      };
+    case ADD_TO_FAVORITE_SUCCESS:
+      const addedProductFavorite = state.items.find(
+        (item) => (item.id || item._id) === action.payload
+      );
+      const isProductInFavorite = state.cart.some(
+        (item) => (item.id || item._id) === action.payload
+      );
+      if (isProductInFavorite) {
+        return state;
+      }
+      const updatedProductFavorite = {
+        ...addedProductFavorite,
+        isInCart: true,
+      };
+      return {
+        ...state,
+        items: state.items.map((item) =>
+          (item.id || item._id) === action.payload
+            ? updatedProductFavorite
+            : item
+        ),
+        favorites: [...state.favorites, updatedProductFavorite],
       };
     case REMOVE_FROM_CART:
       const removedProduct = state.items.find(

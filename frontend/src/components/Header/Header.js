@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import appLogo from "../../assets/images/swayshop-logo.png";
 import { useSelector } from "react-redux";
 import { IoLogOutSharp } from "react-icons/io5";
+import { IoMdHeart } from "react-icons/io";
 import { RiProfileFill } from "react-icons/ri";
 import { IoMdAdd } from "react-icons/io";
 import imageProfile from "../../assets/images/sale.jpg";
@@ -93,6 +94,19 @@ const Header = () => {
                 >
                   <RiProfileFill />
                   Your Profile
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  onClick={() => handlePage("favorite")}
+                  className="d-flex align-items-center gap-2 text-black"
+                >
+                  <IoMdHeart
+                      style={{
+                        color: "gray",
+                        cursor: "pointer",
+                        fontSize: "20px",
+                      }}
+                    />
+                  Favorites
                 </NavDropdown.Item>
                 <NavDropdown.Item
                   onClick={() => handlePage("login")}
