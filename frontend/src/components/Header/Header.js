@@ -35,8 +35,10 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
+        <Link to="/" className={styles.swyShop}>
         <img src={appLogo} alt="logo" />
         SwayShop
+        </Link>
       </div>
       <nav className={styles.nav}>
         <ul>
@@ -55,7 +57,7 @@ const Header = () => {
               Post an add
             </div>
           </li>
-          <li>
+          <li >
             <Link to="/">Home</Link>
           </li>
           <li>
