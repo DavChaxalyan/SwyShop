@@ -1,5 +1,10 @@
 // frontend/src/redux/reducers/productReducer.js
-import { ADD_TO_CART, REMOVE_FROM_CART } from "../actions/types";
+import {
+  ADD_TO_CART_SUCCESS,
+  GET_PRODUCT_IN_CART,
+  GET_PRODUCT_SUCCESS,
+  REMOVE_FROM_CART,
+} from "../actions/types";
 import products from "../../data/product";
 import { DECREMENT_QUANTITY } from "../actions/types";
 import { INCREMENT_QUANTITY } from "../actions/types";
@@ -11,15 +16,25 @@ const initialState = {
 };
 
 const productReducer = (state = initialState, action) => {
-  console.log(state);
+  console.log(state, action.payload);
 
   switch (action.type) {
-    case ADD_TO_CART:
+    case GET_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        items: [...action.payload],
+      };
+    case GET_PRODUCT_IN_CART:
+      return {
+        ...state,
+        cart: [...action.payload],
+      };
+    case ADD_TO_CART_SUCCESS:
       const addedProduct = state.items.find(
-        (item) => item.id === action.payload
+        (item) => (item.id || item._id) === action.payload
       );
       const isProductInCart = state.cart.some(
-        (item) => item.id === action.payload
+        (item) => (item.id || item._id) === action.payload
       );
       if (isProductInCart) {
         return state;
@@ -28,7 +43,7 @@ const productReducer = (state = initialState, action) => {
       return {
         ...state,
         items: state.items.map((item) =>
-          item.id === action.payload ? updatedProduct : item
+          (item.id || item._id) === action.payload ? updatedProduct : item
         ),
         cart: [...state.cart, updatedProduct],
       };
@@ -49,7 +64,7 @@ const productReducer = (state = initialState, action) => {
       return {
         ...state,
         cart: state.cart.map((item) =>
-          item.id === action.payload
+          (item.id || item._id) === action.payload
             ? { ...item, quantity: item.quantity + 1 }
             : item
         ),
@@ -58,7 +73,7 @@ const productReducer = (state = initialState, action) => {
       return {
         ...state,
         cart: state.cart.map((item) =>
-          item.id === action.payload && item.quantity > 1
+          (item.id || item._id) === action.payload && item.quantity > 1
             ? { ...item, quantity: item.quantity - 1 }
             : item
         ),
@@ -71,7 +86,7 @@ const productReducer = (state = initialState, action) => {
         reviewsCount: 12,
         id: state.items.length + 1,
         isInCart: false,
-        quantity: 1
+        quantity: 1,
       };
       return {
         ...state,

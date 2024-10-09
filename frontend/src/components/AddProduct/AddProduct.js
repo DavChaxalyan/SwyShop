@@ -49,6 +49,9 @@ const AddProduct = () => {
     formData.append('image', productData.image); 
     formData.append('category', productData.category);
     formData.append('color', productData.color);
+    formData.append('quantity', 1);
+    formData.append('rating', 3.5);
+    formData.append('reviewsCount', 7);
     formData.append('date', new Date().toLocaleDateString());
 
     const token = localStorage.getItem('token');
