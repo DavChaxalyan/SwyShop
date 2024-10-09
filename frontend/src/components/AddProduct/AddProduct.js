@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../../redux/actions/productActions";
-import styles from "./AddProduct.module.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const AddProduct = () => {
   const navigate = useNavigate();
@@ -46,7 +46,7 @@ const AddProduct = () => {
     const formData = new FormData();
     formData.append('name', productData.name);
     formData.append('price', productData.price);
-    formData.append('image', productData.image); 
+    formData.append('image', productData.image);
     formData.append('category', productData.category);
     formData.append('color', productData.color);
     formData.append('quantity', 1);
@@ -65,72 +65,80 @@ const AddProduct = () => {
       date: new Date().toLocaleDateString(),
     });
     setImagePreview(null);
-    navigate('/')
+    navigate('/');
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles.formContainer}>
-      <label>
-        Product Name:
-        <input
-          type="text"
-          name="name"
-          value={productData.name}
-          onChange={handleChange}
-          placeholder="Enter product name"
-          required
-        />
-      </label>
-      <label>
-        Price:
-        <input
-          type="number"
-          name="price"
-          value={productData.price}
-          onChange={handleChange}
-          placeholder="Enter product price"
-          required
-        />
-      </label>
-      <label>
-        Product image:
-        <input
-          type="file"
-          accept="image/*"
-          onChange={handleImageChange}
-          required
-        />
-      </label>
-      {imagePreview && (
-        <div>
-          <h4>Image Preview:</h4>
-          <img src={imagePreview} className={styles.imagePreview} alt="Preview" />
+    <div className="container">
+      <h2 className="my-4 text-center">Add New Product</h2>
+      <form onSubmit={handleSubmit} className="bg-light p-4 rounded shadow-sm">
+        <div className="mb-3">
+          <label className="form-label">Product Name:</label>
+          <input
+            type="text"
+            name="name"
+            value={productData.name}
+            onChange={handleChange}
+            className="form-control"
+            placeholder="Enter product name"
+            required
+          />
         </div>
-      )}
-      <label>
-        Category:
-        <input
-          type="text"
-          name="category"
-          value={productData.category}
-          onChange={handleChange}
-          placeholder="Enter product category"
-          required
-        />
-      </label>
-      <label>
-        Color:
-        <input
-          type="text"
-          name="color"
-          value={productData.color}
-          onChange={handleChange}
-          placeholder="Enter product color"
-          required
-        />
-      </label>
-      <button className="formButton" type="submit">Add Product</button>
-    </form>
+        <div className="mb-3">
+          <label className="form-label">Price:</label>
+          <input
+            type="number"
+            name="price"
+            value={productData.price}
+            onChange={handleChange}
+            className="form-control"
+            placeholder="Enter product price"
+            required
+          />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Product Image:</label>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
+            className="form-control"
+            required
+          />
+        </div>
+        {imagePreview && (
+          <div className="mb-3">
+            <h4>Image Preview:</h4>
+            <img src={imagePreview} className="img-fluid rounded" alt="Preview" />
+          </div>
+        )}
+        <div className="mb-3">
+          <label className="form-label">Category:</label>
+          <input
+            type="text"
+            name="category"
+            value={productData.category}
+            onChange={handleChange}
+            className="form-control"
+            placeholder="Enter product category"
+            required
+          />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Color:</label>
+          <input
+            type="text"
+            name="color"
+            value={productData.color}
+            onChange={handleChange}
+            className="form-control"
+            placeholder="Enter product color"
+            required
+          />
+        </div>
+        <button className="btn btn-primary w-100" type="submit">Add Product</button>
+      </form>
+    </div>
   );
 };
 

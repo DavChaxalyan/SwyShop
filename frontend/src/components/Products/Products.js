@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import ProductCard from "../ProductCard/ProductCard";
 import styles from "./Products.module.css";
+import { Form } from "react-bootstrap";
+
 
 const Products = () => {
   const products = useSelector((state) => state.products.items);
@@ -40,72 +42,87 @@ const Products = () => {
   });
 
   return (
-    <div className={styles.products}>
-      <h1>Products</h1>
-
-      <div className={styles.filterForm}>
-        <input
-          type="text"
-          placeholder="Search for a product..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-
-        <div>
-          <label>Min Price:</label>
-          <input
-            type="number"
-            value={minPrice}
-            onChange={(e) => setMinPrice(e.target.value)}
-          />
-        </div>
-
-        <div>
-          <label>Max Price:</label>
-          <input
-            type="number"
-            value={maxPrice}
-            onChange={(e) => setMaxPrice(e.target.value)}
-          />
-        </div>
-
-        <div>
-          <label>Category:</label>
-          <select
-            onChange={(e) => setSelectedCategory(e.target.value)}
-            value={selectedCategory}
-          >
-            <option value="">All Categories</option>
-            <option value="Electronics">Electronics</option>
-            <option value="Gadgets">Gadgets</option>
-            <option value="Clothing">Clothing</option>
-            <option value="Audio">Audio</option>
-          </select>
-        </div>
-
-        <div>
-          <label>Min Rating:</label>
-          <input
-            type="number"
-            min="0"
-            max="5"
-            value={minRating}
-            onChange={(e) => setMinRating(e.target.value)}
-          />
-        </div>
-
-        <div>
-          <label>Sort By:</label>
-          <select onChange={(e) => setSortBy(e.target.value)} value={sortBy}>
-            <option value="">Default</option>
-            <option value="priceAsc">Price Low to High</option>
-            <option value="priceDesc">Price High to Low</option>
-            <option value="rating">Rating</option>
-          </select>
+    <div>
+      <div className={styles.bgImage}>
+        <div
+          class="text-center w-100"
+        >
+          <div className={styles.mask}>
+            <div class="d-flex justify-content-center align-items-center h-100">
+              <div class="text-white p-3">
+                <h1>Products</h1>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <ProductCard products={sortedProducts} />
+      <div className={styles.products}>
+          <input
+            type="text"
+            placeholder="Search for a product..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        <div className={styles.filterForm}>
+
+          <div className={styles.formBlock}>
+            <label>Min Price:</label>
+            <input
+              type="number"
+              value={minPrice}
+              onChange={(e) => setMinPrice(e.target.value)}
+            />
+          </div>
+
+
+          <div className={styles.formBlock}>
+            <label>Max Price:</label>
+            <input
+              type="number"
+              value={maxPrice}
+              onChange={(e) => setMaxPrice(e.target.value)}
+            />
+          </div>
+
+          <div className={styles.formBlock}>
+            <label>Category:</label>
+            <Form.Select
+              onChange={(e) => setSelectedCategory(e.target.value)}
+              value={selectedCategory}
+            >
+              <option value="">All Categories</option>
+              <option value="Electronics">Electronics</option>
+              <option value="Gadgets">Gadgets</option>
+              <option value="Clothing">Clothing</option>
+              <option value="Audio">Audio</option>
+            </Form.Select >
+          </div>
+
+          <div className={styles.formBlock}>
+            <label>Min Rating:</label>
+            <input
+              type="number"
+              min="0"
+              max="5"
+              value={minRating}
+              onChange={(e) => setMinRating(e.target.value)}
+            />
+          </div>
+
+          <div className={styles.formBlock}>
+            <label>Sort By:</label>
+            <Form.Select onChange={(e) => setSortBy(e.target.value)} value={sortBy}>
+              <option value="">Default</option>
+              <option value="priceAsc">Price Low to High</option>
+              <option value="priceDesc">Price High to Low</option>
+              <option value="rating">Rating</option>
+            </Form.Select >
+          </div>
+        </div>
+
+        <ProductCard products={sortedProducts} />
+      </div>
     </div>
   );
 };

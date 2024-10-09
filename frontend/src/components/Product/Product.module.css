@@ -20,7 +20,49 @@
   }
   
   .productDetails img {
-    width: 300px;
+    width: 200px;
     height: auto;
   }
+
+
+  .cardBlock{
+    border: 1px solid #dfdcdc;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.ratingBlock{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+
+.ratingShop{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
   
+
+.priceBlock h2{
+  font-size: 28px;
+  line-height: 37px;
+  margin: 0;
+}
+
+.priceBlock del{
+  color: #868695;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.ratingShop h5{
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  padding-right: 8px;
+  margin: 0;
+}
