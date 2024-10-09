@@ -1,5 +1,5 @@
 // src/App.js
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import CartItem from "./CartItems";
 import CartSummary from "./CartSummary";
@@ -9,9 +9,6 @@ import EmptyCart from "./EmptyCart";
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.products.cart);
-  useEffect(() => {
-    console.log(cartItems);
-  }, [cartItems]);
 
   return (
     <div className={styles.cartContainer}>
@@ -26,7 +23,7 @@ const Cart = () => {
               </span>
             </div>
             {cartItems?.map((item) => (
-              <CartItem key={item.id} item={item} />
+              <CartItem key={item.id || item._id} item={item} />
             ))}
           </div>
           <div className={styles.cartSummarySection}>
