@@ -1,8 +1,8 @@
-import { ADD_TO_CART, REMOVE_FROM_CART, ADD_NEW_PRODUCT } from './types';
+import { ADD_TO_CART_SUCCESS, REMOVE_FROM_CART, ADD_NEW_PRODUCT } from './types';
 
 export const addToCart = (productId) => {
   return {
-    type: ADD_TO_CART,
+    type: ADD_TO_CART_SUCCESS,
     payload: productId,
   };
 };

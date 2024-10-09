@@ -23,7 +23,6 @@ const Login = () => {
    if (localStorage.getItem('token')) {
     navigate('/')
    }
-    console.log("Submitted:", formData);
   };
 
   return (

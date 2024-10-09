@@ -3,14 +3,19 @@ import { useDispatch } from "react-redux";
 import { AiOutlineDelete } from "react-icons/ai";
 import { FaRegHeart } from "react-icons/fa";
 import styles from "./Cart.module.css"
+import { deleteProductInCart } from "../../redux/actions/addProductActions";
 
 const CartItem = ({ item }) => {
   const dispatch = useDispatch();
 
+  const handleDeleteFromCart = (id) => {
+    const token = localStorage.getItem('token')
+    dispatch(deleteProductInCart(id, token))
+  }
   return (
     <div className={styles.cartItem}>
       <div className={styles.cartItemDetails}>
-        <img src={item.image} alt={item.name} className={styles.cartItemImage} />
+        <img src={item.statimage ? item.statimage : `http://localhost:5000/${item.image}`} alt={item.name} className={styles.cartItemImage} />
         <div>
           <div className={styles.mainItemsCart}>
             <h3>{item.name}</h3>
@@ -24,7 +29,7 @@ const CartItem = ({ item }) => {
             <AiOutlineDelete
               style={{ color: "gray", cursor: "pointer", fontSize: "20px" }}
               onClick={() =>
-                dispatch({ type: "REMOVE_FROM_CART", payload: item.id })
+                handleDeleteFromCart(item.id || item._id)
               }
             />
           </div>
@@ -34,7 +39,7 @@ const CartItem = ({ item }) => {
         <button
           className={styles.buttonDecrement}
           onClick={() =>
-            dispatch({ type: "DECREMENT_QUANTITY", payload: item.id })
+            dispatch({ type: "DECREMENT_QUANTITY", payload: (item?.id || item._id) })
           }
         >
           -
@@ -43,7 +48,7 @@ const CartItem = ({ item }) => {
         <button
           className={styles.buttonIncrement}
           onClick={() =>
-            dispatch({ type: "INCREMENT_QUANTITY", payload: item.id })
+            dispatch({ type: "INCREMENT_QUANTITY", payload: (item?.id || item._id) })
           }
         >
           +
