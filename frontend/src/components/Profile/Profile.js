@@ -7,7 +7,7 @@ const Profile = () => {
     email: "johndoe@example.com",
     phone: "+1 123 456 7890",
     address: "123 Main St, City, Country",
-    profilePic: "https://via.placeholder.com/150", // Место для аватара пользователя
+    profilePic: "https://via.placeholder.com/150",
   };
 
   const orders = [
@@ -20,11 +20,9 @@ const Profile = () => {
   return (
     <Container className="mt-4">
       <Row>
-        {/* Личная информация и настройки */}
         <Col md={4}>
           <Card className="mb-4">
             <Card.Body className="text-center">
-              {/* Изображение профиля */}
               <img
                 src={user.profilePic}
                 alt="Profile"
@@ -37,11 +35,9 @@ const Profile = () => {
             </Card.Body>
           </Card>
 
-          {/* Настройки профиля */}
 
         </Col>
 
-        {/* Заказы пользователя */}
         <Col md={8}>
           <Card className="mb-4">
             <Card.Body>
@@ -62,7 +58,6 @@ const Profile = () => {
             </Card.Body>
           </Card>
 
-          {/* Настройки уведомлений */}
           <Card>
             <Card.Body>
               <Card.Title>Notification Preferences</Card.Title>

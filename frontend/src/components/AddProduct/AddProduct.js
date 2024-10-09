@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addProduct } from "../../redux/actions/addProductActions";
-import "bootstrap/dist/css/bootstrap.min.css"; // Импорт Bootstrap
-import styles from "./AddProduct.module.css";
+import { addProduct } from "../../redux/actions/productActions";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const AddProduct = () => {
   const navigate = useNavigate();
