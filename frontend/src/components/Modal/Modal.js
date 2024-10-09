@@ -53,8 +53,10 @@ function ProductModal(props) {
           </div>
           <div className={styles.ratingBlock}>
             <div className={styles.ratingBox}>
-              <FaStar style={{ fill: "#ff7d00" }} className={styles.star} />
               <p>{props?.product?.rating}</p>
+              <div>
+              <FaStar style={{ fill: "#ff7d00" }} className={styles.star} />
+              </div>
             </div>
             <i>Reviews: {props?.product?.reviewsCount}</i>
           </div>
