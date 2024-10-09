@@ -11,14 +11,17 @@ import AddProductPage from "./pages/AddProductPage/AddProductPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
 import { useDispatch } from "react-redux";
-import { getProductInCart } from "./redux/actions/addProductActions";
+import { getProduct } from "./redux/actions/productActions";
+import { getProductInCart } from "./redux/actions/cartProductActions";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
+import FavoritePage from "./pages/FavoritePage/FavoritePage";
 
 const App = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     const token = localStorage.getItem('token')
     dispatch(getProductInCart(token)); 
+    dispatch(getProduct());
   }, [dispatch]);
   return (
     <Router>
@@ -35,6 +38,7 @@ const App = () => {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegistrationPage />} />
             <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/favorite" element={<FavoritePage />} />
           </Routes>
         </div>
         <Footer />

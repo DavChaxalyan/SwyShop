@@ -13,6 +13,7 @@ const productSchema = new mongoose.Schema({
     date: { type: String, required: true },
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }, 
     whoInCart: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+    whoInFavorite: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
 }, { timestamps: true });
 
 const Product = mongoose.model('Product', productSchema);

@@ -5,28 +5,27 @@ import Modal from "react-bootstrap/Modal";
 import { FaStar } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux";
-import { addToCart } from "../../redux/actions/productActions";
-import { addProductInCart } from "../../redux/actions/addProductActions";
+import { useDispatch } from "react-redux";
+import { addProductInCart } from "../../redux/actions/cartProductActions";
 
 function ProductModal(props) {
-  const [inCart, setInCart] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const cartItems = useSelector((state) => state.products.cart);
+  const [isInCart, setIsInCart] = useState(
+    props?.product?.whoInCart?.includes(props?.userId) || false
+  );
 
   const handleAddToCart = (id) => {
     const token = localStorage.getItem('token')
-    dispatch(addProductInCart(id,token));
+    dispatch(addProductInCart(id, token)).then(() => {
+      setIsInCart(true);
+    });
   };
 
   useEffect(() => {
-    const isProductInCart = cartItems.some(
-      (item) => item?.id === props?.product?.id
-    );
-    setInCart(isProductInCart);
-  }, [cartItems, props?.product?.id]);
+    setIsInCart(props?.product?.whoInCart?.includes(props?.userId) || false);
+  }, [props?.product, props?.userId]);
 
   return (
     <Modal
@@ -75,7 +74,7 @@ function ProductModal(props) {
             )}
           </div>
           <p>Color: {props?.product?.color}</p>
-          {!props?.product?.whoInCart?.includes(props?.userId) ? (
+          {!isInCart ? (
             <Button
               className={styles.addToCart}
               onClick={(e) => {
