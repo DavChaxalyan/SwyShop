@@ -32,9 +32,6 @@ const Registration = () => {
     if (localStorage.getItem('token')) {
         navigate('/')
     }
-console.log(state);
-
-    console.log("Submitted:", formData);
   };
 
   useEffect(() => {
