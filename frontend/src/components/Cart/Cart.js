@@ -9,8 +9,6 @@ import EmptyCart from "./EmptyCart";
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.products.cart);
-  console.log(cartItems);
-
   useEffect(() => {
     console.log(cartItems);
   }, [cartItems]);

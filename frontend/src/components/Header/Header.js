@@ -17,6 +17,7 @@ const Header = () => {
   const handlePage = (url) => {
     navigate(`/${url}`);
     if (url === "login") {
+      window.location.reload();
       localStorage.removeItem("token");
     }
   };

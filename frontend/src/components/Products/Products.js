@@ -6,8 +6,6 @@ import styles from "./Products.module.css";
 
 const Products = () => {
   const products = useSelector((state) => state.products.items);
-  console.log(products);
-  
   const [searchTerm, setSearchTerm] = useState("");
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(1000);
@@ -15,7 +13,6 @@ const Products = () => {
   const [minRating, setMinRating] = useState(0);
   const [sortBy, setSortBy] = useState("");
 
-  // Фильтрация товаров
   const filteredProducts = products.filter((product) => {
     const meetsSearchCriteria = product.name
       .toLowerCase()
@@ -35,7 +32,6 @@ const Products = () => {
     );
   });
 
-  // Сортировка продуктов
   const sortedProducts = [...filteredProducts].sort((a, b) => {
     if (sortBy === "priceAsc") return a.price - b.price;
     if (sortBy === "priceDesc") return b.price - a.price;
@@ -47,7 +43,6 @@ const Products = () => {
     <div className={styles.products}>
       <h1>Products</h1>
 
-      {/* Форма фильтрации */}
       <div className={styles.filterForm}>
         <input
           type="text"
@@ -110,7 +105,6 @@ const Products = () => {
         </div>
       </div>
 
-      {/* Список продуктов */}
       <ProductCard products={sortedProducts} />
     </div>
   );
