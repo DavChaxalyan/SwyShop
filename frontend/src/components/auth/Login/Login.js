@@ -5,6 +5,8 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../../redux/actions/authActions";
 import styles from "./Login.module.css";
+import { getUser } from "../../../redux/actions/userActions";
+import { jwtDecode } from "jwt-decode";
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -21,8 +23,24 @@ const Login = () => {
    await dispatch(login(formData))
 
    if (localStorage.getItem('token')) {
+   dispatch(getUser(getUserIdFromToken(), localStorage.getItem('token')));
     navigate('/')
    }
+  };
+
+  const getUserIdFromToken = () => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      try {
+        const decodedToken = jwtDecode(token);
+        return decodedToken.userId;
+      } catch (error) {
+        console.error("Error decoding token:", error);
+        return null;
+      }
+    }
+    return null;
   };
 
   return (
@@ -62,7 +80,7 @@ const Login = () => {
             Log In
           </button>
 
-          <p className={styles.forgotPassword}>Forgot your password?</p>
+          <p className={styles.forgotPassword} onClick={() => navigate('/forgot-password')}>Forgot your password?</p>
 
           <p className={styles.noAccount}>
             Don't have an account?{" "}

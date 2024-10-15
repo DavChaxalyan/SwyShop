@@ -4,6 +4,7 @@ const authRoutes = require('./routes/authRoutes');
 const productsRoute = require('./routes/productsRoute');
 const cartProductsRoute = require('./routes/cartProductsRoute');
 const favoriteProductsRoute = require('./routes/favoriteProductsRoute');
+const userRoutes = require('./routes/userRoutes');
 const app = express();
 const path = require('path');
 const cors = require('cors');
@@ -14,7 +15,6 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
     .then(() => console.log("MongoDB connected"))
     .catch((err) => console.log(err));
 
-// Middlewares
 app.use(express.json());
 
 // Routes
@@ -22,8 +22,9 @@ app.use('/api/auth', authRoutes);
 app.use('/api/product', productsRoute);
 app.use('/api/product', cartProductsRoute);
 app.use('/api/product', favoriteProductsRoute);
+app.use('/api/user', userRoutes);
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
-
+app.use('/images', express.static(path.join(__dirname, '../../frontend/src/assets/images')));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

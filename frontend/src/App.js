@@ -15,14 +15,21 @@ import { getProduct } from "./redux/actions/productActions";
 import { getProductInCart } from "./redux/actions/cartProductActions";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import FavoritePage from "./pages/FavoritePage/FavoritePage";
+import EmailVerification from "./components/auth/EmailVerification/EmailVerification";
+import ForgotPassword from "./components/auth/ForgotPassword/ForgotPassword";
+import ResetPassword from "./components/auth/ResetPassword/ResetPassword";
 
 const App = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   useEffect(() => {
-    const token = localStorage.getItem('token')
-    dispatch(getProductInCart(token)); 
-    dispatch(getProduct());
+    const token = localStorage.getItem("token");
+    const fetchData = async () => {
+      await dispatch(getProductInCart(token));
+      await dispatch(getProduct());
+    }
+    fetchData()
   }, [dispatch]);
+
   return (
     <Router>
       <div className="app-container">
@@ -39,6 +46,9 @@ const App = () => {
             <Route path="/register" element={<RegistrationPage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/favorite" element={<FavoritePage />} />
+            <Route path="/verify-email" element={<EmailVerification />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/reset-password/:token" element={<ResetPassword />} />
           </Routes>
         </div>
         <Footer />

@@ -1,4 +1,3 @@
-/* src/components/Footer.css */
 .footer {
     background-color: #343a40;
     color: #fff;
@@ -52,14 +51,3 @@
   .footerSection .fas {
     margin-right: 10px;
   }
-  
-  .footerBottom {
-    margin-top: 20px;
-    font-size: 12px;
-    text-align: center;
-    width: 100%;
-    background-color: #23272b;
-    padding: 10px 0;
-    color: #bbb;
-  }
-  
