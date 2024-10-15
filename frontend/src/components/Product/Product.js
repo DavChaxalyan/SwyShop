@@ -55,7 +55,9 @@ function Product() {
   return (
     <div className={styles.productDetails}>
       <img src={product.statimage ? `http://localhost:5000/${product.statimage}` : `http://localhost:5000/${product.image}`} alt={product.name} />
-      <div>
+      <div className="d-flex flex-column gap-5">
+
+      <div className="d-flex flex-column gap-3">
         <h2>{product.name}</h2>
         <p>Category: {product.category}</p>
         <div className={styles.ratingBlock}>
@@ -78,13 +80,13 @@ function Product() {
             <Button
             style={{
               display: "flex",
-                alignItems: "center",
-                gap: '10px'
-              }}
-              onClick={() =>
-                handleAddToCart((product._id || product.id))
-              }
-              >
+              alignItems: "center",
+              gap: '10px'
+            }}
+            onClick={() =>
+              handleAddToCart((product._id || product.id))
+            }
+            >
               <FaShoppingCart />
               Add to Cart
             </Button>
@@ -108,6 +110,7 @@ function Product() {
             <h5>mobile center</h5>
           <FaStar style={{ fill: "#ff7d00" }} className={styles.star} />
           <p>4.7</p>
+          </div>
           </div>
       </div>
     </div>

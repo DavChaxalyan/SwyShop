@@ -2,8 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 80px;
-    background: linear-gradient(to right, #f7f7f7, #eaeaea);
+    height: 70vh;
   }
   
   .formContainer {
@@ -39,7 +38,7 @@
   
   .icon {
     position: absolute;
-    top: 12px;
+    top: 15px;
     left: 10px;
     color: #888;
   }
