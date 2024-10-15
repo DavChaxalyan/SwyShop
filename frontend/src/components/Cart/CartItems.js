@@ -47,7 +47,7 @@ const CartItem = ({ item }) => {
         <img
           src={
             item.statimage
-              ? item.statimage
+              ? `http://localhost:5000/${item.statimage}`
               : `http://localhost:5000/${item.image}`
           }
           alt={item.name}

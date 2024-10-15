@@ -36,9 +36,16 @@ const ProductCard = ({ products }) => {
     return null;
   };
 
-  const handleAddToCart = (id) => {
+  const handleAddToCart = async (id) => {
     const token = localStorage.getItem("token");
-    dispatch(addProductInCart(id, token));
+    if (token) {
+     await dispatch(addProductInCart(id, token));
+     return 
+    }
+    navigate('/login')
+    setTimeout(() => {
+      alert('You need to log in or register to add to cart.')
+    }, 500)
   };
 
   const handleProductPage = (id) => {
@@ -46,11 +53,18 @@ const ProductCard = ({ products }) => {
   };
 
   const addToFavorite = (id) => {
-    dispatch(addProductInFavorite(id, localStorage.getItem("token")));
+    if (localStorage.getItem("token")) {
+      dispatch(addProductInFavorite(id, localStorage.getItem("token")));
+      return
+    }
+    navigate('/login')
+    setTimeout(() => {
+      alert('You need to log in or register to add to favorite.')
+    }, 500)
   };
 
-  const deleteToFavorite = (id) => {
-    dispatch(deleteProductInFavorite(id, localStorage.getItem("token")));
+  const deleteToFavorite = async (id) => {
+    await dispatch(deleteProductInFavorite(id, localStorage.getItem("token")));
   };
 
   return (
@@ -73,7 +87,7 @@ const ProductCard = ({ products }) => {
               <img
                 src={
                   product.statimage
-                    ? product.statimage
+                    ? `http://localhost:5000/${product.statimage}`
                     : `http://localhost:5000/${product.image}`
                 }
                 alt={product.name}

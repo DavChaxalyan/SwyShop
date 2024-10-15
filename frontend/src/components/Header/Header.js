@@ -10,10 +10,11 @@ import { IoLogOutSharp } from "react-icons/io5";
 import { IoMdHeart } from "react-icons/io";
 import { RiProfileFill } from "react-icons/ri";
 import { IoMdAdd } from "react-icons/io";
-import imageProfile from "../../assets/images/sale.jpg";
+import imageProfile from '../../assets/images/profile-empty.png'
 
 const Header = () => {
-  const cartItemsCount = useSelector((state) => state.products.cart.length);
+  const cartItemsCount = useSelector((state) => state?.products?.cart?.length);
+  const state = useSelector((state) => state.user.ProfileUser);
   const navigate = useNavigate();
   const handlePage = (url) => {
     navigate(`/${url}`);
@@ -81,7 +82,10 @@ const Header = () => {
               <NavDropdown
                 title={
                   <img
-                    src={imageProfile}
+                    src={ state?.profileImage
+                      ? `http://localhost:5000/${state?.profileImage}`
+                      : imageProfile
+                     }
                     className={styles.roundedCircle}
                     height="40"
                     width="40"
@@ -100,6 +104,7 @@ const Header = () => {
                 <NavDropdown.Item
                   onClick={() => handlePage("favorite")}
                   className="d-flex align-items-center gap-2 text-black"
+                  style={{paddingLeft: '13px'}}
                 >
                   <IoMdHeart
                       style={{
@@ -113,6 +118,7 @@ const Header = () => {
                 <NavDropdown.Item
                   onClick={() => handlePage("login")}
                   className="d-flex align-items-center gap-2 text-black"
+                  style={{paddingLeft: '19px'}}
                 >
                   <IoLogOutSharp />
                   Log Out

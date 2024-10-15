@@ -7,8 +7,9 @@ import { register } from "../../../redux/actions/authActions";
 import styles from "./Registration.module.css";
 
 const Registration = () => {
-    const navigate = useNavigate()
-    const state = useSelector((state) => state)
+  const navigate = useNavigate();
+  const state = useSelector((state) => state);
+
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -25,19 +26,23 @@ const Registration = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
-      alert("Пароли не совпадают");
+      alert("Passwords do not match");
       return;
     }
+
     await dispatch(register(formData));
-    if (localStorage.getItem('token')) {
-        navigate('/')
-    }
   };
 
   useEffect(() => {
+    if (state.auth.emailSent) {
+      navigate("/verify-email", { state: { email: formData.email } });
+    }
+  }, [state.auth.emailSent]);
+
+  useEffect(() => {
     if (state.auth.error) {
-      alert(state.auth.error); 
-    } else if (state.auth.error === '') {
+      alert(state.auth.error);
+    } else if (state.auth.error === "") {
       setFormData({
         username: "",
         email: "",

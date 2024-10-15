@@ -1,4 +1,3 @@
-// src/components/Footer.js
 import React from 'react';
 import styles from './Footer.module.css';
 
@@ -29,10 +28,6 @@ const Footer = () => {
           <p><i className="fas fa-envelope"></i> info@onlineshop.com</p>
           <p><i className="fas fa-map-marker-alt"></i> Store Address, City</p>
         </div>
-      </div>
-
-      <div className={styles.footerBottom}>
-        &copy; 2024 SwyShop | All Rights Reserved
       </div>
     </footer>
   );

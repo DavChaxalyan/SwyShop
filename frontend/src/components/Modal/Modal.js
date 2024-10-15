@@ -16,11 +16,18 @@ function ProductModal(props) {
     props?.product?.whoInCart?.includes(props?.userId) || false
   );
 
-  const handleAddToCart = (id) => {
-    const token = localStorage.getItem('token')
-    dispatch(addProductInCart(id, token)).then(() => {
-      setIsInCart(true);
-    });
+  const handleAddToCart = async (id) => {
+    const token = localStorage.getItem("token");
+    if (token) {
+     await dispatch(addProductInCart(id, token)).then(() => {
+        setIsInCart(true);
+      });
+      return
+    }
+    navigate('/login')
+    setTimeout(() => {
+      alert('You need to log in or register to add to cart.')
+    }, 500)
   };
 
   useEffect(() => {
@@ -38,8 +45,9 @@ function ProductModal(props) {
         <div className={styles.imageBlock}>
           <img
             src={
-              props?.product?.statimage ||
-              `http://localhost:5000/${props?.product?.image}`
+              props?.product?.statimage
+                ? `http://localhost:5000/${props?.product?.statimage}`
+                : `http://localhost:5000/${props?.product?.image}`
             }
             alt="Description"
           />
@@ -55,7 +63,7 @@ function ProductModal(props) {
             <div className={styles.ratingBox}>
               <p>{props?.product?.rating}</p>
               <div>
-              <FaStar style={{ fill: "#ff7d00" }} className={styles.star} />
+                <FaStar style={{ fill: "#ff7d00" }} className={styles.star} />
               </div>
             </div>
             <i>Reviews: {props?.product?.reviewsCount}</i>
