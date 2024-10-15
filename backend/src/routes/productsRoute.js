@@ -6,5 +6,6 @@ const router = express.Router();
 
 router.post('/add', authMiddleware, upload.single('image'), productController.addProduct);
 router.get('/get', productController.getProducts);
+router.get('/get/all', productController.seedProducts);
 
 module.exports = router;

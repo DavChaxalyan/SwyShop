@@ -1,4 +1,3 @@
-// frontend/src/redux/reducers/productReducer.js
 import {
   ADD_TO_CART_SUCCESS,
   ADD_TO_FAVORITE_SUCCESS,
@@ -9,17 +8,39 @@ import {
   DECREMENT_QUANTITY,
   INCREMENT_QUANTITY,
   ADD_NEW_PRODUCT,
+  FETCH_PRODUCTS_REQUEST,
+  FETCH_PRODUCTS_SUCCESS,
+  FETCH_PRODUCTS_FAILURE,
 } from "../actions/types";
-import products from "../../data/product";
 
 const initialState = {
-  items: products,
+  loading: false,
+  error: "",
+  items: [],
   cart: [],
   favorites: [],
 };
 
 const productReducer = (state = initialState, action) => {
+  
   switch (action.type) {
+    case FETCH_PRODUCTS_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case FETCH_PRODUCTS_SUCCESS:
+      return {
+        loading: false,
+        products: action.payload,
+        error: "",
+      };
+    case FETCH_PRODUCTS_FAILURE:
+      return {
+        loading: false,
+        products: [],
+        error: action.payload,
+      };
     case GET_PRODUCT_SUCCESS:
       return {
         ...state,
@@ -39,7 +60,7 @@ const productReducer = (state = initialState, action) => {
       const addedProduct = state.items.find(
         (item) => (item.id || item._id) === action.payload
       );
-      const isProductInCart = state.cart.some(
+      const isProductInCart = state?.cart?.some(
         (item) => (item.id || item._id) === action.payload
       );
       if (isProductInCart) {
@@ -57,7 +78,7 @@ const productReducer = (state = initialState, action) => {
       const addedProductFavorite = state.items.find(
         (item) => (item.id || item._id) === action.payload
       );
-      const isProductInFavorite = state.cart.some(
+      const isProductInFavorite = state?.cart?.some(
         (item) => (item.id || item._id) === action.payload
       );
       if (isProductInFavorite) {

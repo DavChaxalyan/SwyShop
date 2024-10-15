@@ -1,4 +1,3 @@
-// src/App.js
 import React from "react";
 import { useSelector } from "react-redux";
 import CartItem from "./CartItems";
@@ -12,7 +11,7 @@ const Cart = () => {
 
   return (
     <div className={styles.cartContainer}>
-      {cartItems.length > 0 ? (
+      {cartItems?.length > 0 ? (
         <>
           <div className={styles.cartItems}>
             <div className={styles.titleCard}>

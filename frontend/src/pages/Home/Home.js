@@ -1,9 +1,8 @@
-// frontend/src/pages/Home.js
 import React, { useEffect } from 'react';
 import ImageSlider from '../../components/Sliders/HomePageSlider/ImagesCategoriesSlider';
 import ProductCard from '../../components/ProductCard/ProductCard';
 import { useSelector, useDispatch } from 'react-redux';
-import { getProduct } from '../../redux/actions/productActions';
+import { fetchProducts, getProduct } from '../../redux/actions/productActions';
 import { getProductInCart } from '../../redux/actions/cartProductActions';
 
 const Home = () => {
@@ -11,8 +10,13 @@ const Home = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     const token = localStorage.getItem('token')
-    dispatch(getProductInCart(token)); 
-    dispatch(getProduct()); 
+    const fetchedProducts = async () => {
+      await dispatch(fetchProducts()); 
+      await dispatch(getProduct()); 
+      await dispatch(getProductInCart(token)); 
+    }
+
+    fetchedProducts()
   }, [dispatch]);
 
   return (

@@ -1,4 +1,3 @@
-// frontend/src/components/Products.js
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import ProductCard from "../ProductCard/ProductCard";
@@ -45,11 +44,11 @@ const Products = () => {
     <div>
       <div className={styles.bgImage}>
         <div
-          class="text-center w-100"
+          className="text-center w-100"
         >
           <div className={styles.mask}>
-            <div class="d-flex justify-content-center align-items-center h-100">
-              <div class="text-white p-3">
+            <div className="d-flex justify-content-center align-items-center h-100">
+              <div className="text-white p-3">
                 <h1>Products</h1>
               </div>
             </div>

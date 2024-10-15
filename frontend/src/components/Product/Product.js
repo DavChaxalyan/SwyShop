@@ -18,9 +18,16 @@ function Product() {
   const { id } = useParams();
   const product = products.find((p) => (p._id || p.id) == id);
 
-  const handleAddToCart = (id) => {
+  const handleAddToCart = async (id) => {
     const token = localStorage.getItem('token')
-    dispatch(addProductInCart(id, token));
+    if (token) {
+      await dispatch(addProductInCart(id, token));
+      return 
+     }
+     navigate('/login')
+     setTimeout(() => {
+       alert('You need to log in or register to add to cart.')
+     }, 500)
   };
 
   const getUserIdFromToken = () => {
@@ -47,7 +54,7 @@ function Product() {
 
   return (
     <div className={styles.productDetails}>
-      <img src={product.statimage ? product.statimage : `http://localhost:5000/${product.image}`} alt={product.name} />
+      <img src={product.statimage ? `http://localhost:5000/${product.statimage}` : `http://localhost:5000/${product.image}`} alt={product.name} />
       <div>
         <h2>{product.name}</h2>
         <p>Category: {product.category}</p>
