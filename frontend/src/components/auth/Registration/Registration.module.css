@@ -1,9 +1,9 @@
 .registrationPage {
-    padding: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(to right, #f0f0f0, #d8d8d8);
+    height: 70vh;
+
   }
   
   .formContainer {
@@ -39,7 +39,7 @@
   
   .icon {
     position: absolute;
-    top: 12px;
+    top: 15px;
     left: 10px;
     color: #888;
   }
