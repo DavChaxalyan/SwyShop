@@ -53,74 +53,76 @@ const Registration = () => {
   }, [state.auth.error]);
 
   return (
-    <div className={styles.registrationPage}>
-      <div className={styles.formContainer}>
-        <h2 className={styles.title}>Create an Account</h2>
-        <p className={styles.subtitle}>Join us and start shopping today!</p>
+    <div>
+      <div className={styles.registrationPage}>
+        <div className={styles.formContainer}>
+          <h2 className={styles.title}>Create an Account</h2>
+          <p className={styles.subtitle}>Join us and start shopping today!</p>
 
-        <form onSubmit={handleSubmit} className={styles.registrationForm}>
-          <div className={styles.inputGroup}>
-            <FaUser className={styles.icon} />
-            <input
-              type="text"
-              name="username"
-              value={formData.username}
-              onChange={handleChange}
-              placeholder="Username"
-              required
-              className={styles.inputField}
-            />
-          </div>
+          <form onSubmit={handleSubmit} className={styles.registrationForm}>
+            <div className={styles.inputGroup}>
+              <FaUser className={styles.icon} />
+              <input
+                type="text"
+                name="username"
+                value={formData.username}
+                onChange={handleChange}
+                placeholder="Username"
+                required
+                className={styles.inputField}
+              />
+            </div>
 
-          <div className={styles.inputGroup}>
-            <FaEnvelope className={styles.icon} />
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Email"
-              required
-              className={styles.inputField}
-            />
-          </div>
+            <div className={styles.inputGroup}>
+              <FaEnvelope className={styles.icon} />
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Email"
+                required
+                className={styles.inputField}
+              />
+            </div>
 
-          <div className={styles.inputGroup}>
-            <FaLock className={styles.icon} />
-            <input
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              placeholder="Password"
-              required
-              className={styles.inputField}
-            />
-          </div>
+            <div className={styles.inputGroup}>
+              <FaLock className={styles.icon} />
+              <input
+                type="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                placeholder="Password"
+                required
+                className={styles.inputField}
+              />
+            </div>
 
-          <div className={styles.inputGroup}>
-            <FaLock className={styles.icon} />
-            <input
-              type="password"
-              name="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              placeholder="Confirm Password"
-              required
-              className={styles.inputField}
-            />
-          </div>
+            <div className={styles.inputGroup}>
+              <FaLock className={styles.icon} />
+              <input
+                type="password"
+                name="confirmPassword"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                placeholder="Confirm Password"
+                required
+                className={styles.inputField}
+              />
+            </div>
 
-          <button type="submit" className={styles.submitButton}>
-            Register
-          </button>
-        </form>
-        <p className={styles.alreadyHaveAccount}>
-          Already have an account?{" "}
-          <Link to="/login" className={styles.loginLink}>
-            Log in here
-          </Link>
-        </p>
+            <button type="submit" className={styles.submitButton}>
+              Register
+            </button>
+          </form>
+          <p className={styles.alreadyHaveAccount}>
+            Already have an account?{" "}
+            <Link to="/login" className={styles.loginLink}>
+              Log in here
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );
