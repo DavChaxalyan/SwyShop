@@ -1,4 +1,3 @@
-// frontend/src/data/products.js
 import smartphoneImg from "../assets/images/smartphone.jpg";
 import airphoneImg from "../assets/images/audio.webp";
 import dressImg from "../assets/images/dress.jpg";

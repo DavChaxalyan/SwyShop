@@ -1,4 +1,3 @@
-// frontend/src/pages/Products.js
 import React from 'react';
 import Products from '../../components/Products/Products';
 

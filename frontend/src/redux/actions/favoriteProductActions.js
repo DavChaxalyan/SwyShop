@@ -66,6 +66,16 @@ export const addProductInFavorite = (id, token) => async (dispatch) => {
       );
   
       const responseUpdated = await axios.get("http://localhost:5000/api/product/get");
+
+      const responseFavorite = await axios.get(
+        "http://localhost:5000/api/product/favorite",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      dispatch({ type: GET_PRODUCT_IN_FAVORITE, payload: responseFavorite.data });
       
       dispatch({ type: GET_PRODUCT_SUCCESS, payload: responseUpdated.data });
       dispatch({ type: GET_PRODUCT_IN_CART, payload: updatedCartResponse.data });
