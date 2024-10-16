@@ -13,7 +13,7 @@ import {
   deleteProductInCart,
   increaseProductCount,
 } from "../../redux/actions/cartProductActions";
-import { jwtDecode } from "jwt-decode";
+import { getUserIdFromToken } from "../../Utils/utils";
 
 const CartItem = ({ item }) => {
   const dispatch = useDispatch();
@@ -29,21 +29,6 @@ const CartItem = ({ item }) => {
 
   const deleteToFavorite = (id) => {
     dispatch(deleteProductInFavorite(id, localStorage.getItem("token")));
-  };
-
-  const getUserIdFromToken = () => {
-    const token = localStorage.getItem("token");
-
-    if (token) {
-      try {
-        const decodedToken = jwtDecode(token);
-        return decodedToken.userId;
-      } catch (error) {
-        console.error("Error decoding token:", error);
-        return null;
-      }
-    }
-    return null;
   };
 
   const handleIncrease = () => {
@@ -94,16 +79,16 @@ const CartItem = ({ item }) => {
         </div>
       </div>
       <div className={styles.cartItemQuantity}>
-        <button className={styles.buttonDecrement} onClick={handleDecrease} disabled={item?.whoInCart[0]?.count < 2}>
+        <button className={styles.buttonDecrement} onClick={handleDecrease} disabled={item?.whoInCart.some(user => user.userId.toString() === getUserIdFromToken() && user.count < 2)}>
           -
         </button>
-        <span>{item?.whoInCart[0]?.count}</span>
+        <span>{item?.whoInCart.find(user => user.userId.toString() === getUserIdFromToken())?.count}</span>
         <button className={styles.buttonIncrement} onClick={handleIncrease}>
           +
         </button>
       </div>
       <div className={styles.cartItemPrice}>
-        <p>{(item.price * item?.whoInCart[0]?.count).toFixed(1)} AMD</p>
+        <p>{(item.price * item?.whoInCart.find(user => user.userId.toString() === getUserIdFromToken())?.count).toFixed(1)} AMD</p>
       </div>
     </div>
   );

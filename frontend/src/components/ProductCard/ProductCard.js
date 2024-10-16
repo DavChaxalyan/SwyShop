@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { jwtDecode } from "jwt-decode";
 import styles from "./ProductCard.module.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -14,27 +13,13 @@ import {
   deleteProductInFavorite,
 } from "../../redux/actions/favoriteProductActions";
 import { addProductInCart } from "../../redux/actions/cartProductActions";
+import { getUserIdFromToken } from "../../Utils/utils";
 
 const ProductCard = ({ products }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [modalShow, setModalShow] = useState(false);
   const [product, setProduct] = useState(null);
-
-  const getUserIdFromToken = () => {
-    const token = localStorage.getItem("token");
-
-    if (token) {
-      try {
-        const decodedToken = jwtDecode(token);
-        return decodedToken.userId;
-      } catch (error) {
-        console.error("Error decoding token:", error);
-        return null;
-      }
-    }
-    return null;
-  };
 
   const handleAddToCart = async (id) => {
     const token = localStorage.getItem("token");
@@ -127,7 +112,7 @@ const ProductCard = ({ products }) => {
               </span>
             </div>
             <div className={styles.buttonContainer}>
-              {product?.whoInCart[0]?.userId?.toString() !== getUserIdFromToken() ? (
+              {!product?.whoInCart.some(item => item.userId.toString() === getUserIdFromToken()) ? (
                 <Button
                   className={styles.addToCart}
                   onClick={(e) => {

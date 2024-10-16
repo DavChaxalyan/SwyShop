@@ -1,11 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import styles from "./Cart.module.css"
+import { getUserIdFromToken } from "../../Utils/utils";
 
 const CartSummary = () => {
   const cartItems = useSelector((state) => state.products.cart);
   const totalPrice = cartItems?.reduce(
-    (total, item) => total + item.price * item?.whoInCart[0]?.count,
+    (total, item) => total + item.price * item?.whoInCart.find(user => user.userId.toString() === getUserIdFromToken())?.count,
     0
   );
 
@@ -15,7 +16,7 @@ const CartSummary = () => {
       <div className={styles.summaryBlockCount}>
         <h3 style={{ margin: "0" }}>
           Products,{" "}
-          {cartItems.reduce((total, item) => total + item?.whoInCart[0]?.count, 0)} pcs.
+          {cartItems.reduce((total, item) => total + item?.whoInCart.find(user => user.userId.toString() === getUserIdFromToken())?.count, 0)} pcs.
         </h3>
         <p style={{ margin: "0" }}>{totalPrice.toFixed(1)} AMD</p>
       </div>
