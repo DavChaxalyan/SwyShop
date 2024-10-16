@@ -6,10 +6,10 @@ import styles from "./Product.module.css";
 import { useEffect } from "react";
 import { getProduct } from "../../redux/actions/productActions";
 import { addProductInCart } from "../../redux/actions/cartProductActions";
-import { jwtDecode } from "jwt-decode";
 import { Button } from "react-bootstrap";
 import { FaStar } from "react-icons/fa6";
 import { BsShop } from "react-icons/bs";
+import { getUserIdFromToken } from "../../Utils/utils";
 
 function Product() {
   const navigate = useNavigate();
@@ -28,21 +28,6 @@ function Product() {
     setTimeout(() => {
       alert("You need to log in or register to add to cart.");
     }, 500);
-  };
-
-  const getUserIdFromToken = () => {
-    const token = localStorage.getItem("token");
-
-    if (token) {
-      try {
-        const decodedToken = jwtDecode(token);
-        return decodedToken.userId;
-      } catch (error) {
-        console.error("Error decoding token:", error);
-        return null;
-      }
-    }
-    return null;
   };
 
   useEffect(() => {
@@ -85,7 +70,7 @@ function Product() {
             )}
           </div>
 
-          {product?.whoInCart[0]?.userId?.toString() !== getUserIdFromToken() ? (
+          {!(product?.whoInCart.some(user => user.userId.toString() === getUserIdFromToken())) ? (
             <Button
               style={{
                 display: "flex",

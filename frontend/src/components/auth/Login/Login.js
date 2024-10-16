@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { login } from "../../../redux/actions/authActions";
 import styles from "./Login.module.css";
 import { getUser } from "../../../redux/actions/userActions";
-import { jwtDecode } from "jwt-decode";
+import { getUserIdFromToken } from "../../../Utils/utils";
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -26,21 +26,6 @@ const Login = () => {
    dispatch(getUser(getUserIdFromToken(), localStorage.getItem('token')));
     navigate('/')
    }
-  };
-
-  const getUserIdFromToken = () => {
-    const token = localStorage.getItem("token");
-
-    if (token) {
-      try {
-        const decodedToken = jwtDecode(token);
-        return decodedToken.userId;
-      } catch (error) {
-        console.error("Error decoding token:", error);
-        return null;
-      }
-    }
-    return null;
   };
 
   return (
