@@ -15,7 +15,7 @@ exports.seedProducts = async (req, res) => {
               rating: 4.2,
               reviewsCount: 10,
               color: "black",
-              date: "10 October",
+              date: "1/14/2024",
               quantity: 1,
               isInCart: false
             },
@@ -29,7 +29,7 @@ exports.seedProducts = async (req, res) => {
               rating: 4.8,
               reviewsCount: 10,
               color: "black",
-              date: "10 October",
+              date: "1/14/2024",
               quantity: 1,
               isInCart: false
             },
@@ -43,7 +43,7 @@ exports.seedProducts = async (req, res) => {
               rating: 4.5,
               reviewsCount: 10,
               color: "black",
-              date: "10 October",
+              date: "1/14/2024",
               quantity: 1,
               isInCart: false
             },
@@ -57,7 +57,7 @@ exports.seedProducts = async (req, res) => {
               rating: 4.5,
               reviewsCount: 10,
               color: "black",
-              date: "10 October",
+              date: "1/14/2024",
               quantity: 1,
               isInCart: false
             },
@@ -71,7 +71,7 @@ exports.seedProducts = async (req, res) => {
               rating: 4.5,
               reviewsCount: 10,
               color: "black",
-              date: "10 October",
+              date: "1/14/2024",
               quantity: 1,
               isInCart: false
             },
@@ -85,7 +85,7 @@ exports.seedProducts = async (req, res) => {
               rating: 4.5,
               reviewsCount: 10,
               color: "black",
-              date: "10 October",
+              date: "1/14/2024",
               quantity: 1,
               isInCart: false
             },
@@ -99,7 +99,7 @@ exports.seedProducts = async (req, res) => {
               rating: 4.5,
               reviewsCount: 10,
               color: "black",
-              date: "10 October",
+              date: "1/14/2024",
               quantity: 1,
               isInCart: false
             },
@@ -113,7 +113,7 @@ exports.seedProducts = async (req, res) => {
               rating: 4.5,
               reviewsCount: 10,
               color: "black",
-              date: "10 October",
+              date: "1/14/2024",
               quantity: 1,
               isInCart: false
             },
@@ -127,7 +127,7 @@ exports.seedProducts = async (req, res) => {
               rating: 4.5,
               reviewsCount: 10,
               color: "black",
-              date: "10 October",
+              date: "1/14/2024",
               quantity: 1,
               isInCart: false
             },
@@ -141,7 +141,7 @@ exports.seedProducts = async (req, res) => {
               rating: 4.5,
               reviewsCount: 10,
               color: "black",
-              date: "10 October",
+              date: "1/14/2024",
               quantity: 1,
               isInCart: false
             },
@@ -155,7 +155,7 @@ exports.seedProducts = async (req, res) => {
               rating: 4.5,
               reviewsCount: 10,
               color: "black",
-              date: "10 October",
+              date: "1/14/2024",
               quantity: 1,
               isInCart: false
             },
@@ -169,7 +169,7 @@ exports.seedProducts = async (req, res) => {
               rating: 4.5,
               reviewsCount: 10,
               color: "black",
-              date: "10 October",
+              date: "1/14/2024",
               quantity: 1,
               isInCart: false
             },
@@ -183,7 +183,7 @@ exports.seedProducts = async (req, res) => {
               rating: 4.5,
               reviewsCount: 10,
               color: "black",
-              date: "10 October",
+              date: "1/14/2024",
               quantity: 1,
               isInCart: false
             },
@@ -197,7 +197,7 @@ exports.seedProducts = async (req, res) => {
               rating: 4.5,
               reviewsCount: 10,
               color: "black",
-              date: "10 October",
+              date: "1/14/2024",
               quantity: 1,
               isInCart: false
             },
@@ -211,7 +211,7 @@ exports.seedProducts = async (req, res) => {
               rating: 4.5,
               reviewsCount: 10,
               color: "black",
-              date: "10 October",
+              date: "1/14/2024",
               quantity: 1,
               isInCart: false
             },
@@ -225,7 +225,7 @@ exports.seedProducts = async (req, res) => {
               rating: 4.5,
               reviewsCount: 10,
               color: "black",
-              date: "10 October",
+              date: "1/14/2024",
               quantity: 1,
               isInCart: false
             },
@@ -239,7 +239,7 @@ exports.seedProducts = async (req, res) => {
               rating: 4.5,
               reviewsCount: 10,
               color: "black",
-              date: "10 October",
+              date: "1/14/2024",
               quantity: 1,
               isInCart: false
             },
@@ -253,7 +253,7 @@ exports.seedProducts = async (req, res) => {
               rating: 4.5,
               reviewsCount: 10,
               color: "black",
-              date: "10 October",
+              date: "1/14/2024",
               quantity: 1,
               isInCart: false
             },

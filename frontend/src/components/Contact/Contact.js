@@ -19,9 +19,8 @@ const Contact = () => {
       <h1>Contact Us</h1>
       <div className={styles.contactInfo}>
         <h2>Contact Information</h2>
-        <p>Email: support@onlineshop.com</p>
-        <p>Phone: +1 234 567 890</p>
-        <p>Address: 123 Online St, Shop City, Shopland</p>
+        <p>Email: sswayshop@gmail.com</p>
+        <p>Address: Yerevan, Armenia</p>
       </div>
       <form onSubmit={handleSubmit} className={styles.contactForm}>
         <label htmlFor="name">Name:</label>

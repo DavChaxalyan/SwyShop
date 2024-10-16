@@ -7,6 +7,10 @@
     margin-top: 30px;
 }
 
+.sliderContainer .slick-slider .slick-prev:before {
+    color: black !important;
+}
+
 .slide {
     position: relative;
 }

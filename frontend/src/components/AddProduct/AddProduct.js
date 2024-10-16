@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addProduct } from "../../redux/actions/productActions";
+import styles from "./AddProduct.module.css"
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const AddProduct = () => {
@@ -69,7 +70,7 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="container">
+    <div className={`container ${styles.formContainer}`}>
       <h2 className="my-4 text-center">Add New Product</h2>
       <form onSubmit={handleSubmit} className="bg-light p-4 rounded shadow-sm">
         <div className="mb-3">
@@ -136,7 +137,7 @@ const AddProduct = () => {
             required
           />
         </div>
-        <button className="btn btn-primary w-100" type="submit">Add Product</button>
+        <button className={`btn btn-primary w-100 ${styles.formButton}`} type="submit">Add Product</button>
       </form>
     </div>
   );
