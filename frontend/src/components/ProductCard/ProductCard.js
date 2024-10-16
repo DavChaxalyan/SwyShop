@@ -127,7 +127,7 @@ const ProductCard = ({ products }) => {
               </span>
             </div>
             <div className={styles.buttonContainer}>
-              {!product?.whoInCart?.includes(getUserIdFromToken()) ? (
+              {product?.whoInCart[0]?.userId?.toString() !== getUserIdFromToken() ? (
                 <Button
                   className={styles.addToCart}
                   onClick={(e) => {
