@@ -8,7 +8,11 @@ import {
   addProductInFavorite,
   deleteProductInFavorite,
 } from "../../redux/actions/favoriteProductActions";
-import { deleteProductInCart } from "../../redux/actions/cartProductActions";
+import {
+  decreaseProductCount,
+  deleteProductInCart,
+  increaseProductCount,
+} from "../../redux/actions/cartProductActions";
 import { jwtDecode } from "jwt-decode";
 
 const CartItem = ({ item }) => {
@@ -40,6 +44,16 @@ const CartItem = ({ item }) => {
       }
     }
     return null;
+  };
+
+  const handleIncrease = () => {
+    const token = localStorage.getItem("token");
+    dispatch(increaseProductCount(item._id, token));
+  };
+
+  const handleDecrease = () => {
+    const token = localStorage.getItem("token");
+    dispatch(decreaseProductCount(item._id, token));
   };
   return (
     <div className={styles.cartItem}>
@@ -80,32 +94,16 @@ const CartItem = ({ item }) => {
         </div>
       </div>
       <div className={styles.cartItemQuantity}>
-        <button
-          className={styles.buttonDecrement}
-          onClick={() =>
-            dispatch({
-              type: "DECREMENT_QUANTITY",
-              payload: item?.id || item._id,
-            })
-          }
-        >
+        <button className={styles.buttonDecrement} onClick={handleDecrease} disabled={item?.whoInCart[0]?.count < 2}>
           -
         </button>
-        <span>{item.quantity}</span>
-        <button
-          className={styles.buttonIncrement}
-          onClick={() =>
-            dispatch({
-              type: "INCREMENT_QUANTITY",
-              payload: item?.id || item._id,
-            })
-          }
-        >
+        <span>{item?.whoInCart[0]?.count}</span>
+        <button className={styles.buttonIncrement} onClick={handleIncrease}>
           +
         </button>
       </div>
       <div className={styles.cartItemPrice}>
-        <p>{(item.price * item.quantity).toFixed(1)} AMD</p>
+        <p>{(item.price * item?.whoInCart[0]?.count).toFixed(1)} AMD</p>
       </div>
     </div>
   );
