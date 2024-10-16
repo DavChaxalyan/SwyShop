@@ -1,18 +1,18 @@
 import React from 'react';
 import Slider from 'react-slick';
 import styles from './ImagesCategoriesSlider.module.css'; 
-import shoos from "../../../assets/images/shoos.jpg"
-import drinks from "../../../assets/images/napitki.jpeg"
+import products2 from "../../../assets/images/products2.png"
 import sale from "../../../assets/images/sale.jpg"
+import product from "../../../assets/images/product.jpg"
 
 const images = [
     {
-        url: shoos,
-        text: 'SHOOS',
+        url: products2,
+        text: 'CH360',
     },
     {
-        url: drinks,
-        text: 'GOOD DRINKS',
+        url: product,
+        text: 'GOOD PRODUCTS',
     },
     {
         url: sale,
@@ -36,7 +36,7 @@ const ImageSlider = () => {
             <Slider {...settings}>
                 {images.map((image, index) => (
                     <div key={index} className={styles.slide}>
-                        <img src={image.url} alt={`Slide ${index + 1}`} style={{maxHeight: '200px'}}/>
+                        <img src={image.url} alt={`Slide ${index + 1}`} style={{height: '200px'}}/>
                         <div className={styles.slideText}>{image.text}</div>
                     </div>
                 ))}
