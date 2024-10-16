@@ -29,7 +29,7 @@
   
   input,
   textarea {
-    width: 96%;
+    width: 100%;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
@@ -40,15 +40,17 @@
   .formButton {
     width: 100%;
     padding: 10px;
-    background-color: #5cb85c;
+    background-color: #293b3f;
     color: white;
     border: none;
     border-radius: 4px;
     font-size: 16px;
     cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
   }
   
   .formButton:hover {
-    background-color: #4cae4c;
+    background-color: #5a7379;
   }
   

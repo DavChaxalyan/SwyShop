@@ -54,7 +54,7 @@ function Product() {
 
   return (
     <div className={styles.productDetails}>
-      <img src={product.statimage ? `http://localhost:5000/${product.statimage}` : `http://localhost:5000/${product.image}`} alt={product.name} />
+      <img src={product.statimage ? `http://localhost:5000/${product.statimage}` : `http://localhost:5000/${product.image}`} alt={product.name} style={{width: '400px', height: '500px'}} />
       <div className="d-flex flex-column gap-5">
 
       <div className="d-flex flex-column gap-3">
