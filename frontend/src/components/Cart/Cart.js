@@ -6,17 +6,19 @@ import CheckoutSection from "./CheckoutSection";
 import styles from "./Cart.module.css";
 import EmptyCart from "./EmptyCart";
 import { getProductInCart } from "../../redux/actions/cartProductActions";
+import { getUserIdFromToken } from "../../Utils/utils";
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.products.cart);
-  const dispatch = useDispatch()
-  useEffect(() => {
-    const token = localStorage.getItem('token')
-    const fetchedProducts = async () => {
-      await dispatch(getProductInCart(token)); 
-    }
+  const dispatch = useDispatch();
 
-    fetchedProducts()
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const fetchedProducts = async () => {
+      await dispatch(getProductInCart(token));
+    };
+
+    fetchedProducts();
   }, [dispatch]);
   return (
     <div className={styles.cartContainer}>
@@ -26,7 +28,12 @@ const Cart = () => {
             <div className={styles.titleCard}>
               <h3>Cart</h3>
               <span>
-                {cartItems.reduce((total, item) => total + item?.whoInCart[0]?.count, 0)}{" "}
+                {cartItems.reduce((total, item) => {
+                  const userInCart = item.whoInCart.find(
+                    (user) => user.userId.toString() === getUserIdFromToken()
+                  );
+                  return total + (userInCart ? userInCart.count : 0);
+                }, 0)}{" "}
                 product
               </span>
             </div>

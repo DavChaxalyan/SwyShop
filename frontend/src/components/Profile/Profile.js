@@ -1,4 +1,3 @@
-import { jwtDecode } from "jwt-decode";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { MDBCardText } from "mdb-react-ui-kit";
@@ -18,6 +17,7 @@ import { useNavigate } from "react-router-dom";
 import imageProfile from "../../assets/images/profile-empty.png";
 import { getUser, putUser } from "../../redux/actions/userActions";
 import { changePassword } from "../../redux/actions/authActions";
+import { getUserIdFromToken } from "../../Utils/utils";
 
 const Profile = () => {
   const state = useSelector((state) => state.user.ProfileUser);
@@ -95,21 +95,6 @@ const Profile = () => {
       console.error("Error changing password:", error);
       alert("Failed to change password");
     }
-  };
-
-  const getUserIdFromToken = () => {
-    const token = localStorage.getItem("token");
-
-    if (token) {
-      try {
-        const decodedToken = jwtDecode(token);
-        return decodedToken.userId;
-      } catch (error) {
-        console.error("Error decoding token:", error);
-        return null;
-      }
-    }
-    return null;
   };
 
   useEffect(() => {

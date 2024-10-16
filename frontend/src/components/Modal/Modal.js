@@ -7,37 +7,23 @@ import { useNavigate } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { addProductInCart } from "../../redux/actions/cartProductActions";
-import { jwtDecode } from "jwt-decode";
+import { getUserIdFromToken } from "../../Utils/utils";
 
 function ProductModal(props) {
-  
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const getUserIdFromToken = () => {
-    const token = localStorage.getItem("token");
-
-    if (token) {
-      try {
-        const decodedToken = jwtDecode(token);
-        return decodedToken.userId;
-      } catch (error) {
-        console.error("Error decoding token:", error);
-        return null;
-      }
-    }
-    return null;
-  };
-
   const [isInCart, setIsInCart] = useState(
-    props?.product?.whoInCart[0]?.userId?.toString() !== getUserIdFromToken() || false
+    props?.product?.whoInCart.some(
+      (user) => user.userId.toString() === getUserIdFromToken()
+    )
   );
 
   const handleAddToCart = async (id) => {
     const token = localStorage.getItem("token");
     if (token) {
       await dispatch(addProductInCart(id, token)).then(() => {
-        setIsInCart(false);
+        setIsInCart(true);
       });
       return;
     }
@@ -48,7 +34,11 @@ function ProductModal(props) {
   };
 
   useEffect(() => {
-    setIsInCart(props?.product?.whoInCart[0]?.userId?.toString() !== getUserIdFromToken() || false);
+    setIsInCart(
+      props?.product?.whoInCart.some(
+        (user) => user.userId.toString() === getUserIdFromToken()
+      )
+    );
   }, [props?.product, props?.userId]);
 
   return (
@@ -97,7 +87,7 @@ function ProductModal(props) {
             )}
           </div>
           <p>Color: {props?.product?.color}</p>
-          {isInCart ? (
+          {!isInCart ? (
             <Button
               className={styles.addToCart}
               onClick={(e) => {
