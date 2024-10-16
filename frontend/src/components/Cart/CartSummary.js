@@ -5,7 +5,7 @@ import styles from "./Cart.module.css"
 const CartSummary = () => {
   const cartItems = useSelector((state) => state.products.cart);
   const totalPrice = cartItems?.reduce(
-    (total, item) => total + item.price * item.quantity,
+    (total, item) => total + item.price * item?.whoInCart[0]?.count,
     0
   );
 
@@ -15,7 +15,7 @@ const CartSummary = () => {
       <div className={styles.summaryBlockCount}>
         <h3 style={{ margin: "0" }}>
           Products,{" "}
-          {cartItems.reduce((total, item) => total + item.quantity, 0)} pcs.
+          {cartItems.reduce((total, item) => total + item?.whoInCart[0]?.count, 0)} pcs.
         </h3>
         <p style={{ margin: "0" }}>{totalPrice.toFixed(1)} AMD</p>
       </div>
