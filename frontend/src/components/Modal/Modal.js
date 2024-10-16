@@ -7,31 +7,48 @@ import { useNavigate } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { addProductInCart } from "../../redux/actions/cartProductActions";
+import { jwtDecode } from "jwt-decode";
 
 function ProductModal(props) {
+  
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const getUserIdFromToken = () => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      try {
+        const decodedToken = jwtDecode(token);
+        return decodedToken.userId;
+      } catch (error) {
+        console.error("Error decoding token:", error);
+        return null;
+      }
+    }
+    return null;
+  };
+
   const [isInCart, setIsInCart] = useState(
-    props?.product?.whoInCart?.includes(props?.userId) || false
+    props?.product?.whoInCart[0]?.userId?.toString() !== getUserIdFromToken() || false
   );
 
   const handleAddToCart = async (id) => {
     const token = localStorage.getItem("token");
     if (token) {
-     await dispatch(addProductInCart(id, token)).then(() => {
-        setIsInCart(true);
+      await dispatch(addProductInCart(id, token)).then(() => {
+        setIsInCart(false);
       });
-      return
+      return;
     }
-    navigate('/login')
+    navigate("/login");
     setTimeout(() => {
-      alert('You need to log in or register to add to cart.')
-    }, 500)
+      alert("You need to log in or register to add to cart.");
+    }, 500);
   };
 
   useEffect(() => {
-    setIsInCart(props?.product?.whoInCart?.includes(props?.userId) || false);
+    setIsInCart(props?.product?.whoInCart[0]?.userId?.toString() !== getUserIdFromToken() || false);
   }, [props?.product, props?.userId]);
 
   return (
@@ -72,17 +89,15 @@ function ProductModal(props) {
             <p>Date: {props?.product?.date}</p>
           </div>
           <div className={styles.priceBlock}>
-            <p>Price: {props?.product?.price}</p>
-            {props?.product?.oldPrice ? (
+            <p>Price: ${props?.product?.price}</p>
+            {props?.product?.oldPrice && (
               <del>
-                <p>Old Price: {props?.product?.oldPrice}</p>
+                <p>Old Price: ${props?.product?.oldPrice}</p>
               </del>
-            ) : (
-              <></>
             )}
           </div>
           <p>Color: {props?.product?.color}</p>
-          {!isInCart ? (
+          {isInCart ? (
             <Button
               className={styles.addToCart}
               onClick={(e) => {
