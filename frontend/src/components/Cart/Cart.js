@@ -1,14 +1,23 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import CartItem from "./CartItems";
 import CartSummary from "./CartSummary";
 import CheckoutSection from "./CheckoutSection";
 import styles from "./Cart.module.css";
 import EmptyCart from "./EmptyCart";
+import { getProductInCart } from "../../redux/actions/cartProductActions";
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.products.cart);
+  const dispatch = useDispatch()
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    const fetchedProducts = async () => {
+      await dispatch(getProductInCart(token)); 
+    }
 
+    fetchedProducts()
+  }, [dispatch]);
   return (
     <div className={styles.cartContainer}>
       {cartItems?.length > 0 ? (
@@ -17,7 +26,7 @@ const Cart = () => {
             <div className={styles.titleCard}>
               <h3>Cart</h3>
               <span>
-                {cartItems.reduce((total, item) => total + item.quantity, 0)}{" "}
+                {cartItems.reduce((total, item) => total + item?.whoInCart[0]?.count, 0)}{" "}
                 product
               </span>
             </div>

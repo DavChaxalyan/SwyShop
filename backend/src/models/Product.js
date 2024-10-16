@@ -14,7 +14,10 @@ const productSchema = new mongoose.Schema({
     reviewsCount: { type: Number, required: false },
     date: { type: String, required: true },
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: false }, 
-    whoInCart: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+    whoInCart: [{
+        userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+        count: { type: Number, required: false, default: 1 } 
+    }],
     whoInFavorite: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
 }, { timestamps: true });
 

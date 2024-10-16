@@ -11,6 +11,12 @@ import {
   FETCH_PRODUCTS_REQUEST,
   FETCH_PRODUCTS_SUCCESS,
   FETCH_PRODUCTS_FAILURE,
+  INCREASE_COUNT_REQUEST,
+  DECREASE_COUNT_REQUEST,
+  INCREASE_COUNT_SUCCESS,
+  DECREASE_COUNT_SUCCESS,
+  INCREASE_COUNT_FAIL,
+  DECREASE_COUNT_FAIL,
 } from "../actions/types";
 
 const initialState = {
@@ -22,8 +28,27 @@ const initialState = {
 };
 
 const productReducer = (state = initialState, action) => {
-  
   switch (action.type) {
+    case INCREASE_COUNT_REQUEST:
+    case DECREASE_COUNT_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case INCREASE_COUNT_SUCCESS:
+    case DECREASE_COUNT_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        // cart: action.payload.cartItems,
+      };
+    case INCREASE_COUNT_FAIL:
+    case DECREASE_COUNT_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
     case FETCH_PRODUCTS_REQUEST:
       return {
         ...state,
