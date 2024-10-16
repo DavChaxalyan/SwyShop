@@ -1,30 +1,29 @@
 const express = require('express');
-const mongoose = require('mongoose');
+const cors = require('cors');
+const path = require('path');
+const connectDB = require('./config/db'); 
+const config = require('./config/config'); 
 const authRoutes = require('./routes/authRoutes');
 const productsRoute = require('./routes/productsRoute');
 const cartProductsRoute = require('./routes/cartProductsRoute');
 const favoriteProductsRoute = require('./routes/favoriteProductsRoute');
 const userRoutes = require('./routes/userRoutes');
+
 const app = express();
-const path = require('path');
-const cors = require('cors');
-require('dotenv').config();
 
 app.use(cors());
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log("MongoDB connected"))
-    .catch((err) => console.log(err));
-
 app.use(express.json());
 
-// Routes
+connectDB();
+
 app.use('/api/auth', authRoutes);
 app.use('/api/product', productsRoute);
 app.use('/api/product', cartProductsRoute);
 app.use('/api/product', favoriteProductsRoute);
 app.use('/api/user', userRoutes);
-app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
-app.use('/images', express.static(path.join(__dirname, '../../frontend/src/assets/images')));
 
-const PORT = process.env.PORT || 5000;
+app.use('/uploads', express.static(config.uploadsDir));
+app.use('/images', express.static(config.imagesDir));
+
+const PORT = config.port;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

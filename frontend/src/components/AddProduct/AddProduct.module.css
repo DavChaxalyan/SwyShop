@@ -1,10 +1,10 @@
 .formContainer {
-  max-width: 400px;
+  max-width: 700px !important;
   margin: 30px auto;
-  padding: 20px;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 20px !important;
+  background-color: #ffffff !important;
+  border-radius: 10px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
   font-family: 'Arial', sans-serif;
   transition: box-shadow 0.3s ease;
 }
@@ -35,17 +35,18 @@ input[type="file"] {
 
 input[type="text"]:focus,
 input[type="number"]:focus {
-  border-color: #007bff;
+  border-color: #293b3f;
   outline: none;
   box-shadow: 0 0 8px rgba(0, 123, 255, 0.1);
 }
 
 .formButton {
-  background-color: #007bff;
+  background-color: #293b3f !important;
   color: white;
   border: none;
   padding: 12px 18px;
   border-radius: 6px;
+  border: none !important;
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.3s;
@@ -55,12 +56,12 @@ input[type="number"]:focus {
 }
 
 .formButton:hover {
-  background-color: #0056b3;
+  background-color: #5a7379 !important;
   transform: translateY(-2px);
 }
 
 .formButton:active {
-  background-color: #004494;
+  background-color: #5a7379 !important;
   transform: translateY(0);
 }
 
