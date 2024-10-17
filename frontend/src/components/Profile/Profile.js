@@ -44,6 +44,10 @@ const Profile = () => {
     { id: 3, date: "2024-02-15", total: "$250.00", status: "Processing" },
   ];
 
+  const handleMyProduct = () => {
+    navigate('/my-products')
+  }
+
   const handleResetPassword = () => {
     setIsResetPassword((prevState) => !prevState);
     setPasswordData({
@@ -319,24 +323,10 @@ const Profile = () => {
           {/* Notification Preferences */}
           <Card>
             <Card.Body>
-              <Card.Title>Notification Preferences</Card.Title>
-              <Form>
-                <Form.Check
-                  type="switch"
-                  id="email-notifications"
-                  label="Email Notifications"
-                  defaultChecked
-                />
-                <Form.Check
-                  type="switch"
-                  id="sms-notifications"
-                  label="SMS Notifications"
-                  className="mt-2"
-                />
-                <Button variant="primary" className="mt-3">
-                  Save Preferences
+              <Card.Title>My Products</Card.Title>
+                <Button variant="primary" className="mt-3" onClick={handleMyProduct}>
+                  View my products
                 </Button>
-              </Form>
             </Card.Body>
           </Card>
         </Col>

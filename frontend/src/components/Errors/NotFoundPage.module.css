@@ -1,0 +1,90 @@
+@keyframes slideIn {
+    0% {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes pulsate {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 694px;
+    background-color: #f0f0f5;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .textBox {
+    z-index: 1;
+    text-align: center;
+    animation: slideIn 1s ease-out;
+  }
+  
+  .title {
+    font-size: 10rem;
+    font-weight: 700;
+    color: #ff4757;
+    animation: pulsate 1.5s infinite ease-in-out;
+  }
+  
+  .message {
+    font-size: 1.5rem;
+    color: #2f3542;
+    margin-bottom: 20px;
+  }
+  
+  .homeLink {
+    padding: 10px 30px;
+    font-size: 1.2rem;
+    color: #fff;
+    background-color: #1e90ff;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .homeLink:hover {
+    background-color: #3742fa;
+  }
+  
+  .backgroundAnimation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(circle, rgba(255, 71, 87, 0.6), rgba(30, 144, 255, 0.6));
+    opacity: 0.7;
+    animation: gradientMove 6s infinite;
+    z-index: 0;
+  }
+  
+  @keyframes gradientMove {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  

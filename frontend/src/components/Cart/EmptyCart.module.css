@@ -25,17 +25,5 @@
     margin-bottom: 20px;
   }
   
-  .goToMainButton {
-    background-color: #a64eff;
-    color: #fff;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  .goToMainButton:hover {
-    background-color: #9224eb;
-  }
+ 
   

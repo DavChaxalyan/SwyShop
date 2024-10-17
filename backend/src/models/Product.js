@@ -13,6 +13,7 @@ const productSchema = new mongoose.Schema({
     rating: { type: Number, required: false },
     reviewsCount: { type: Number, required: false },
     date: { type: String, required: true },
+    updateDate: { type: String, required: false },
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: false }, 
     whoInCart: [{
         userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
