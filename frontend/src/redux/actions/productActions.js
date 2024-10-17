@@ -7,6 +7,12 @@ import {
   FETCH_PRODUCTS_REQUEST,
   FETCH_PRODUCTS_SUCCESS,
   FETCH_PRODUCTS_FAILURE,
+  MY_PRODUCTS_REQUEST,
+  MY_PRODUCTS_SUCCESS,
+  MY_PRODUCTS_FAIL,
+  PUT_PRODUCT_REQUEST,
+  PUT_PRODUCT_SUCCESS,
+  PUT_PRODUCT_FAILURE,
 } from "./types";
 
 export const addProduct = (formData, token) => async (dispatch) => {
@@ -71,4 +77,47 @@ export const fetchProducts = () => {
           dispatch(fetchProductsFailure(error.message));
       }
   };
+};
+
+export const getMyProducts = () => async (dispatch) => {
+  try {
+    dispatch({ type: MY_PRODUCTS_REQUEST });
+    const token = localStorage.getItem('token')
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const { data } = await axios.get('http://localhost:5000/api/product/my-products', config); 
+
+    dispatch({ type: MY_PRODUCTS_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: MY_PRODUCTS_FAIL,
+      payload: error.response && error.response.data.message ? error.response.data.message : error.message,
+    });
+  }
+};
+
+export const putProduct = (formData, token) => async (dispatch) => {
+  try {
+      dispatch({ type: PUT_PRODUCT_REQUEST });
+
+      const config = {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'multipart/form-data',
+          },
+      };
+
+      const response = await axios.put('http://localhost:5000/api/product/put-product', formData, config);
+      
+      dispatch({ type: PUT_PRODUCT_SUCCESS, payload: response.data });
+      return response.data; 
+  } catch (error) {
+      dispatch({ type: PUT_PRODUCT_FAILURE, payload: error.response?.data || error.message });
+      throw error; 
+  }
 };
