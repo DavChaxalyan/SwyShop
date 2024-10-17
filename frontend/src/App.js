@@ -18,6 +18,9 @@ import FavoritePage from "./pages/FavoritePage/FavoritePage";
 import EmailVerification from "./components/auth/EmailVerification/EmailVerification";
 import ForgotPassword from "./components/auth/ForgotPassword/ForgotPassword";
 import ResetPassword from "./components/auth/ResetPassword/ResetPassword";
+import EditProductPage from "./pages/EditProductPage/EditProductPage";
+import MyProductsPage from "./pages/MyProductsPage/MyProductsPage";
+import NotFoundPage from "./components/Errors/NotFoundPage";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -36,19 +39,22 @@ const App = () => {
         <Header />
         <div className="main-content">
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/products" element={<ProductsPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/product/:id" element={<ProductPage />} />
-            <Route path="/add-product" element={<AddProductPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegistrationPage />} />
-            <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/favorite" element={<FavoritePage />} />
-            <Route path="/verify-email" element={<EmailVerification />} />
-            <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route path="/reset-password/:token" element={<ResetPassword />} />
+              <Route path="/" element={<Home />} />
+              <Route path="/products" element={<ProductsPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/product/:id" element={<ProductPage />} />
+              <Route path="/add-product" element={<AddProductPage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={<RegistrationPage />} />
+              <Route path="/profile" element={<ProfilePage />} />
+              <Route path="/favorite" element={<FavoritePage />} />
+              <Route path="/verify-email" element={<EmailVerification />} />
+              <Route path="/forgot-password" element={<ForgotPassword />} />
+              <Route path="/reset-password/:token" element={<ResetPassword />} />
+              <Route path="/edit-product/:id" element={<EditProductPage />} />
+              <Route path="/my-products" element={<MyProductsPage />} />
+              <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </div>
         <Footer />

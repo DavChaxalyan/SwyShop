@@ -311,3 +311,52 @@ exports.getProducts = async (req, res) => {
         res.status(500).json({ error: 'Failed to retrieve products' });
     }
 };
+
+exports.getMyProducts = async (req, res) => {
+    try {
+        const userId = req.user; 
+        const products = await Product.find({ user: userId });
+
+        if (!products) {
+            res.status(500).json({ message: 'Server error' });
+        }
+        res.json(products);
+      } catch (err) {
+        res.status(500).json({ message: 'Server error' });
+      }
+};
+
+exports.putProduct = async (req, res) => {
+    try {
+        
+        const { id, name, price, category, color, date, quantity, rating, reviewsCount } = req.body
+        const imagePath = req.file.path;
+        const product = await Product.findById(id);
+        if (!product) {
+            return res.status(404).json({ error: 'No product found' });
+        }
+
+        if (product.user.toString() !== req.user._id.toString()) {
+            return res.status(404).json({ error: 'No product found' });
+        }
+
+        product.name = name
+        product.oldPrice = product.price
+        product.price = price
+        product.image = imagePath
+        product.category = category
+        product.color = color
+        product.updateDate = product.date
+        product.date = date
+        product.quantity = quantity
+        product.rating = rating
+        product.reviewsCount = reviewsCount
+        product.user = req.user
+
+        await product.save()
+        res.status(200).json(product);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Failed to retrieve products' });
+    }
+};

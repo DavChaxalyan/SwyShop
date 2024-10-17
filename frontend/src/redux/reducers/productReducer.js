@@ -17,6 +17,9 @@ import {
   DECREASE_COUNT_SUCCESS,
   INCREASE_COUNT_FAIL,
   DECREASE_COUNT_FAIL,
+  MY_PRODUCTS_REQUEST,
+  MY_PRODUCTS_SUCCESS,
+  MY_PRODUCTS_FAIL,
 } from "../actions/types";
 
 const initialState = {
@@ -29,6 +32,12 @@ const initialState = {
 
 const productReducer = (state = initialState, action) => {
   switch (action.type) {
+    case MY_PRODUCTS_REQUEST:
+      return { loading: true, ...state, products: [] };
+    case MY_PRODUCTS_SUCCESS:
+      return { loading: false, ...state, products: action.payload };
+    case MY_PRODUCTS_FAIL:
+      return { loading: false, error: action.payload };
     case INCREASE_COUNT_REQUEST:
     case DECREASE_COUNT_REQUEST:
       return {
@@ -40,7 +49,6 @@ const productReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        // cart: action.payload.cartItems,
       };
     case INCREASE_COUNT_FAIL:
     case DECREASE_COUNT_FAIL:
