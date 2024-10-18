@@ -10,5 +10,6 @@ router.put('/put', productController.putProduct);
 router.get('/get/all', productController.seedProducts);
 router.get('/my-products', authMiddleware, productController.getMyProducts);
 router.put('/put-product', authMiddleware, upload.single('image'), productController.putProduct);
+router.delete('/remove-product', authMiddleware, productController.deleteMyProduct);
 
 module.exports = router;

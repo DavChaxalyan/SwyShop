@@ -13,6 +13,9 @@ import {
   PUT_PRODUCT_REQUEST,
   PUT_PRODUCT_SUCCESS,
   PUT_PRODUCT_FAILURE,
+  DELETE_PRODUCT_REQUEST,
+  DELETE_PRODUCT_SUCCESS,
+  DELETE_PRODUCT_FAILURE,
 } from "./types";
 
 export const addProduct = (formData, token) => async (dispatch) => {
@@ -119,5 +122,30 @@ export const putProduct = (formData, token) => async (dispatch) => {
   } catch (error) {
       dispatch({ type: PUT_PRODUCT_FAILURE, payload: error.response?.data || error.message });
       throw error; 
+  }
+};
+
+export const deleteProduct = (productId, token) => async (dispatch) => {
+  try {
+      dispatch({ type: DELETE_PRODUCT_REQUEST });
+
+      const config = {
+          headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${token}`,
+          },
+          data: { id: productId },
+      };
+
+      await axios.delete(`http://localhost:5000/api/product/remove-product`, config);
+      const { data } = await axios.get('http://localhost:5000/api/product/my-products', config); 
+
+      dispatch({ type: MY_PRODUCTS_SUCCESS, payload: data });
+      dispatch({ type: DELETE_PRODUCT_SUCCESS, payload: productId });
+  } catch (error) {
+      dispatch({
+          type: DELETE_PRODUCT_FAILURE,
+          payload: error.response && error.response.data.message ? error.response.data.message : error.message,
+      });
   }
 };
