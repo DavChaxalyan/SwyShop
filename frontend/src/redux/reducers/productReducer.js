@@ -20,6 +20,9 @@ import {
   MY_PRODUCTS_REQUEST,
   MY_PRODUCTS_SUCCESS,
   MY_PRODUCTS_FAIL,
+  DELETE_PRODUCT_REQUEST,
+  DELETE_PRODUCT_SUCCESS,
+  DELETE_PRODUCT_FAILURE,
 } from "../actions/types";
 
 const initialState = {
@@ -32,6 +35,12 @@ const initialState = {
 
 const productReducer = (state = initialState, action) => {
   switch (action.type) {
+    case DELETE_PRODUCT_REQUEST:
+      return { loading: true };
+    case DELETE_PRODUCT_SUCCESS:
+      return { loading: false, success: true, productId: action.payload };
+    case DELETE_PRODUCT_FAILURE:
+      return { loading: false, error: action.payload };
     case MY_PRODUCTS_REQUEST:
       return { loading: true, ...state, products: [] };
     case MY_PRODUCTS_SUCCESS:
