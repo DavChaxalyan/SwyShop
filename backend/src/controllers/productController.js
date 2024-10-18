@@ -326,6 +326,28 @@ exports.getMyProducts = async (req, res) => {
       }
 };
 
+exports.deleteMyProduct = async (req, res) => {
+    let { id } = req.body;
+    try {
+        const product = await Product.findById(id);
+
+        if (!product) {
+            return res.status(404).json({ error: 'No product found' });
+        }
+
+        if (product.user.toString() !== req.user._id.toString()) {
+            return res.status(404).json({ error: 'This is not your product' });
+        }
+
+        await product.deleteOne();
+
+        res.status(200).json({ message: 'Product successfully deleted' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Failed to remove product' });
+    }
+};
+
 exports.putProduct = async (req, res) => {
     try {
         
