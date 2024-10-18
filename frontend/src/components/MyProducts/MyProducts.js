@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaStar } from "react-icons/fa";
-import { getMyProducts } from "../../redux/actions/productActions";
+import { deleteProduct, getMyProducts } from "../../redux/actions/productActions";
 import { Button } from "react-bootstrap";
 import { FaRegEdit } from "react-icons/fa";
+import { RiDeleteBin6Fill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import styles from "./MyProduct.module.css"
 import NoProductsFound from "../Errors/NoProductsFound";
@@ -18,6 +19,13 @@ const MyProducts = () => {
   useEffect(() => {
     dispatch(getMyProducts()); 
   }, [dispatch]);
+
+  const handleDeleteProduct = async (productId) => {
+    if (window.confirm('Are you sure you want to delete this product?')) {
+        const token = localStorage.getItem('token')
+        await dispatch(deleteProduct(productId, token));
+    }
+  }
 
   return (
     <>
@@ -76,6 +84,7 @@ const MyProducts = () => {
                         <FaRegEdit />
                         Edit Product
                       </Button>
+                      <RiDeleteBin6Fill style={{color: 'red', fontSize: '23px'}} onClick={() => handleDeleteProduct(product._id)} />
                   </div>
                 </div>
               );
