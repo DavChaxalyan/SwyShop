@@ -1,0 +1,9 @@
+.password-reset-block {
+    transition: max-height 0.5s ease-out;
+    overflow: hidden;
+    max-height: 0;
+  }
+  
+  .password-reset-block.show {
+    max-height: 500px;
+  }

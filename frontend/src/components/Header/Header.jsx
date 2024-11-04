@@ -1,6 +1,6 @@
 import React from "react";
 import CartIcon from "../Cart/CartIcon";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styles from "./Header.module.css";
 import { NavDropdown } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
@@ -37,45 +37,46 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
-        <Link to="/" className={styles.swyShop}>
+        <NavLink to="/" className={styles.swyShop}>
         <img src={appLogo} alt="logo" />
         SwayShop
-        </Link>
+        </NavLink>
       </div>
       <nav className={styles.nav}>
         <ul>
           <li>
-            <div
+            <NavLink
               onClick={handleAddProduct}
-              to="/add-product"
+              to={localStorage.getItem("token") ? "/add-product" : "/login"}
               style={{
                 display: "flex",
                 alignItems: "center",
                 gap: "3px",
                 cursor: "pointer",
               }}
+              className={({ isActive }) => (isActive && localStorage.getItem("token") ? styles.active : "")}
             >
               <IoMdAdd />
               Post an add
-            </div>
+            </NavLink>
           </li>
           <li >
-            <Link to="/">Home</Link>
+            <NavLink to="/" className={({ isActive }) => (isActive ? styles.active : "")}>Home</NavLink>
           </li>
           <li>
-            <Link to="/products">Products</Link>
+            <NavLink to="/products" className={({ isActive }) => (isActive ? styles.active : "")}>Products</NavLink>
           </li>
           <li>
-            <Link to="/contact">Contact</Link>
+            <NavLink to="/contact" className={({ isActive }) => (isActive ? styles.active : "")}>Contact</NavLink>
           </li>
           <li>
-            <Link to="/cart">
+            <NavLink to="/cart" className={({ isActive }) => (isActive ? styles.active : "")}>
               <CartIcon itemCount={cartItemsCount} />
-            </Link>
+            </NavLink>
           </li>
           {!localStorage.getItem("token") ? (
             <li>
-              <Link to="/login">Sign In</Link>
+              <NavLink to="/login" className={({ isActive }) => (isActive ? styles.active : "")}>Sign In</NavLink>
             </li>
           ) : (
             <li>

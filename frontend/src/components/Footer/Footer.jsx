@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.footerContent}>
-        <div className={styles.footerSection}>
+        <div className={styles.footerSection} style={{ maxWidth: '200px' }}>
           <h2>About Us</h2>
           <p>
             We are an online shop offering the best selection of products at affordable prices. Our customers are always satisfied with the quality of service and fast delivery.
