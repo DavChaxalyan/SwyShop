@@ -29,6 +29,7 @@ const Contact = () => {
           id="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          className={styles.inputTextarea}
           required
         />
         <label htmlFor="email">Email:</label>
@@ -37,6 +38,7 @@ const Contact = () => {
           id="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          className={styles.inputTextarea}
           required
         />
         <label htmlFor="message">Message:</label>
@@ -44,6 +46,7 @@ const Contact = () => {
           id="message"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
+          className={styles.inputTextarea}
           required
           style={{resize: 'none'}}
         />
