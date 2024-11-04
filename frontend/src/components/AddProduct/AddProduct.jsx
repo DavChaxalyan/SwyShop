@@ -80,7 +80,7 @@ const AddProduct = () => {
             name="name"
             value={productData.name}
             onChange={handleChange}
-            className="form-control"
+            className={`form-control ${styles.inputTextNumberFile}`}
             placeholder="Enter product name"
             required
           />
@@ -92,7 +92,7 @@ const AddProduct = () => {
             name="price"
             value={productData.price}
             onChange={handleChange}
-            className="form-control"
+            className={`form-control ${styles.inputTextNumberFile}`}
             placeholder="Enter product price"
             required
           />
@@ -103,7 +103,7 @@ const AddProduct = () => {
             type="file"
             accept="image/*"
             onChange={handleImageChange}
-            className="form-control"
+            className={`form-control ${styles.inputTextNumberFile}`}
             required
           />
         </div>
@@ -120,7 +120,7 @@ const AddProduct = () => {
             name="category"
             value={productData.category}
             onChange={handleChange}
-            className="form-control"
+            className={`form-control ${styles.inputTextNumberFile}`}
             placeholder="Enter product category"
             required
           />
@@ -132,7 +132,7 @@ const AddProduct = () => {
             name="color"
             value={productData.color}
             onChange={handleChange}
-            className="form-control"
+            className={`form-control ${styles.inputTextNumberFile}`}
             placeholder="Enter product color"
             required
           />

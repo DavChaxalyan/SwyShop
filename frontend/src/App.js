@@ -21,6 +21,8 @@ import ResetPassword from "./components/auth/ResetPassword/ResetPassword";
 import EditProductPage from "./pages/EditProductPage/EditProductPage";
 import MyProductsPage from "./pages/MyProductsPage/MyProductsPage";
 import NotFoundPage from "./components/Errors/NotFoundPage";
+import { getUserIdFromToken } from "./Utils/utils";
+import { getUser } from "./redux/actions/userActions";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -29,6 +31,7 @@ const App = () => {
     const fetchData = async () => {
       await dispatch(getProductInCart(token));
       await dispatch(getProduct());
+      await dispatch(getUser(getUserIdFromToken(), token));
     }
     fetchData()
   }, [dispatch]);
