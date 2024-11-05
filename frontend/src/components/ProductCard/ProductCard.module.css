@@ -21,7 +21,6 @@
   transform: translateY(-5px);
 }
 
-
 .seeButton {
   width: 100%;
   position: absolute;
@@ -33,7 +32,7 @@
 }
 
 .seeButton button {
-  background-color: hsla(0, 0%, 100%, .9);
+  background-color: hsla(0, 0%, 100%, 0.9);
   border-radius: 8px;
   color: #242424;
   line-height: 20px;
@@ -140,4 +139,25 @@
   display: flex;
   align-items: center;
   gap: 3px;
+}
+
+.orderedIndicator {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: rgb(96, 97, 18);
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.productMessage {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #3f51b5;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  padding: 10px 15px;
+  border-radius: 5px;
+  background-color: #e3f2fd;
 }

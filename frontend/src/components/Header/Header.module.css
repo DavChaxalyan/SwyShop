@@ -39,6 +39,12 @@
     transition: color 0.3s;
   }
 
+  .nav a div svg {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
   .swyShop{
     text-decoration: none;
     color: white;
@@ -47,7 +53,7 @@
     align-items: center;
   }
   
-  .nav a:hover {
+  .nav a:hover, .nav a div svg:hover {
     color: #61dafb;
   }
 
@@ -55,6 +61,13 @@
     color: #7bceef !important;
     font-weight: bold;
     border-bottom: 2px solid #84b8dd;
+  }
+
+  .activeCard div svg {
+    color: #7bceef !important;
+    font-weight: bold;
+    border-bottom: 2px solid #84b8dd;
+    padding-bottom: 3px;
   }
   
   @media (max-width: 768px) {

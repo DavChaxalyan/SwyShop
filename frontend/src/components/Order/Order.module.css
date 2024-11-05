@@ -1,0 +1,131 @@
+.orderPage {
+    max-width: 600px;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+  }
+  
+  .orderTitle {
+    text-align: center;
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .orderDetails {
+    margin-bottom: 20px;
+  }
+  
+  .orderItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    border: 1px solid #eaeaea;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .orderItemImage {
+    width: 100px;
+    height: 90px;
+    margin-right: 10px;
+    border-radius: 5px;
+  }
+  
+  .orderItemInfo {
+    flex: 1;
+  }
+  
+  .totalAmount {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #2a9d8f;
+  }
+  
+  .orderForm {
+    margin-top: 20px;
+    border: 1px solid #eaeaea;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .formGroup {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .error {
+    color: #e63946;
+    font-weight: bold;
+  }
+  
+  .success {
+    color: #2a9d8f;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.2em;
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  .successAnimation {
+    animation: slideIn 0.5s forwards, fadeOut 1s forwards 1s;
+  }
+
+  .listProducts {
+    max-height: 367px;
+    overflow: auto;
+    padding: 0;
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateY(-20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  
+  .orderButton {
+    background-color: #2a9d8f;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .orderButton:hover {
+    background-color: #21867a;
+  }
+  

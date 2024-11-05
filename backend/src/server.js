@@ -6,6 +6,7 @@ const config = require('./config/config');
 const authRoutes = require('./routes/authRoutes');
 const productsRoute = require('./routes/productsRoute');
 const cartProductsRoute = require('./routes/cartProductsRoute');
+const oderRoute = require('./routes/orderRoutes');
 const favoriteProductsRoute = require('./routes/favoriteProductsRoute');
 const userRoutes = require('./routes/userRoutes');
 
@@ -20,6 +21,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/product', productsRoute);
 app.use('/api/product', cartProductsRoute);
 app.use('/api/product', favoriteProductsRoute);
+app.use('/api/order', oderRoute);
 app.use('/api/user', userRoutes);
 
 app.use('/uploads', express.static(config.uploadsDir));
