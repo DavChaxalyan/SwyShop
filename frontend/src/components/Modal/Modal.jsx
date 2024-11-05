@@ -87,27 +87,31 @@ function ProductModal(props) {
             )}
           </div>
           <p>Color: {props?.product?.color}</p>
-          {!isInCart ? (
-            <Button
-              className={styles.addToCart}
-              onClick={(e) => {
-                e.stopPropagation();
-                handleAddToCart(props?.product?.id || props?.product?._id);
-              }}
-            >
-              <FaShoppingCart /> Add to cart
-            </Button>
-          ) : (
-            <Button
-              className={styles.inCart}
-              onClick={(e) => {
-                e.stopPropagation();
-                navigate("/cart");
-              }}
-            >
-              <FaShoppingCart /> In cart
-            </Button>
-          )}
+          {getUserIdFromToken() !== props?.product?.user ? (
+                !isInCart ? (
+                  <Button
+                    className={styles.addToCart}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleAddToCart(props?.product?.id || props?.product?._id);
+                    }}
+                  >
+                    <FaShoppingCart /> Add to cart
+                  </Button>
+                ) : (
+                  <Button
+                    className={styles.inCart}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigate("/cart");
+                    }}
+                  >
+                    <FaShoppingCart /> In cart
+                  </Button>
+                )
+              ) : (
+                <span className={styles.productMessage}>Your Product</span>
+              )}
         </div>
       </div>
       <Modal.Footer className="p-0">

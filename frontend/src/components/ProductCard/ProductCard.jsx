@@ -1,36 +1,52 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./ProductCard.module.css";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { FaStar } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { FaStar, FaRegHeart, FaShoppingCart } from "react-icons/fa";
 import { IoMdHeart } from "react-icons/io";
-import { FaRegHeart } from "react-icons/fa";
-import { FaShoppingCart } from "react-icons/fa";
+import { Button } from "react-bootstrap";
 import ProductModal from "../Modal/Modal";
-import Button from "react-bootstrap/Button";
 import {
   addProductInFavorite,
   deleteProductInFavorite,
 } from "../../redux/actions/favoriteProductActions";
 import { addProductInCart } from "../../redux/actions/cartProductActions";
+import { getOrders } from "../../redux/actions/orderActions";
 import { getUserIdFromToken } from "../../Utils/utils";
 
 const ProductCard = ({ products }) => {
+  const { order } = useSelector((state) => state);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [modalShow, setModalShow] = useState(false);
   const [product, setProduct] = useState(null);
+  const [orderedProductIds, setOrderedProductIds] = useState([]);
+  const currentUserId = getUserIdFromToken();
+
+  useEffect(() => {
+    dispatch(getOrders());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (order?.orders) {
+      const userOrders = order.orders.filter(
+        (orderItem) => orderItem.customerId === currentUserId
+      );
+      const productIds = userOrders.flatMap((orderItem) =>
+        orderItem.items.map((item) => item.productId._id)
+      );
+      setOrderedProductIds(productIds);
+    }
+  }, [order, currentUserId]);
 
   const handleAddToCart = async (id) => {
     const token = localStorage.getItem("token");
     if (token) {
-     await dispatch(addProductInCart(id, token));
-     return 
+      await dispatch(addProductInCart(id, token));
+      return;
     }
-    navigate('/login')
-    setTimeout(() => {
-      alert('You need to log in or register to add to cart.')
-    }, 500)
+    navigate("/login");
+    alert("You need to log in or register to add to cart.");
   };
 
   const handleProductPage = (id) => {
@@ -40,12 +56,10 @@ const ProductCard = ({ products }) => {
   const addToFavorite = (id) => {
     if (localStorage.getItem("token")) {
       dispatch(addProductInFavorite(id, localStorage.getItem("token")));
-      return
+      return;
     }
-    navigate('/login')
-    setTimeout(() => {
-      alert('You need to log in or register to add to favorite.')
-    }, 500)
+    navigate("/login");
+    alert("You need to log in or register to add to favorite.");
   };
 
   const deleteToFavorite = async (id) => {
@@ -59,9 +73,11 @@ const ProductCard = ({ products }) => {
         show={modalShow}
         onHide={() => setModalShow(false)}
         product={product}
-        userId={getUserIdFromToken()}
+        userId={currentUserId}
       />
       {products?.map((product) => {
+        const isOrdered = orderedProductIds.includes(product._id);
+
         return (
           <div
             key={product.id || product._id}
@@ -90,6 +106,9 @@ const ProductCard = ({ products }) => {
                   fast see
                 </Button>
               </div>
+              {isOrdered && (
+                <span className={styles.orderedIndicator}>Already Ordered</span>
+              )}
             </div>
             <p className={styles.price}>
               {product.oldPrice ? (
@@ -112,32 +131,38 @@ const ProductCard = ({ products }) => {
               </span>
             </div>
             <div className={styles.buttonContainer}>
-              {!product?.whoInCart.some(item => item.userId.toString() === getUserIdFromToken()) ? (
-                <Button
-                  className={styles.addToCart}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleAddToCart(product._id || product.id);
-                  }}
-                >
-                  <FaShoppingCart />
-                  Add to cart
-                </Button>
+              {getUserIdFromToken() !== product?.user ? (
+                !product?.whoInCart.some(
+                  (item) => item.userId.toString() === currentUserId
+                ) ? (
+                  <Button
+                    className={styles.addToCart}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleAddToCart(product._id || product.id);
+                    }}
+                  >
+                    <FaShoppingCart />
+                    Add to cart
+                  </Button>
+                ) : (
+                  <Button
+                    className={styles.inCart}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigate("/cart");
+                    }}
+                  >
+                    <FaShoppingCart />
+                    In cart
+                  </Button>
+                )
               ) : (
-                <Button
-                  className={styles.inCart}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    navigate("/cart");
-                  }}
-                >
-                  <FaShoppingCart />
-                  In cart
-                </Button>
+                <span className={styles.productMessage}>Your Product</span>
               )}
               <div className={styles.heartButtonBlock}>
                 <button className={styles.like}>
-                  {!product?.whoInFavorite?.includes(getUserIdFromToken()) ? (
+                  {!product?.whoInFavorite?.includes(currentUserId) ? (
                     <FaRegHeart
                       onClick={(e) => {
                         e.stopPropagation();

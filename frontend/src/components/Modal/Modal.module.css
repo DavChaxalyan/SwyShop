@@ -117,3 +117,14 @@ svg {
     border-color: #868695;
     color: #242424;
 }
+
+.productMessage {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #3f51b5;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #e3f2fd;
+  }
+  
