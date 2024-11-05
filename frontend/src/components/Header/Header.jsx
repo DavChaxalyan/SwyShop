@@ -70,7 +70,7 @@ const Header = () => {
             <NavLink to="/contact" className={({ isActive }) => (isActive ? styles.active : "")}>Contact</NavLink>
           </li>
           <li>
-            <NavLink to="/cart" className={({ isActive }) => (isActive ? styles.active : "")}>
+            <NavLink to="/cart" className={({ isActive }) => (isActive ? styles.activeCard : "")}>
               <CartIcon itemCount={cartItemsCount} />
             </NavLink>
           </li>

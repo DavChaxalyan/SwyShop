@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import styles from "./Cart.module.css"
+import { NavLink } from "react-router-dom";
 import { getUserIdFromToken } from "../../Utils/utils";
 
 const CartSummary = () => {
@@ -24,9 +25,11 @@ const CartSummary = () => {
         <h3 style={{ margin: "0" }}>Total</h3>
         <p style={{ margin: "0" }}>{totalPrice.toFixed(1)} AMD</p>
       </div>
+      <NavLink to="/order">
       <button style={{ marginTop: "20px" }} className={styles.orderButton}>
         Order
       </button>
+      </NavLink>
     </div>
   );
 };

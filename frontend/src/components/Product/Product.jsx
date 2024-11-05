@@ -69,33 +69,38 @@ function Product() {
               </del>
             )}
           </div>
-
-          {!(product?.whoInCart.some(user => user.userId.toString() === getUserIdFromToken())) ? (
-            <Button
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "10px",
-              }}
-              onClick={() => handleAddToCart(product._id || product.id)}
-            >
-              <FaShoppingCart />
-              Add to Cart
-            </Button>
+          {getUserIdFromToken() !== product?.user ? (
+            !product?.whoInCart.some(
+              (user) => user.userId.toString() === getUserIdFromToken()
+            ) ? (
+              <Button
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
+                }}
+                onClick={() => handleAddToCart(product._id || product.id)}
+              >
+                <FaShoppingCart />
+                Add to Cart
+              </Button>
+            ) : (
+              <Button
+                style={{
+                  backgroundColor: "gray",
+                  border: "none",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
+                }}
+                onClick={() => navigate("/cart")}
+              >
+                <FaShoppingCart />
+                In Cart
+              </Button>
+            )
           ) : (
-            <Button
-              style={{
-                backgroundColor: "gray",
-                border: "none",
-                display: "flex",
-                alignItems: "center",
-                gap: "10px",
-              }}
-              onClick={() => navigate("/cart")}
-            >
-              <FaShoppingCart />
-              In Cart
-            </Button>
+            <span className={styles.productMessage}>Your Product</span>
           )}
           <div className={styles.ratingShop}>
             <BsShop />
