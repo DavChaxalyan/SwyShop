@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { MDBCardText } from "mdb-react-ui-kit";
 import { MdLockReset } from "react-icons/md";
 import { CiSaveDown2 } from "react-icons/ci";
+import { GrHistory } from "react-icons/gr";
 import {
   Container,
   Row,
@@ -18,8 +19,14 @@ import imageProfile from "../../assets/images/profile-empty.png";
 import { getUser, putUser } from "../../redux/actions/userActions";
 import { changePassword } from "../../redux/actions/authActions";
 import { getUserIdFromToken } from "../../Utils/utils";
+import { getOrders } from "../../redux/actions/orderActions";
+import "./Profile.css";
 
 const Profile = () => {
+  const { order } = useSelector((state) => state);
+  const userOrders = order.orders?.filter(
+    (order) => order.customerId === getUserIdFromToken()
+  );
   const state = useSelector((state) => state.user.ProfileUser);
   const [passwordData, setPasswordData] = useState({
     currentPassword: "",
@@ -38,15 +45,9 @@ const Profile = () => {
   });
   const [profileImage, setProfileImage] = useState(null);
 
-  const orders = [
-    { id: 1, date: "2024-01-01", total: "$100.00", status: "Delivered" },
-    { id: 2, date: "2024-02-15", total: "$250.00", status: "Processing" },
-    { id: 3, date: "2024-02-15", total: "$250.00", status: "Processing" },
-  ];
-
   const handleMyProduct = () => {
-    navigate('/my-products')
-  }
+    navigate("/my-products");
+  };
 
   const handleResetPassword = () => {
     setIsResetPassword((prevState) => !prevState);
@@ -67,7 +68,6 @@ const Profile = () => {
   };
 
   const handleSavePassword = async () => {
-    
     if (passwordData.newPassword !== passwordData.confirmPassword) {
       alert("New password and confirmation do not match.");
       return;
@@ -83,23 +83,27 @@ const Profile = () => {
         changePassword({
           currentPassword: passwordData.currentPassword,
           newPassword: passwordData.newPassword,
-          userId: getUserIdFromToken()
+          userId: getUserIdFromToken(),
         })
       );
-      
+
       if (response.message === "Password successfully changed") {
         setPasswordData({
           currentPassword: "",
           newPassword: "",
           confirmPassword: "",
         });
-        navigate('/login')
+        navigate("/login");
       }
     } catch (error) {
       console.error("Error changing password:", error);
       alert("Failed to change password");
     }
   };
+
+  useEffect(() => {
+    dispatch(getOrders());
+  }, [dispatch]);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -158,6 +162,12 @@ const Profile = () => {
       console.error("Error saving changes:", error);
       alert("An error occurred while saving changes");
     }
+  };
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const options = { year: "numeric", month: "long", day: "numeric" };
+    return date.toLocaleDateString("en-US", options);
   };
 
   return (
@@ -284,37 +294,51 @@ const Profile = () => {
           {/* Order History */}
           <Card className="mb-4">
             <Card.Body>
-              <Card.Title>Order History</Card.Title>
-              <ListGroup variant="flush">
-                {orders.map((order) => (
-                  <ListGroup.Item key={order.id}>
-                    <Row>
-                      <Col>
-                        <strong>Order #:</strong> {order.id}
-                      </Col>
-                      <Col>
-                        <strong>Date:</strong> {order.date}
-                      </Col>
-                      <Col>
-                        <strong>Total:</strong> {order.total}
-                      </Col>
-                      <Col>
-                        <strong>Status:</strong>{" "}
-                        <span
-                          className={`badge ${
-                            order.status === "Delivered"
-                              ? "bg-success"
-                              : "bg-warning"
-                          }`}
-                        >
-                          {order.status}
-                        </span>
-                      </Col>
-                    </Row>
-                  </ListGroup.Item>
-                ))}
+              <Card.Title style={{fontSize: "30px", fontWeight: "700", color: "#3e7ad3"}}>Order History <GrHistory style={{fontSize: "25px", color: "#3e7ad3"}}/></Card.Title>
+              <ListGroup variant="flush" className={userOrders.length > 0 ? "order-history" : ""}>
+                {userOrders.length > 0 ? (
+                  userOrders.map((order, ind) => (
+                    <ListGroup.Item key={order._id}>
+                      <Row>
+                        <Col>
+                          <strong>Order #:</strong> {ind + 1}
+                        </Col>
+                        <Col>
+                          <strong>Date:</strong> {formatDate(order.createdAt)}
+                        </Col>
+                        <Col>
+                          <strong>Total:</strong> {order.totalAmount.toFixed(1)}
+                          $
+                        </Col>
+                        <Col>
+                          <strong>Status:</strong>{" "}
+                          <span
+                            className={`badge ${
+                              order.status === "Received"
+                                ? "bg-success"
+                                : "bg-warning"
+                            }`}
+                          >
+                            {order.status}
+                          </span>
+                        </Col>
+                      </Row>
+                    </ListGroup.Item>
+                  ))
+                ) : (
+                  <div className="no-orders">
+                    <h3>You have no orders.</h3>
+                    <p>You can start shopping!</p>
+                    <button className="shop-now-button" onClick={() => navigate("/products")}>Shop Now</button>
+                  </div>
+                )}
               </ListGroup>
-              <Button className="mt-3" variant="primary">
+              <Button
+                className="mt-3"
+                variant="primary"
+                onClick={() => navigate("/orders")}
+                disabled={!userOrders.length}
+              >
                 View All Orders
               </Button>
             </Card.Body>
@@ -324,9 +348,13 @@ const Profile = () => {
           <Card>
             <Card.Body>
               <Card.Title>My Products</Card.Title>
-                <Button variant="primary" className="mt-3" onClick={handleMyProduct}>
-                  View my products
-                </Button>
+              <Button
+                variant="primary"
+                className="mt-3"
+                onClick={handleMyProduct}
+              >
+                View my products
+              </Button>
             </Card.Body>
           </Card>
         </Col>

@@ -7,3 +7,56 @@
   .password-reset-block.show {
     max-height: 500px;
   }
+
+  .order-history {
+    max-height: 195px;
+    overflow: auto;
+  }
+
+  .no-orders {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #e0eafc, #cfdef3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    max-width: 400px;
+    transition: transform 0.3s ease;
+  }
+  
+  .no-orders:hover {
+    transform: scale(1.02);
+  }
+  
+  .no-orders h3 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 1rem;
+  }
+  
+  .no-orders p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 1.5rem;
+  }
+  
+  .shop-now-button {
+    padding: 0.8rem 1.6rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.4);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .shop-now-button:hover {
+    background: #0056b3;
+    box-shadow: 0 6px 12px rgba(0, 86, 179, 0.5);
+  }

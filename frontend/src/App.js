@@ -23,6 +23,8 @@ import MyProductsPage from "./pages/MyProductsPage/MyProductsPage";
 import NotFoundPage from "./components/Errors/NotFoundPage";
 import { getUserIdFromToken } from "./Utils/utils";
 import { getUser } from "./redux/actions/userActions";
+import OrderPage from "./pages/OrderPage/OrderPage";
+import UserOrdersPage from "./pages/UserOrdersPage/UserOrdersPage";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -57,6 +59,8 @@ const App = () => {
               <Route path="/reset-password/:token" element={<ResetPassword />} />
               <Route path="/edit-product/:id" element={<EditProductPage />} />
               <Route path="/my-products" element={<MyProductsPage />} />
+              <Route path="/order" element={<OrderPage />} />
+              <Route path="/orders" element={<UserOrdersPage />} />
               <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </div>
