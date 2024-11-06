@@ -3,8 +3,10 @@ import { useSelector } from "react-redux";
 import ProductCard from "../ProductCard/ProductCard";
 import styles from "./Products.module.css";
 import { Form } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 
 const Products = () => {
+  const { t } = useTranslation();
   const products = useSelector((state) => state.products.items);
   const [searchTerm, setSearchTerm] = useState("");
   const [minPrice, setMinPrice] = useState(0);
@@ -46,18 +48,17 @@ const Products = () => {
           <div className={styles.mask}>
             <div className="d-flex justify-content-center align-items-center h-100 py-3">
               <div className="text-white p-3">
-                <h1>Products</h1>
+                <h1>{t("products-page-title")}</h1>
               </div>
             </div>
           </div>
         </div>
       </div>
-
       <div className={styles.products}>
         <div className={styles.productNameInputBlock}>
           <input
             type="text"
-            placeholder="Search for a product..."
+            placeholder={`${t("products-page-inp1")}...`}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className={styles.productNameInput}
@@ -65,7 +66,7 @@ const Products = () => {
         </div>
         <div className={styles.filterForm}>
           <div className={styles.formBlock}>
-            <label>Min Price:</label>
+            <label>{t("products-page-lb1")}:</label>
             <input
               type="number"
               value={minPrice}
@@ -75,7 +76,7 @@ const Products = () => {
           </div>
 
           <div className={styles.formBlock}>
-            <label>Max Price:</label>
+            <label>{t("products-page-lb2")}:</label>
             <input
               type="number"
               value={maxPrice}
@@ -85,22 +86,22 @@ const Products = () => {
           </div>
 
           <div className={styles.formBlock}>
-            <label>Category:</label>
+            <label>{t("products-page-lb3")}:</label>
             <Form.Select
               onChange={(e) => setSelectedCategory(e.target.value)}
               value={selectedCategory}
               className={styles.formSelect}
             >
-              <option value="">All Categories</option>
-              <option value="Electronics">Electronics</option>
-              <option value="Gadgets">Gadgets</option>
-              <option value="Clothing">Clothing</option>
-              <option value="Audio">Audio</option>
+              <option value="">{t("products-page-lb3-1")}</option>
+              <option value="Electronics">{t("products-page-lb3-2")}</option>
+              <option value="Gadgets">{t("products-page-lb3-3")}</option>
+              <option value="Clothing">{t("products-page-lb3-4")}</option>
+              <option value="Audio">{t("products-page-lb3-5")}</option>
             </Form.Select>
           </div>
 
           <div className={styles.formBlock}>
-            <label>Min Rating:</label>
+            <label>{t("products-page-lb4")}:</label>
             <input
               type="number"
               min="0"
@@ -112,16 +113,16 @@ const Products = () => {
           </div>
 
           <div className={styles.formBlock}>
-            <label>Sort By:</label>
+            <label>{t("products-page-lb5")}:</label>
             <Form.Select
               onChange={(e) => setSortBy(e.target.value)}
               value={sortBy}
               className={styles.formSelect}
             >
-              <option value="">Default</option>
-              <option value="priceAsc">Price Low to High</option>
-              <option value="priceDesc">Price High to Low</option>
-              <option value="rating">Rating</option>
+              <option value="">{t("products-page-lb5-1")}</option>
+              <option value="priceAsc">{t("products-page-lb5-2")}</option>
+              <option value="priceDesc">{t("products-page-lb5-3")}</option>
+              <option value="rating">{t("products-page-lb5-4")}</option>
             </Form.Select>
           </div>
         </div>

@@ -10,8 +10,10 @@ import { Button } from "react-bootstrap";
 import { FaStar } from "react-icons/fa6";
 import { BsShop } from "react-icons/bs";
 import { getUserIdFromToken } from "../../Utils/utils";
+import { useTranslation } from "react-i18next";
 
 function Product() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products.items);
@@ -51,21 +53,35 @@ function Product() {
       <div className="d-flex flex-column gap-5">
         <div className="d-flex flex-column gap-3">
           <h2>{product.name}</h2>
-          <p>Category: {product.category}</p>
+          <p>
+            {t("product-page-lb1")}: {product.category}
+          </p>
           <div className={styles.ratingBlock}>
             <FaStar style={{ fill: "#ff7d00" }} className={styles.star} />
-            <p>Rating: {product.rating}</p>
+            <p>
+              {t("product-page-lb2")}: {product.rating}
+            </p>
           </div>
-          <p>Reviews: {product.reviewsCount}</p>
-          <p>Color: {product.color}</p>
-          <p>Release Date: {product.date}</p>
+          <p>
+            {t("product-page-lb3")}: {product.reviewsCount}
+          </p>
+          <p>
+            {t("product-page-lb4")}: {product.color}
+          </p>
+          <p>
+            {t("product-page-lb5")}: {product.date}
+          </p>
         </div>
         <div className={styles.cardBlock}>
           <div className={styles.priceBlock}>
-            <h2>Price: ${product.price}</h2>
+            <h2>
+              {t("product-page-lb6")}: ${product.price}
+            </h2>
             {product.oldPrice && (
               <del>
-                <p>Old Price: ${product.oldPrice}</p>
+                <p>
+                  {t("product-page-lb7")}: ${product.oldPrice}
+                </p>
               </del>
             )}
           </div>
@@ -82,7 +98,7 @@ function Product() {
                 onClick={() => handleAddToCart(product._id || product.id)}
               >
                 <FaShoppingCart />
-                Add to Cart
+                {t("product-page-button-add-cart")}
               </Button>
             ) : (
               <Button
@@ -96,11 +112,13 @@ function Product() {
                 onClick={() => navigate("/cart")}
               >
                 <FaShoppingCart />
-                In Cart
+                {t("product-page-button-in-cart")}
               </Button>
             )
           ) : (
-            <span className={styles.productMessage}>Your Product</span>
+            <span className={styles.productMessage}>
+              {t("modal-form-input-your-product")}
+            </span>
           )}
           <div className={styles.ratingShop}>
             <BsShop />

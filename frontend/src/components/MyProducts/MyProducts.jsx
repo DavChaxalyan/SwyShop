@@ -11,8 +11,10 @@ import { RiDeleteBin6Fill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import styles from "./MyProduct.module.css";
 import NoProductsFound from "../Errors/NoProductsFound";
+import { useTranslation } from "react-i18next";
 
 const MyProducts = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -33,12 +35,12 @@ const MyProducts = () => {
   return (
     <>
       {loading ? (
-        <h2>Wait for products</h2>
+        <h2>{t("my-products-waiting")}</h2>
       ) : error ? (
         <h2>Error: {error}</h2>
       ) : products && Array.isArray(products) && products.length > 0 ? (
         <div className={styles.mainProductBlock}>
-          <span className={styles.titleProducts}>MY PRODUCTS</span>
+          <span className={styles.titleProducts}>{t("my-products-title")}</span>
           <div className={styles.mainProductsBlock}>
             {products?.map((product) => {
               return (
@@ -78,7 +80,7 @@ const MyProducts = () => {
                       <span>{product.rating}</span>
                     </div>
                     <span style={{ fontSize: "13px", color: "gray" }}>
-                      {product.reviewsCount} ratings
+                      {product.reviewsCount} {t("my-products-rating")}
                     </span>
                   </div>
                   <div className={styles.buttonContainer}>
@@ -90,7 +92,7 @@ const MyProducts = () => {
                       }}
                     >
                       <FaRegEdit />
-                      Edit Product
+                      {t("my-products-edit-button")}
                     </Button>
                     <RiDeleteBin6Fill
                       style={{ color: "red", fontSize: "23px" }}

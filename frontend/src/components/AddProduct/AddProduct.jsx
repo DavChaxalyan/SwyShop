@@ -4,8 +4,10 @@ import { useDispatch } from "react-redux";
 import { addProduct } from "../../redux/actions/productActions";
 import styles from "./AddProduct.module.css"
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useTranslation } from "react-i18next";
 
 const AddProduct = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [productData, setProductData] = useState({
@@ -71,34 +73,34 @@ const AddProduct = () => {
 
   return (
     <div className={`container ${styles.formContainer}`}>
-      <h2 className="my-4 text-center">Add New Product</h2>
+      <h2 className="my-4 text-center">{t("add-product-form-title")}</h2>
       <form onSubmit={handleSubmit} className="bg-light p-4 rounded shadow-sm">
         <div className="mb-3">
-          <label className="form-label">Product Name:</label>
+          <label className="form-label">{t("add-product-form-label1")}</label>
           <input
             type="text"
             name="name"
             value={productData.name}
             onChange={handleChange}
             className={`form-control ${styles.inputTextNumberFile}`}
-            placeholder="Enter product name"
+            placeholder={t("add-product-form-placeholder1")}
             required
           />
         </div>
         <div className="mb-3">
-          <label className="form-label">Price:</label>
+          <label className="form-label">{t("add-product-form-label2")}</label>
           <input
             type="number"
             name="price"
             value={productData.price}
             onChange={handleChange}
             className={`form-control ${styles.inputTextNumberFile}`}
-            placeholder="Enter product price"
+            placeholder={t("add-product-form-placeholder2")}
             required
           />
         </div>
         <div className="mb-3">
-          <label className="form-label">Product Image:</label>
+          <label className="form-label">{t("add-product-form-label3")}</label>
           <input
             type="file"
             accept="image/*"
@@ -109,35 +111,35 @@ const AddProduct = () => {
         </div>
         {imagePreview && (
           <div className="mb-3">
-            <h4>Image Preview:</h4>
+            <h4>{t("add-product-form-image-preview")}</h4>
             <img src={imagePreview} className="img-fluid rounded" alt="Preview" style={{width: '100%', height: '400px'}} />
           </div>
         )}
         <div className="mb-3">
-          <label className="form-label">Category:</label>
+          <label className="form-label">{t("add-product-form-label4")}</label>
           <input
             type="text"
             name="category"
             value={productData.category}
             onChange={handleChange}
             className={`form-control ${styles.inputTextNumberFile}`}
-            placeholder="Enter product category"
+            placeholder={t("add-product-form-placeholder4")}
             required
           />
         </div>
         <div className="mb-3">
-          <label className="form-label">Color:</label>
+          <label className="form-label">{t("add-product-form-label5")}</label>
           <input
             type="text"
             name="color"
             value={productData.color}
             onChange={handleChange}
             className={`form-control ${styles.inputTextNumberFile}`}
-            placeholder="Enter product color"
+            placeholder={t("add-product-form-placeholder5")}
             required
           />
         </div>
-        <button className={`btn btn-primary w-100 ${styles.formButton}`} type="submit">Add Product</button>
+        <button className={`btn btn-primary w-100 ${styles.formButton}`} type="submit">{t("add-product-form-add-product-button")}</button>
       </form>
     </div>
   );
