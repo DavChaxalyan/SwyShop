@@ -1,26 +1,28 @@
 import React from "react";
-import styles from "./Cart.module.css"
+import styles from "./Cart.module.css";
+import { useTranslation } from "react-i18next";
 
 const CheckoutSection = () => {
+  const { t } = useTranslation();
   return (
     <div className={styles.checkoutSection}>
-      <h3>Delivery method</h3>
+      <h3>{t("cart-checkout-page-title")}</h3>
       <p style={{ color: "green", cursor: "pointer" }}>
-        <strong>Select delivery address</strong>
+        <strong>{t("cart-checkout-page-subtitle")}</strong>
       </p>
-      <h3>Payment method</h3>
+      <h3>{t("cart-checkout-page-method")}</h3>
       <p>
         <strong style={{ color: "green", cursor: "pointer" }}>
-          Sign in or register
+          {t("cart-checkout-page-sign-or-reg")}
         </strong>{" "}
-        to choose a payment method
+        {t("cart-checkout-page-choose")}
       </p>
-      <h3>My details</h3>
+      <h3>{t("cart-checkout-page-details")}</h3>
       <p>
         <strong style={{ color: "green", cursor: "pointer" }}>
-          Sign in or register
+          {t("cart-checkout-page-sign-or-reg")}
         </strong>{" "}
-        to place your order
+        {t("cart-checkout-page-place")}
       </p>
     </div>
   );

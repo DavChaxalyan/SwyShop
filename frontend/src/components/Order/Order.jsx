@@ -4,8 +4,10 @@ import { createOrder } from "../../redux/actions/orderActions";
 import styles from "./Order.module.css";
 import { getUserIdFromToken } from "../../Utils/utils";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Order = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const cartItems = useSelector((state) => state.products.cart);
@@ -32,7 +34,7 @@ const Order = () => {
 
     if (cartItems.length === 0) {
       setError(
-        "Your cart is empty. Please add items before proceeding to checkout."
+        t("order-item-cart-empty")
       );
       return;
     }
@@ -50,7 +52,7 @@ const Order = () => {
 
     dispatch(createOrder(orderData))
       .then(() => {
-        setSuccess("Order successfully placed!");
+        setSuccess(t("order-item-successfully"));
         setError("");
         setAnimationClass(styles.successAnimation);
 
@@ -59,7 +61,7 @@ const Order = () => {
         }, 2000);
       })
       .catch((err) => {
-        setError("Error placing the order. Please try again.");
+        setError(t("order-item-error"));
         setSuccess("");
       });
   };
@@ -72,11 +74,11 @@ const Order = () => {
 
   return (
     <div className={styles.orderPage}>
-      <h1 className={styles.orderTitle}>Order Checkout</h1>
+      <h1 className={styles.orderTitle}>{t("order-title")}</h1>
       <div className={styles.orderDetails}>
-        <h2>Your Products</h2>
+        <h2>{t("order-subtitle")}</h2>
         {cartItems.length === 0 ? (
-          <p>Your cart is empty</p>
+          <p>{t("order-item-empty-cart")}</p>
         ) : (
           <ul className={styles.listProducts}>
             {cartItems.map((item) => (
@@ -93,7 +95,7 @@ const Order = () => {
                 <div className={styles.orderItemInfo}>
                   <h3>{item.name}</h3>
                   <p>
-                    Quantity:{" "}
+                  {t("order-item-quantity")}:{" "}
                     {
                       item?.whoInCart.find(
                         (user) =>
@@ -101,14 +103,14 @@ const Order = () => {
                       )?.count
                     }
                   </p>
-                  <p>Price: {item.price} $</p>
+                  <p>{t("order-item-price")}: {item.price} $</p>
                 </div>
               </li>
             ))}
           </ul>
         )}
         <h3 className={styles.totalAmount}>
-          Total Price: {totalAmount.toFixed(1)} $
+          {t("order-item-total-price")}: {totalAmount.toFixed(1)} $
         </h3>
       </div>
       {error && <p className={styles.error}>{error}</p>}
@@ -116,9 +118,9 @@ const Order = () => {
         <p className={`${styles.success} ${animationClass}`}>{success}</p>
       )}
       <form className={styles.orderForm} onSubmit={handleSubmit}>
-        <h2>Delivery Information</h2>
+        <h2>{t("order-delivery-lb1")}</h2>
         <div className={styles.formGroup}>
-          <label htmlFor="customerName">Name</label>
+          <label htmlFor="customerName">{t("order-delivery-lb2")}</label>
           <input
             type="text"
             id="customerName"
@@ -128,7 +130,7 @@ const Order = () => {
           />
         </div>
         <div className={styles.formGroup}>
-          <label htmlFor="address">Delivery Address</label>
+          <label htmlFor="address">{t("order-delivery-lb3")}</label>
           <input
             type="text"
             id="address"
@@ -138,7 +140,7 @@ const Order = () => {
           />
         </div>
         <div className={styles.formGroup}>
-          <label htmlFor="contact">Contact Number</label>
+          <label htmlFor="contact">{t("order-delivery-lb4")}</label>
           <input
             type="tel"
             id="contact"
@@ -148,7 +150,7 @@ const Order = () => {
           />
         </div>
         <button type="submit" className={styles.orderButton}>
-          Confirm Order
+        {t("order-delivery-button")}
         </button>
       </form>
     </div>

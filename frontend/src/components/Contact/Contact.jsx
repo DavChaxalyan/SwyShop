@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import styles from './ContactPage.module.css';
+import { useTranslation } from 'react-i18next';
 
 const Contact = () => {
+  const { t } = useTranslation();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
@@ -16,14 +18,14 @@ const Contact = () => {
 
   return (
     <div className={styles.contactContainer}>
-      <h1>Contact Us</h1>
+      <h1>{t("contact-form-title")}</h1>
       <div className={styles.contactInfo}>
-        <h2>Contact Information</h2>
-        <p>Email: sswayshop@gmail.com</p>
-        <p>Address: Yerevan, Armenia</p>
+        <h2>{t("contact-form-subtitle")}</h2>
+        <p>{t("contact-form-label1")}: sswayshop@gmail.com</p>
+        <p>{t("contact-form-label2")}: Yerevan, Armenia</p>
       </div>
       <form onSubmit={handleSubmit} className={styles.contactForm}>
-        <label htmlFor="name">Name:</label>
+        <label htmlFor="name">{t("contact-form-input-lb1")}:</label>
         <input
           type="text"
           id="name"
@@ -32,7 +34,7 @@ const Contact = () => {
           className={styles.inputTextarea}
           required
         />
-        <label htmlFor="email">Email:</label>
+        <label htmlFor="email">{t("contact-form-input-lb2")}:</label>
         <input
           type="email"
           id="email"
@@ -41,7 +43,7 @@ const Contact = () => {
           className={styles.inputTextarea}
           required
         />
-        <label htmlFor="message">Message:</label>
+        <label htmlFor="message">{t("contact-form-input-lb3")}:</label>
         <textarea
           id="message"
           value={message}
@@ -50,7 +52,7 @@ const Contact = () => {
           required
           style={{resize: 'none'}}
         />
-        <button type="submit" className={styles.formButton}>Send</button>
+        <button type="submit" className={styles.formButton}>{t("contact-form-contact-button")}</button>
       </form>
     </div>
   );

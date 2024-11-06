@@ -7,8 +7,10 @@ import styles from "./Cart.module.css";
 import EmptyCart from "./EmptyCart";
 import { getProductInCart } from "../../redux/actions/cartProductActions";
 import { getUserIdFromToken } from "../../Utils/utils";
+import { useTranslation } from "react-i18next";
 
 const Cart = () => {
+  const { t } = useTranslation();
   const cartItems = useSelector((state) => state.products.cart);
   const dispatch = useDispatch();
 
@@ -26,7 +28,7 @@ const Cart = () => {
         <>
           <div className={styles.cartItems}>
             <div className={styles.titleCard}>
-              <h3>Cart</h3>
+              <h3>{t("cart-page-title")}</h3>
               <span>
                 {cartItems.reduce((total, item) => {
                   const userInCart = item.whoInCart.find(
@@ -34,7 +36,7 @@ const Cart = () => {
                   );
                   return total + (userInCart ? userInCart.count : 0);
                 }, 0)}{" "}
-                product
+                {t("cart-product")}
               </span>
             </div>
             {cartItems?.map((item) => (

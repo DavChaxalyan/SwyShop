@@ -13,8 +13,10 @@ import {
 import { addProductInCart } from "../../redux/actions/cartProductActions";
 import { getOrders } from "../../redux/actions/orderActions";
 import { getUserIdFromToken } from "../../Utils/utils";
+import { useTranslation } from "react-i18next";
 
 const ProductCard = ({ products }) => {
+  const { t } = useTranslation();
   const { order } = useSelector((state) => state);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -46,7 +48,7 @@ const ProductCard = ({ products }) => {
       return;
     }
     navigate("/login");
-    alert("You need to log in or register to add to cart.");
+    alert(t("product-cart-button-add-cart-no-login"));
   };
 
   const handleProductPage = (id) => {
@@ -59,7 +61,7 @@ const ProductCard = ({ products }) => {
       return;
     }
     navigate("/login");
-    alert("You need to log in or register to add to favorite.");
+    alert(t("product-cart-button-add-favorite-no-login"));
   };
 
   const deleteToFavorite = async (id) => {
@@ -103,11 +105,11 @@ const ProductCard = ({ products }) => {
                     setProduct(product);
                   }}
                 >
-                  fast see
+                  {t("product-cart-lb2")}
                 </Button>
               </div>
               {isOrdered && (
-                <span className={styles.orderedIndicator}>Already Ordered</span>
+                <span className={styles.orderedIndicator}>{t("product-cart-lb1")}</span>
               )}
             </div>
             <p className={styles.price}>
@@ -127,7 +129,7 @@ const ProductCard = ({ products }) => {
                 <span>{product.rating}</span>
               </div>
               <span style={{ fontSize: "13px", color: "gray" }}>
-                {product.reviewsCount} ratings
+                {product.reviewsCount} {t("product-cart-lb3")}
               </span>
             </div>
             <div className={styles.buttonContainer}>
@@ -143,7 +145,7 @@ const ProductCard = ({ products }) => {
                     }}
                   >
                     <FaShoppingCart />
-                    Add to cart
+                    {t("product-cart-button-add-cart")}
                   </Button>
                 ) : (
                   <Button
@@ -154,11 +156,11 @@ const ProductCard = ({ products }) => {
                     }}
                   >
                     <FaShoppingCart />
-                    In cart
+                    {t("product-cart-button-in-cart")}
                   </Button>
                 )
               ) : (
-                <span className={styles.productMessage}>Your Product</span>
+                <span className={styles.productMessage}>{t("modal-form-input-your-product")}</span>
               )}
               <div className={styles.heartButtonBlock}>
                 <button className={styles.like}>

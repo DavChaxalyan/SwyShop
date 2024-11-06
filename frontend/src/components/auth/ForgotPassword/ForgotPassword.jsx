@@ -3,8 +3,10 @@ import { FaEnvelope } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { forgotPassword } from "../../../redux/actions/authActions";
 import styles from "./ForgotPassword.module.css";
+import { useTranslation } from "react-i18next";
 
 const ForgotPassword = () => {
+  const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const dispatch = useDispatch();
 
@@ -21,8 +23,8 @@ const ForgotPassword = () => {
   return (
     <div className={styles.forgotPasswordPage}>
       <div className={styles.formContainer}>
-        <h2 className={styles.title}>Forgot Your Password?</h2>
-        <p className={styles.subtitle}>Enter your email and we'll send you a link to reset your password.</p>
+        <h2 className={styles.title}>{t("forgot-password-title")}</h2>
+        <p className={styles.subtitle}>{t("forgot-password-subtitle")}</p>
 
         <form onSubmit={handleSubmit} className={styles.forgotPasswordForm}>
           <div className={styles.inputGroup}>
@@ -32,14 +34,14 @@ const ForgotPassword = () => {
               name="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email"
+              placeholder={t("forgot-password-placeholder")}
               required
               className={styles.inputField}
             />
           </div>
 
           <button type="submit" className={styles.submitButton}>
-            Send Reset Link
+          {t("forgot-password-button-reset-link")}
           </button>
         </form>
       </div>

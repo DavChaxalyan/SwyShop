@@ -2,15 +2,17 @@ import React from "react";
 import styles from "./NoProductsFound.module.css";
 import { GiBrokenHeart } from "react-icons/gi";
 import productNotFoundImg from "../../assets/images/no-favorite.webp"
+import { useTranslation } from "react-i18next";
 
 const NoFavoriteProducts = () => {
+  const { t } = useTranslation();
   return (
     <>
     <div className={styles.container}>
       <div className={styles.messageWrapper}>
-        <h1 className={styles.title}>No Favorite Products Found</h1>
+        <h1 className={styles.title}>{t("error-no-favorite-product-title")}</h1>
         <p className={styles.subtitle}>
-          Sorry, You don't have any favorite products..
+        {t("error-no-favorite-product-subtitle")}
         </p>
         <div className={styles.animationWrapper}>
           <div className={styles.box}>
