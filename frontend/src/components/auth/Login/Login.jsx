@@ -7,8 +7,10 @@ import { login } from "../../../redux/actions/authActions";
 import styles from "./Login.module.css";
 import { getUser } from "../../../redux/actions/userActions";
 import { getUserIdFromToken } from "../../../Utils/utils";
+import { useTranslation } from "react-i18next";
 
 const Login = () => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({ email: "", password: "" });
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -31,8 +33,8 @@ const Login = () => {
   return (
     <div className={styles.loginPage}>
       <div className={styles.formContainer}>
-        <h2 className={styles.title}>Welcome Back!</h2>
-        <p className={styles.subtitle}>Log in to your account</p>
+        <h2 className={styles.title}>{t("login-form-title")}</h2>
+        <p className={styles.subtitle}>{t("login-form-subtitle")}</p>
 
         <form onSubmit={handleSubmit} className={styles.loginForm}>
           <div className={styles.inputGroup}>
@@ -42,7 +44,7 @@ const Login = () => {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              placeholder="Email"
+              placeholder={t("login-form-input1")}
               required
               className={styles.inputField}
             />
@@ -55,22 +57,22 @@ const Login = () => {
               name="password"
               value={formData.password}
               onChange={handleChange}
-              placeholder="Password"
+              placeholder={t("login-form-input2")}
               required
               className={styles.inputField}
             />
           </div>
 
           <button type="submit" className={styles.submitButton}>
-            Log In
+            {t("login-form-login-button")}
           </button>
 
-          <p className={styles.forgotPassword} onClick={() => navigate('/forgot-password')}>Forgot your password?</p>
+          <p className={styles.forgotPassword} onClick={() => navigate('/forgot-password')}>{t("login-form-forgot-password")}</p>
 
           <p className={styles.noAccount}>
-            Don't have an account?{" "}
+            {t("login-form-have-account")}{" "}
             <Link to="/register" className={styles.registerLink}>
-              Register here
+            {t("login-form-have-account-button")}
             </Link>
           </p>
         </form>

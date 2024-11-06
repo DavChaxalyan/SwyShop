@@ -1,61 +1,60 @@
 .verificationPage {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 70vh;
-  }
-  
-  .formContainer {
-    background-color: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-  }
-  
-  .title {
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
-    color: #333;
-    margin-bottom: 10px;
-  }
-  
-  .subtitle {
-    font-size: 16px;
-    text-align: center;
-    color: #666;
-    margin-bottom: 20px;
-  }
-  
-  .verificationForm {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .inputField {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    width: 100%;
-  }
-  
-  .submitButton {
-    padding: 10px;
-    background-color: #18596a;
-    color: white;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .submitButton:hover {
-    background-color: #133f52;
-  }
-  
+}
+
+.formContainer {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 16px;
+  text-align: center;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.verificationForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.inputField {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.submitButton {
+  padding: 10px;
+  background-color: #18596a;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submitButton:hover {
+  background-color: #133f52;
+}

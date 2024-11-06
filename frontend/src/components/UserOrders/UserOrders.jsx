@@ -5,8 +5,10 @@ import { getOrders } from "../../redux/actions/orderActions";
 import OrderDetailsModal from "./OrderDetailsModal";
 import { getUserIdFromToken } from "../../Utils/utils";
 import { TbTruckDelivery } from "react-icons/tb";
+import { useTranslation } from "react-i18next";
 
 const UserOrders = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const { orders } = useSelector((state) => state.order);
   const userOrders = orders?.filter(
@@ -37,7 +39,7 @@ const UserOrders = () => {
   return (
     <div className={styles.orderPage}>
       <div className={styles.orderBlockTitle}>
-        <h1>Your Orders</h1>
+        <h1>{t("orders-page-title")}</h1>
         <TbTruckDelivery />
       </div>
       {loading ? (
@@ -46,11 +48,11 @@ const UserOrders = () => {
         <table className={styles.orderTable}>
           <thead>
             <tr>
-              <th>Order ID</th>
-              <th>Date</th>
-              <th>Status</th>
-              <th>Total Amount</th>
-              <th>Products</th>
+              <th>{t("orders-page-subtitle1")} ID</th>
+              <th>{t("orders-page-subtitle2")}</th>
+              <th>{t("orders-page-subtitle3")}</th>
+              <th>{t("orders-page-subtitle4")}</th>
+              <th>{t("orders-page-subtitle5")}</th>
             </tr>
           </thead>
           <tbody>

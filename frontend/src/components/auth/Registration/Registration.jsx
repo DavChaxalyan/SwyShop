@@ -5,8 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { register } from "../../../redux/actions/authActions";
 import styles from "./Registration.module.css";
+import { useTranslation } from "react-i18next";
 
 const Registration = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const state = useSelector((state) => state);
 
@@ -56,8 +58,8 @@ const Registration = () => {
     <div>
       <div className={styles.registrationPage}>
         <div className={styles.formContainer}>
-          <h2 className={styles.title}>Create an Account</h2>
-          <p className={styles.subtitle}>Join us and start shopping today!</p>
+          <h2 className={styles.title}>{t("registration-form-title")}</h2>
+          <p className={styles.subtitle}>{t("registration-form-subtitle")}</p>
 
           <form onSubmit={handleSubmit} className={styles.registrationForm}>
             <div className={styles.inputGroup}>
@@ -67,7 +69,7 @@ const Registration = () => {
                 name="username"
                 value={formData.username}
                 onChange={handleChange}
-                placeholder="Username"
+                placeholder={t("registration-form-input1")}
                 required
                 className={styles.inputField}
               />
@@ -80,7 +82,7 @@ const Registration = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                placeholder="Email"
+                placeholder={t("registration-form-input2")}
                 required
                 className={styles.inputField}
               />
@@ -93,7 +95,7 @@ const Registration = () => {
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
-                placeholder="Password"
+                placeholder={t("registration-form-input3")}
                 required
                 className={styles.inputField}
               />
@@ -106,20 +108,20 @@ const Registration = () => {
                 name="confirmPassword"
                 value={formData.confirmPassword}
                 onChange={handleChange}
-                placeholder="Confirm Password"
+                placeholder={t("registration-form-input4")}
                 required
                 className={styles.inputField}
               />
             </div>
 
             <button type="submit" className={styles.submitButton}>
-              Register
+              {t("registration-form-registration-button")}
             </button>
           </form>
           <p className={styles.alreadyHaveAccount}>
-            Already have an account?{" "}
+            {t("registration-form-have-account")}{" "}
             <Link to="/login" className={styles.loginLink}>
-              Log in here
+            {t("registration-form-have-account-button")}
             </Link>
           </p>
         </div>
