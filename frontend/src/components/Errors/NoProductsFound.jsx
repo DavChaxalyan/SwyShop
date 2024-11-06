@@ -2,15 +2,17 @@ import React from "react";
 import styles from "./NoProductsFound.module.css";
 import { CgSmileNeutral } from "react-icons/cg";
 import productNotFoundImg from "../../assets/images/no-product.png"
+import { useTranslation } from "react-i18next";
 
 const NoProductsFound = () => {
+  const { t } = useTranslation();
   return (
     <>
     <div className={styles.container}>
       <div className={styles.messageWrapper}>
-        <h1 className={styles.title}>No Products Found</h1>
+        <h1 className={styles.title}>{t("error-no-product-found-title")}</h1>
         <p className={styles.subtitle}>
-          Sorry, but you haven't created any products yet.
+        {t("error-no-product-found-subtitle")}
         </p>
         <div className={styles.animationWrapper}>
           <div className={styles.box}>

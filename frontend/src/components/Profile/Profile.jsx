@@ -21,8 +21,10 @@ import { changePassword } from "../../redux/actions/authActions";
 import { getUserIdFromToken } from "../../Utils/utils";
 import { getOrders } from "../../redux/actions/orderActions";
 import "./Profile.css";
+import { useTranslation } from "react-i18next";
 
 const Profile = () => {
+  const { t } = useTranslation();
   const { order } = useSelector((state) => state);
   const userOrders = order.orders?.filter(
     (order) => order.customerId === getUserIdFromToken()
@@ -69,12 +71,12 @@ const Profile = () => {
 
   const handleSavePassword = async () => {
     if (passwordData.newPassword !== passwordData.confirmPassword) {
-      alert("New password and confirmation do not match.");
+      alert(t("profile-page-new-password-and-confirm"));
       return;
     }
 
     if (passwordData.currentPassword === passwordData.newPassword) {
-      alert("The new password must be different from the current password.");
+      alert(t("profile-page-new-password-and-different"));
       return;
     }
 
@@ -97,7 +99,7 @@ const Profile = () => {
       }
     } catch (error) {
       console.error("Error changing password:", error);
-      alert("Failed to change password");
+      alert(t("profile-page-failed-to-change"));
     }
   };
 
@@ -195,7 +197,7 @@ const Profile = () => {
                 className="mb-3"
                 onClick={handleEditToggle}
               >
-                {showEditForm ? "Cancel Edit" : "Edit Profile"}
+                {showEditForm ? t("profile-page-edit-cancel-button") : t("profile-page-edit-button")}
               </Button>
 
               {/* Edit Form with Collapse */}
@@ -206,7 +208,7 @@ const Profile = () => {
                     onSubmit={(e) => handleSaveChanges(e)}
                   >
                     <Form.Group className="mb-3" controlId="formUsername">
-                      <Form.Label>Username</Form.Label>
+                      <Form.Label>{t("profile-page-edit-lb1")}</Form.Label>
                       <Form.Control
                         type="text"
                         name="username"
@@ -216,7 +218,7 @@ const Profile = () => {
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formProfilePic">
-                      <Form.Label>Profile Image</Form.Label>
+                      <Form.Label>{t("profile-page-edit-lb2")}</Form.Label>
                       <Form.Control
                         type="file"
                         name="profileImage"
@@ -225,7 +227,7 @@ const Profile = () => {
                     </Form.Group>
 
                     <Button variant="primary" type="submit">
-                      Save Changes
+                    {t("profile-page-edit-button-save")}
                     </Button>
                   </Form>
 
@@ -235,7 +237,7 @@ const Profile = () => {
                     className="d-flex align-items-center gap-2 mt-2"
                   >
                     <MdLockReset style={{ fontSize: "20px" }} />
-                    Reset Password
+                    {t("profile-page-edit-button-reset-password")}
                   </Button>
                 </div>
               </Collapse>
@@ -245,7 +247,7 @@ const Profile = () => {
                   <div className="password-reset-block mt-2 text-start">
                     <Form>
                       <MDBCardText className="font-italic mb-1">
-                        <label>Current Password:</label>
+                        <label>{t("profile-page-reset-password-lb1")}:</label>
                         <input
                           type="password"
                           name="currentPassword"
@@ -255,7 +257,7 @@ const Profile = () => {
                         />
                       </MDBCardText>
                       <MDBCardText className="font-italic mb-1">
-                        <label>New Password:</label>
+                        <label>{t("profile-page-reset-password-lb2")}:</label>
                         <input
                           type="password"
                           name="newPassword"
@@ -265,7 +267,7 @@ const Profile = () => {
                         />
                       </MDBCardText>
                       <MDBCardText className="font-italic mb-1">
-                        <label>Confirm New Password:</label>
+                        <label>{t("profile-page-reset-password-lb3")}:</label>
                         <input
                           type="password"
                           name="confirmPassword"
@@ -280,7 +282,7 @@ const Profile = () => {
                         onClick={handleSavePassword}
                       >
                         <CiSaveDown2 style={{ fontSize: "20px" }} />
-                        Save Password
+                        {t("profile-page-reset-password-button-save-password")}
                       </Button>
                     </Form>
                   </div>
@@ -294,24 +296,24 @@ const Profile = () => {
           {/* Order History */}
           <Card className="mb-4">
             <Card.Body>
-              <Card.Title style={{fontSize: "30px", fontWeight: "700", color: "#3e7ad3"}}>Order History <GrHistory style={{fontSize: "25px", color: "#3e7ad3"}}/></Card.Title>
+              <Card.Title style={{fontSize: "30px", fontWeight: "700", color: "#3e7ad3"}}>{t("profile-page-order-history-title")} <GrHistory style={{fontSize: "25px", color: "#3e7ad3"}}/></Card.Title>
               <ListGroup variant="flush" className={userOrders.length > 0 ? "order-history" : ""}>
                 {userOrders.length > 0 ? (
                   userOrders.map((order, ind) => (
                     <ListGroup.Item key={order._id}>
                       <Row>
                         <Col>
-                          <strong>Order #:</strong> {ind + 1}
+                          <strong>{t("profile-page-order-history-order")} #:</strong> {ind + 1}
                         </Col>
                         <Col>
-                          <strong>Date:</strong> {formatDate(order.createdAt)}
+                          <strong>{t("profile-page-order-history-date")}:</strong> {formatDate(order.createdAt)}
                         </Col>
                         <Col>
-                          <strong>Total:</strong> {order.totalAmount.toFixed(1)}
+                          <strong>{t("profile-page-order-history-total")}:</strong> {order.totalAmount.toFixed(1)}
                           $
                         </Col>
                         <Col>
-                          <strong>Status:</strong>{" "}
+                          <strong>{t("profile-page-order-history-status")}:</strong>{" "}
                           <span
                             className={`badge ${
                               order.status === "Received"
@@ -327,9 +329,9 @@ const Profile = () => {
                   ))
                 ) : (
                   <div className="no-orders">
-                    <h3>You have no orders.</h3>
-                    <p>You can start shopping!</p>
-                    <button className="shop-now-button" onClick={() => navigate("/products")}>Shop Now</button>
+                    <h3>{t("profile-page-order-history-not-have")}.</h3>
+                    <p>{t("profile-page-order-history-start-shopping")}!</p>
+                    <button className="shop-now-button" onClick={() => navigate("/products")}>{t("profile-page-order-history-start-button")}</button>
                   </div>
                 )}
               </ListGroup>
@@ -339,7 +341,7 @@ const Profile = () => {
                 onClick={() => navigate("/orders")}
                 disabled={!userOrders.length}
               >
-                View All Orders
+                {t("profile-page-order-history-view-button")}
               </Button>
             </Card.Body>
           </Card>
@@ -347,13 +349,13 @@ const Profile = () => {
           {/* Notification Preferences */}
           <Card>
             <Card.Body>
-              <Card.Title>My Products</Card.Title>
+              <Card.Title>{t("profile-page-my-products")}</Card.Title>
               <Button
                 variant="primary"
                 className="mt-3"
                 onClick={handleMyProduct}
               >
-                View my products
+                {t("profile-page-my-products-button")}
               </Button>
             </Card.Body>
           </Card>

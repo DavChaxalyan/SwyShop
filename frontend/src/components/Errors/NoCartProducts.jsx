@@ -3,15 +3,17 @@ import styles from "./NoProductsFound.module.css";
 import { TbShoppingCartCancel } from "react-icons/tb";
 import productNotFoundImg from "../../assets/images/empty-cart.png";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const NoCartProductsFound = () => {
+  const { t } = useTranslation();
   return (
     <>
       <div className={styles.container}>
         <div className={styles.messageWrapper}>
-          <h1 className={styles.title}>Your cart is empty</h1>
+          <h1 className={styles.title}>{t("error-no-cart-product-title")}</h1>
           <p className={styles.subtitle}>
-            Sorry, You don't have any cart products..
+            {t("error-no-cart-product-subtitle")}
           </p>
           <div className={styles.animationWrapper}>
             <div className={styles.box}>
@@ -31,9 +33,11 @@ const NoCartProductsFound = () => {
           alt="product not found"
           style={{ height: "450px" }}
         />
-      <Link to={"/"}>
-        <button className={styles.goToMainButton}>Go to main page</button>
-      </Link>
+        <Link to={"/"}>
+          <button className={styles.goToMainButton}>
+            {t("error-no-cart-product-button")}
+          </button>
+        </Link>
       </div>
     </>
   );

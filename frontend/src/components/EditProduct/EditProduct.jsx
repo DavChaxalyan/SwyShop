@@ -6,8 +6,10 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { putProduct } from "../../redux/actions/productActions";
 import { CgProfile } from "react-icons/cg";
 import { IoIosArrowBack } from "react-icons/io";
+import { useTranslation } from "react-i18next";
 
 const EditProduct = () => {
+  const { t } = useTranslation();
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -82,15 +84,15 @@ const EditProduct = () => {
   return (
     <>
       <Link to={"/my-products"} className="d-flex align-items-center">
-      <IoIosArrowBack/>
-        <CgProfile style={{marginLeft: '2px', marginRight: '5px'}} />
-        Back To My Products
+        <IoIosArrowBack />
+        <CgProfile style={{ marginLeft: "2px", marginRight: "5px" }} />
+        {t("edit-form-back-button")}
       </Link>
       <div className={styles.mainBlockEdit}>
         <form className={styles.form} onSubmit={handleSubmit}>
-          <h2 className={styles.title}>Edit Product</h2>
+          <h2 className={styles.title}>{t("edit-form-title")}</h2>
 
-          <label className={styles.label}>Product Name:</label>
+          <label className={styles.label}>{t("edit-form-input-lb1")}:</label>
           <input
             type="text"
             name="name"
@@ -99,7 +101,7 @@ const EditProduct = () => {
             className={styles.input}
           />
 
-          <label className={styles.label}>Price:</label>
+          <label className={styles.label}>{t("edit-form-input-lb2")}:</label>
           <input
             type="number"
             name="price"
@@ -108,7 +110,7 @@ const EditProduct = () => {
             className={styles.input}
           />
 
-          <label className={styles.label}>Product Image:</label>
+          <label className={styles.label}>{t("edit-form-input-lb3")}:</label>
           <input
             type="file"
             accept="image/*"
@@ -117,7 +119,7 @@ const EditProduct = () => {
             required
           />
 
-          <label className={styles.label}>Category:</label>
+          <label className={styles.label}>{t("edit-form-input-lb4")}:</label>
           <input
             type="text"
             name="category"
@@ -128,7 +130,7 @@ const EditProduct = () => {
             required
           />
 
-          <label className={styles.label}>Color:</label>
+          <label className={styles.label}>{t("edit-form-input-lb5")}:</label>
           <input
             type="text"
             name="color"
@@ -139,7 +141,7 @@ const EditProduct = () => {
           />
 
           <button type="submit" className={styles.submitButton}>
-            Save Changes
+            {t("edit-form-edit-button")}
           </button>
         </form>
         {foundProduct && (
@@ -165,13 +167,13 @@ const EditProduct = () => {
                 {foundProduct.oldPrice ? (
                   <>
                     <span className={styles.oldPrice}>
-                      Old Price: $
+                      {t("edit-cart-lb1")}: $
                       {product.price
                         ? foundProduct.price
                         : foundProduct.oldPrice}
                     </span>
                     <br />
-                    New Price:{" "}
+                    {t("edit-cart-lb2")}:{" "}
                     <span className={styles.newPrice}>
                       ${product.price || foundProduct.price}
                     </span>
@@ -183,26 +185,27 @@ const EditProduct = () => {
                 )}
               </p>
               <h3 className={styles.productName}>
-                Name: {product.name || foundProduct.name}
+                {t("edit-cart-lb3")}: {product.name || foundProduct.name}
               </h3>
               <div className={styles.productRatingBlock}>
                 <div className={styles.productRating}>
-                  By Default:
+                  {t("edit-cart-lb4")}:
                   <FaStar style={{ fill: "#ff7d00" }} />
                   <span>{foundProduct.rating}</span>
                 </div>
                 <span style={{ fontSize: "13px", color: "gray" }}>
-                  {foundProduct.reviewsCount} ratings
+                  {foundProduct.reviewsCount} {t("edit-cart-lb5")}
                 </span>
               </div>
               <h3 className={styles.productName}>
-                Category: {product.category || foundProduct.category}
+                {t("edit-cart-lb6")}:{" "}
+                {product.category || foundProduct.category}
               </h3>
               <h3 className={styles.productName}>
-                Color: {product.color || foundProduct.color}
+                {t("edit-cart-lb7")}: {product.color || foundProduct.color}
               </h3>
               <h3 className={styles.productName}>
-                Updated Date: {product.date || foundProduct.date}
+                {t("edit-cart-lb8")}: {product.date || foundProduct.date}
               </h3>
             </div>
           </div>

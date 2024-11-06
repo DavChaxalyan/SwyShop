@@ -4,8 +4,10 @@ import { FaLock } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { resetPassword } from "../../../redux/actions/authActions";
 import styles from "./ResetPassword.module.css";
+import { useTranslation } from "react-i18next";
 
 const ResetPassword = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { token } = useParams();
   const dispatch = useDispatch();
@@ -21,22 +23,21 @@ const ResetPassword = () => {
     }
 
     try {
-        const response = await dispatch(resetPassword({ token, password }));
-    
-        if (response.message === 'Password changed successfully') {
-          navigate("/login");
-        } 
-      } catch (error) {
-        console.error("Error resetting password:", error);
-        alert("An error occurred. Please try again.");
+      const response = await dispatch(resetPassword({ token, password }));
+
+      if (response.message === "Password changed successfully") {
+        navigate("/login");
       }
+    } catch (error) {
+      console.error("Error resetting password:", error);
+      alert("An error occurred. Please try again.");
+    }
   };
 
   return (
     <div className={styles.resetPasswordPage}>
       <div className={styles.formContainer}>
-        <h2 className={styles.title}>Reset Your Password</h2>
-
+        <h2 className={styles.title}>{t("reset-form-title")}</h2>
         <form onSubmit={handleSubmit} className={styles.resetPasswordForm}>
           <div className={styles.inputGroup}>
             <FaLock className={styles.icon} />
@@ -45,7 +46,7 @@ const ResetPassword = () => {
               name="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="New Password"
+              placeholder={t("reset-form-input1")}
               required
               className={styles.inputField}
             />
@@ -58,14 +59,14 @@ const ResetPassword = () => {
               name="confirmPassword"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              placeholder="Confirm Password"
+              placeholder={t("reset-form-input2")}
               required
               className={styles.inputField}
             />
           </div>
 
           <button type="submit" className={styles.submitButton}>
-            Reset Password
+            {t("reset-form-reset-button")}
           </button>
         </form>
       </div>
