@@ -13,6 +13,7 @@ import { IoMdAdd } from "react-icons/io";
 import imageProfile from "../../assets/images/profile-empty.png";
 import LanguageSwitcher from "../LanguageSwitcher";
 import { useTranslation } from "react-i18next";
+import CurrencySwitcher from "../CurrencySwitcher";
 
 const Header = () => {
   const { t } = useTranslation();
@@ -158,6 +159,9 @@ const Header = () => {
           )}
           <li>
             <LanguageSwitcher />
+          </li>
+          <li>
+            <CurrencySwitcher />
           </li>
         </ul>
       </nav>

@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./MyProduct.module.css";
 import NoProductsFound from "../Errors/NoProductsFound";
 import { useTranslation } from "react-i18next";
+import { formatCurrency, priceFix } from "../../Utils/utils";
 
 const MyProducts = () => {
   const { t } = useTranslation();
@@ -19,6 +20,7 @@ const MyProducts = () => {
   const navigate = useNavigate();
 
   const myProducts = useSelector((state) => state.products);
+  const { currency, exchangeRates } = useSelector((state) => state.currency);
   const { loading, error, products } = myProducts;
 
   useEffect(() => {
@@ -63,14 +65,14 @@ const MyProducts = () => {
                     {product.oldPrice ? (
                       <>
                         <span className={styles.oldPrice}>
-                          ${product.oldPrice}
+                          {formatCurrency(priceFix(currency, product.oldPrice, exchangeRates), currency)}
                         </span>
                         <span className={styles.newPrice}>
-                          ${product.price}
+                          {formatCurrency(priceFix(currency, product.price, exchangeRates), currency)}
                         </span>
                       </>
                     ) : (
-                      <span className={styles.newPrice}>${product.price}</span>
+                      <span className={styles.newPrice}>{formatCurrency(priceFix(currency, product.price, exchangeRates), currency)}</span>
                     )}
                   </p>
                   <h3 className={styles.productName}>{product.name}</h3>

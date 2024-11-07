@@ -10,7 +10,7 @@ import ProductPage from "./pages/Product/ProductPage";
 import AddProductPage from "./pages/AddProductPage/AddProductPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getProduct } from "./redux/actions/productActions";
 import { getProductInCart } from "./redux/actions/cartProductActions";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
@@ -25,9 +25,18 @@ import { getUserIdFromToken } from "./Utils/utils";
 import { getUser } from "./redux/actions/userActions";
 import OrderPage from "./pages/OrderPage/OrderPage";
 import UserOrdersPage from "./pages/UserOrdersPage/UserOrdersPage";
+import { fetchExchangeRates } from "./redux/actions/currencyActions";
 
 const App = () => {
   const dispatch = useDispatch();
+  const { exchangeRates } = useSelector((state) => state.currency);
+
+  useEffect(() => {
+    if (!Object.keys(exchangeRates).length) {
+      dispatch(fetchExchangeRates());  
+    }
+  }, [dispatch, exchangeRates]);
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     const fetchData = async () => {
