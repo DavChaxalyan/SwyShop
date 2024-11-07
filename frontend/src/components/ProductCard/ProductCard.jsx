@@ -17,7 +17,7 @@ import { useTranslation } from "react-i18next";
 
 const ProductCard = ({ products }) => {
   const { t } = useTranslation();
-  const { order } = useSelector((state) => state);
+  const { orders } = useSelector((state) => state.order);
   const { currency, exchangeRates } = useSelector((state) => state.currency);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -31,8 +31,8 @@ const ProductCard = ({ products }) => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (order?.orders) {
-      const userOrders = order.orders.filter(
+    if (orders) {
+      const userOrders = orders.filter(
         (orderItem) => orderItem.customerId === currentUserId
       );
       const productIds = userOrders.flatMap((orderItem) =>
@@ -40,7 +40,7 @@ const ProductCard = ({ products }) => {
       );
       setOrderedProductIds(productIds);
     }
-  }, [order, currentUserId]);
+  }, [orders, currentUserId]);
 
   const handleAddToCart = async (id) => {
     const token = localStorage.getItem("token");

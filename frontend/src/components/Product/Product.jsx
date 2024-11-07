@@ -19,7 +19,7 @@ function Product() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products.items);
   const { id } = useParams();
-  const product = products.find((p) => (p._id || p.id) == id);
+  const product = products.find((p) => (p._id || p.id) === id);
 
   const handleAddToCart = async (id) => {
     const token = localStorage.getItem("token");

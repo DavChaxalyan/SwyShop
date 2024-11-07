@@ -151,10 +151,12 @@
 .titleProducts {
   font-size: 2.5rem;
   background: linear-gradient(135deg, #08294d, #00c6ff);
+  background-clip: text;
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: transparent;
   animation: fadeIn 0.5s ease;
 }
+
 
 @keyframes fadeIn {
   from {

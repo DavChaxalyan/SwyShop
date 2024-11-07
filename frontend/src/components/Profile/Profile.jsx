@@ -25,9 +25,9 @@ import { useTranslation } from "react-i18next";
 
 const Profile = () => {
   const { t } = useTranslation();
-  const { order } = useSelector((state) => state);
+  const { orders } = useSelector((state) => state.order);
   const { currency, exchangeRates } = useSelector((state) => state.currency);
-  const userOrders = order.orders?.filter(
+  const userOrders = orders?.filter(
     (order) => order.customerId === getUserIdFromToken()
   );
   const state = useSelector((state) => state.user.ProfileUser);
