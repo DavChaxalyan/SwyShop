@@ -5,13 +5,14 @@ import Modal from "react-bootstrap/Modal";
 import { FaStar } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addProductInCart } from "../../redux/actions/cartProductActions";
-import { getUserIdFromToken } from "../../Utils/utils";
+import { formatCurrency, getUserIdFromToken, priceFix } from "../../Utils/utils";
 import { useTranslation } from "react-i18next";
 
 function ProductModal(props) {
   const { t } = useTranslation();
+  const { currency, exchangeRates } = useSelector((state) => state.currency);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -88,12 +89,12 @@ function ProductModal(props) {
           </div>
           <div className={styles.priceBlock}>
             <p>
-              {t("modal-form-input-lb4")}: ${props?.product?.price}
+              {t("modal-form-input-lb4")}: {formatCurrency(priceFix(currency, props?.product?.price, exchangeRates), currency)}
             </p>
             {props?.product?.oldPrice && (
               <del>
                 <p>
-                  {t("modal-form-input-lb5")}: ${props?.product?.oldPrice}
+                  {t("modal-form-input-lb5")}: {formatCurrency(priceFix(currency, props?.product?.oldPrice, exchangeRates), currency)}
                 </p>
               </del>
             )}

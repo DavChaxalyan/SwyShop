@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "./UserOrders.module.css";
 import { getOrders } from "../../redux/actions/orderActions";
 import OrderDetailsModal from "./OrderDetailsModal";
-import { getUserIdFromToken } from "../../Utils/utils";
+import { formatCurrency, getUserIdFromToken, priceFix } from "../../Utils/utils";
 import { TbTruckDelivery } from "react-icons/tb";
 import { useTranslation } from "react-i18next";
 
@@ -11,6 +11,7 @@ const UserOrders = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { orders } = useSelector((state) => state.order);
+  const { currency, exchangeRates } = useSelector((state) => state.currency);
   const userOrders = orders?.filter(
     (order) => order.customerId === getUserIdFromToken()
   );
@@ -67,13 +68,13 @@ const UserOrders = () => {
                 <td className={styles[order.status.toLowerCase()]}>
                   {order.status}
                 </td>
-                <td>${order.totalAmount.toFixed(2)}</td>
+                <td>{formatCurrency(priceFix(currency, order.totalAmount, exchangeRates), currency)}</td>
                 <td>
                   <ul>
                     {order.items.map((item) => (
                       <li key={item._id}>
-                        {item.name} (x{item.quantity}) - $
-                        {item.price.toFixed(2)}
+                        {item.name} (x{item.quantity}) - 
+                        {formatCurrency(priceFix(currency, item.price, exchangeRates), currency)}
                       </li>
                     ))}
                   </ul>
