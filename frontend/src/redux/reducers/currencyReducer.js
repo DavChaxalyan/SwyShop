@@ -1,7 +1,7 @@
 import { SET_CURRENCY, SET_EXCHANGE_RATES, SET_LOADING, SET_ERROR } from '../actions/currencyActions';
 
 const initialState = {
-  currency: localStorage.getItem('currency') || 'USD',  // Сохраняем валюту из localStorage, если она есть
+  currency: localStorage.getItem('currency') || 'USD', 
   exchangeRates: {},
   loading: false,
   error: null,
