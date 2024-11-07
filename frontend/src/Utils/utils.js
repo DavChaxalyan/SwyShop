@@ -23,3 +23,34 @@ export const getUserIdFromToken = () => {
     }
     return null;
   };
+
+export const formatCurrency = (amount, currencyCode) => {
+    let currencySymbol;
+  
+    switch (currencyCode) {
+      case 'USD':
+        currencySymbol = '$';
+        break;
+      case 'RUB':
+        currencySymbol = '₽';
+        break;
+      case 'AMD':
+        currencySymbol = '֏';
+        break;
+      default:
+        console.error("Invalid or unsupported currency code:", currencyCode);
+        return amount.toFixed(2);
+    }
+  
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: currencyCode,
+      currencyDisplay: 'symbol',
+      minimumFractionDigits: 1,
+      maximumFractionDigits: 1,
+    }).format(amount).replace(currencyCode, currencySymbol);
+  };
+
+export const priceFix = (currency, price, exchangeRates) => {
+  return Math.round((currency === 'USD' ? price : price * (exchangeRates[currency] || 1)) * 10) / 10
+}

@@ -2,6 +2,7 @@ import { combineReducers } from "redux";
 import productReducer from "./productReducer";
 import { authReducer } from "./authReducer";
 import userReducer from "./userReducer";
+import currencyReducer from "./currencyReducer";
 import orderReducer from "./orderReducer";
 
 const rootReducer = combineReducers({
@@ -9,6 +10,7 @@ const rootReducer = combineReducers({
   products: productReducer,
   user: userReducer,
   order: orderReducer,
+  currency: currencyReducer
 });
 
 export default rootReducer;
