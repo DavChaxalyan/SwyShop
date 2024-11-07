@@ -12,12 +12,13 @@ import {
 } from "../../redux/actions/favoriteProductActions";
 import { addProductInCart } from "../../redux/actions/cartProductActions";
 import { getOrders } from "../../redux/actions/orderActions";
-import { getUserIdFromToken } from "../../Utils/utils";
+import { formatCurrency, getUserIdFromToken, priceFix } from "../../Utils/utils";
 import { useTranslation } from "react-i18next";
 
 const ProductCard = ({ products }) => {
   const { t } = useTranslation();
   const { order } = useSelector((state) => state);
+  const { currency, exchangeRates } = useSelector((state) => state.currency);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [modalShow, setModalShow] = useState(false);
@@ -115,11 +116,11 @@ const ProductCard = ({ products }) => {
             <p className={styles.price}>
               {product.oldPrice ? (
                 <>
-                  <span className={styles.oldPrice}>${product.oldPrice}</span>
-                  <span className={styles.newPrice}>${product.price}</span>
+                  <span className={styles.oldPrice}>{formatCurrency(priceFix(currency, product.oldPrice, exchangeRates), currency)}</span>
+                  <span className={styles.newPrice}>{formatCurrency(priceFix(currency, product.price, exchangeRates), currency)}</span>
                 </>
               ) : (
-                <span className={styles.newPrice}>${product.price}</span>
+                <span className={styles.newPrice}>{formatCurrency(priceFix(currency, product.price, exchangeRates), currency)}</span>
               )}
             </p>
             <h3 className={styles.productName}>{product.name}</h3>

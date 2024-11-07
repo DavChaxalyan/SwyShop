@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createOrder } from "../../redux/actions/orderActions";
 import styles from "./Order.module.css";
-import { getUserIdFromToken } from "../../Utils/utils";
+import { formatCurrency, getUserIdFromToken, priceFix } from "../../Utils/utils";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
@@ -11,6 +11,7 @@ const Order = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const cartItems = useSelector((state) => state.products.cart);
+  const { currency, exchangeRates } = useSelector((state) => state.currency);
 
   const totalAmount = cartItems?.reduce(
     (total, item) =>
@@ -103,14 +104,14 @@ const Order = () => {
                       )?.count
                     }
                   </p>
-                  <p>{t("order-item-price")}: {item.price} $</p>
+                  <p>{t("order-item-price")}: {formatCurrency(priceFix(currency, item.price, exchangeRates), currency)}</p>
                 </div>
               </li>
             ))}
           </ul>
         )}
         <h3 className={styles.totalAmount}>
-          {t("order-item-total-price")}: {totalAmount.toFixed(1)} $
+          {t("order-item-total-price")}: {formatCurrency(priceFix(currency, totalAmount, exchangeRates), currency)}
         </h3>
       </div>
       {error && <p className={styles.error}>{error}</p>}

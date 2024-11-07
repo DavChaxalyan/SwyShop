@@ -9,11 +9,12 @@ import { addProductInCart } from "../../redux/actions/cartProductActions";
 import { Button } from "react-bootstrap";
 import { FaStar } from "react-icons/fa6";
 import { BsShop } from "react-icons/bs";
-import { getUserIdFromToken } from "../../Utils/utils";
+import { formatCurrency, getUserIdFromToken, priceFix } from "../../Utils/utils";
 import { useTranslation } from "react-i18next";
 
 function Product() {
   const { t } = useTranslation();
+  const { currency, exchangeRates } = useSelector((state) => state.currency);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products.items);
@@ -75,12 +76,12 @@ function Product() {
         <div className={styles.cardBlock}>
           <div className={styles.priceBlock}>
             <h2>
-              {t("product-page-lb6")}: ${product.price}
+              {t("product-page-lb6")}: {formatCurrency(priceFix(currency, product.price, exchangeRates), currency)}
             </h2>
             {product.oldPrice && (
               <del>
                 <p>
-                  {t("product-page-lb7")}: ${product.oldPrice}
+                  {t("product-page-lb7")}: {formatCurrency(priceFix(currency, product.oldPrice, exchangeRates), currency)}
                 </p>
               </del>
             )}

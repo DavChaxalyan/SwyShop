@@ -2,9 +2,13 @@ import React from "react";
 import { CiDeliveryTruck } from "react-icons/ci";
 import styles from "./OrderDetailsModal.module.css";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import { formatCurrency, priceFix } from "../../Utils/utils";
 
 const OrderDetailsModal = ({ order, onClose, orderCount }) => {
   const { t } = useTranslation();
+  const { currency, exchangeRates } = useSelector((state) => state.currency);
+
   if (!order) return null;
 
   return (
@@ -37,7 +41,7 @@ const OrderDetailsModal = ({ order, onClose, orderCount }) => {
         </p>
         <p>
           {t("orders-details-subtitle4")}:{" "}
-          <strong>${order.totalAmount.toFixed(2)}</strong>
+          <strong>{formatCurrency(priceFix(currency, order.totalAmount, exchangeRates), currency)}</strong>
         </p>
         <h4>{t("orders-details-subtitle5")}:</h4>
         <div className={styles.productList}>
@@ -65,7 +69,7 @@ const OrderDetailsModal = ({ order, onClose, orderCount }) => {
                 </p>
                 <p>
                   {t("orders-details-lb4")}:{" "}
-                  <strong>${item.price.toFixed(2)}</strong>
+                  <strong>{formatCurrency(priceFix(currency, item.price, exchangeRates), currency)}</strong>
                 </p>
                 <p className={styles.rating}>
                   {t("orders-details-lb5")}: {item.productId.rating} (

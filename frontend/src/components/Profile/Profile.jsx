@@ -18,7 +18,7 @@ import { useNavigate } from "react-router-dom";
 import imageProfile from "../../assets/images/profile-empty.png";
 import { getUser, putUser } from "../../redux/actions/userActions";
 import { changePassword } from "../../redux/actions/authActions";
-import { getUserIdFromToken } from "../../Utils/utils";
+import { formatCurrency, getUserIdFromToken, priceFix } from "../../Utils/utils";
 import { getOrders } from "../../redux/actions/orderActions";
 import "./Profile.css";
 import { useTranslation } from "react-i18next";
@@ -26,6 +26,7 @@ import { useTranslation } from "react-i18next";
 const Profile = () => {
   const { t } = useTranslation();
   const { order } = useSelector((state) => state);
+  const { currency, exchangeRates } = useSelector((state) => state.currency);
   const userOrders = order.orders?.filter(
     (order) => order.customerId === getUserIdFromToken()
   );
@@ -309,8 +310,7 @@ const Profile = () => {
                           <strong>{t("profile-page-order-history-date")}:</strong> {formatDate(order.createdAt)}
                         </Col>
                         <Col>
-                          <strong>{t("profile-page-order-history-total")}:</strong> {order.totalAmount.toFixed(1)}
-                          $
+                          <strong>{t("profile-page-order-history-total")}:</strong> {formatCurrency(priceFix(currency, order.totalAmount, exchangeRates), currency)}
                         </Col>
                         <Col>
                           <strong>{t("profile-page-order-history-status")}:</strong>{" "}

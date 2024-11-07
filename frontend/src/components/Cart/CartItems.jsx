@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineDelete } from "react-icons/ai";
 import { IoMdHeart } from "react-icons/io";
 import { FaRegHeart } from "react-icons/fa";
@@ -13,10 +13,11 @@ import {
   deleteProductInCart,
   increaseProductCount,
 } from "../../redux/actions/cartProductActions";
-import { getUserIdFromToken } from "../../Utils/utils";
+import { formatCurrency, getUserIdFromToken, priceFix } from "../../Utils/utils";
 
 const CartItem = ({ item }) => {
   const dispatch = useDispatch();
+  const { currency, exchangeRates } = useSelector((state) => state.currency);
 
   const handleDeleteFromCart = (id) => {
     const token = localStorage.getItem("token");
@@ -88,7 +89,7 @@ const CartItem = ({ item }) => {
         </button>
       </div>
       <div className={styles.cartItemPrice}>
-        <p>{(item.price * item?.whoInCart.find(user => user.userId.toString() === getUserIdFromToken())?.count).toFixed(1)} AMD</p>
+        <p>{formatCurrency(priceFix(currency,(item.price * item?.whoInCart.find(user => user.userId.toString() === getUserIdFromToken())?.count), exchangeRates), currency)}</p>
       </div>
     </div>
   );
