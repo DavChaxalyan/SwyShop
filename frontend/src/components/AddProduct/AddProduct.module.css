@@ -5,7 +5,7 @@
   background-color: #ffffff !important;
   border-radius: 10px !important;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   transition: box-shadow 0.3s ease;
 }
 
@@ -87,16 +87,22 @@ h4 {
   transform: scale(1.05);
 }
 
+@media (max-width: 1180px) {
+  .formContainer {
+    margin-top: 90px;
+  }
+}
+
 @media (max-width: 500px) {
   .formContainer {
     padding: 15px;
   }
-  
+
   input[type="text"],
   input[type="number"] {
     font-size: 14px;
   }
-  
+
   .formButton {
     font-size: 14px;
   }

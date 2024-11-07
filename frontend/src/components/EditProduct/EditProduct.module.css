@@ -4,6 +4,12 @@
   justify-content: center;
   gap: 50px;
   padding-top: 17px;
+  margin-bottom: 20px;
+}
+
+.editPageLink {
+  display: flex;
+  align-items: center;
 }
 
 .form {
@@ -208,4 +214,29 @@
   display: flex;
   align-items: center;
   gap: 3px;
+}
+
+@media (max-width: 1180px) {
+  .editPageLink {
+    margin-top: 75px;
+  }
+  .mainBlockEdit {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 820px) {
+  .mainBlockEdit {
+    padding: 17px 30px;
+  }
+}
+
+@media (max-width: 720px) {
+  .mainBlockEdit {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .mainProductsBlock {
+    margin-top: 0;
+  }
 }

@@ -53,7 +53,7 @@ const CartItem = ({ item }) => {
           alt={item.name}
           className={styles.cartItemImage}
         />
-        <div>
+        <div className={styles.infoCartItem}>
           <div className={styles.mainItemsCart}>
             <h3>{item.name}</h3>
             <p style={{ color: "gray" }}>{item.color}</p>

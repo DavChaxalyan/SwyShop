@@ -46,7 +46,8 @@ const UserOrders = () => {
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <table className={styles.orderTable}>
+        <div className={styles.mainTableBlock}>
+            <table className={styles.orderTable}>
           <thead>
             <tr>
               <th>{t("orders-page-subtitle1")} ID</th>
@@ -82,7 +83,8 @@ const UserOrders = () => {
               </tr>
             ))}
           </tbody>
-        </table>
+            </table>
+        </div>
       )}
 
       {selectedOrder && (
