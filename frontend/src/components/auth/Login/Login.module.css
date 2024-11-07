@@ -3,6 +3,7 @@
     justify-content: center;
     align-items: center;
     height: 70vh;
+    padding: 20px;
   }
   
   .formContainer {
@@ -98,4 +99,10 @@
   
   .registerLink:hover {
     text-decoration: underline;
+  }
+
+  @media (max-width: 1180px) {
+    .loginPage {
+      padding-top: 40px;
+    }
   }

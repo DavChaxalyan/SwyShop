@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import CartIcon from "../Cart/CartIcon";
 import { NavLink } from "react-router-dom";
 import styles from "./Header.module.css";
@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { IoLogOutSharp } from "react-icons/io5";
 import { IoMdHeart } from "react-icons/io";
 import { RiProfileFill } from "react-icons/ri";
+import { FaBars } from 'react-icons/fa'
 import { IoMdAdd } from "react-icons/io";
 import imageProfile from "../../assets/images/profile-empty.png";
 import LanguageSwitcher from "../LanguageSwitcher";
@@ -20,6 +21,12 @@ const Header = () => {
   const cartItemsCount = useSelector((state) => state?.products?.cart?.length);
   const state = useSelector((state) => state.user.ProfileUser);
   const navigate = useNavigate();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   const handlePage = (url) => {
     navigate(`/${url}`);
     if (url === "login") {
@@ -41,16 +48,24 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
-        <NavLink to="/" className={styles.swyShop}>
+        <NavLink to="/" className={styles.swyShop} onClick={() => setIsMenuOpen(false)}>
           <img src={appLogo} alt="logo" />
           SwayShop
         </NavLink>
       </div>
-      <nav className={styles.nav}>
+
+      <div className={styles.hamburger} onClick={toggleMenu}>
+        <FaBars />
+      </div>
+
+      <nav className={`${styles.nav} ${isMenuOpen ? styles.open : ''}`}>
         <ul>
           <li>
             <NavLink
-              onClick={handleAddProduct}
+              onClick={() => {
+                handleAddProduct()
+                setIsMenuOpen(false)
+              }}
               to={localStorage.getItem("token") ? "/add-product" : "/login"}
               style={{
                 display: "flex",
@@ -70,6 +85,7 @@ const Header = () => {
             <NavLink
               to="/"
               className={({ isActive }) => (isActive ? styles.active : "")}
+              onClick={() => setIsMenuOpen(false)}
             >
               {t("navbar-home")}
             </NavLink>
@@ -78,6 +94,7 @@ const Header = () => {
             <NavLink
               to="/products"
               className={({ isActive }) => (isActive ? styles.active : "")}
+              onClick={() => setIsMenuOpen(false)}
             >
               {t("navbar-products")}
             </NavLink>
@@ -86,6 +103,7 @@ const Header = () => {
             <NavLink
               to="/contact"
               className={({ isActive }) => (isActive ? styles.active : "")}
+              onClick={() => setIsMenuOpen(false)}
             >
               {t("navbar-contact")}
             </NavLink>
@@ -94,6 +112,7 @@ const Header = () => {
             <NavLink
               to="/cart"
               className={({ isActive }) => (isActive ? styles.activeCard : "")}
+              onClick={() => setIsMenuOpen(false)}
             >
               <CartIcon itemCount={cartItemsCount} />
             </NavLink>
@@ -103,6 +122,7 @@ const Header = () => {
               <NavLink
                 to="/login"
                 className={({ isActive }) => (isActive ? styles.active : "")}
+                onClick={() => setIsMenuOpen(false)}
               >
                 {t("navbar-sign-in")}
               </NavLink>
@@ -126,14 +146,20 @@ const Header = () => {
                 id="basic-nav-dropdown"
               >
                 <NavDropdown.Item
-                  onClick={() => handlePage("profile")}
+                  onClick={() => {
+                    setIsMenuOpen(false)
+                    handlePage("profile")
+                  }}
                   className="d-flex align-items-center gap-2 text-black"
                 >
                   <RiProfileFill />
                   {t("navbar-your-profile")}
                 </NavDropdown.Item>
                 <NavDropdown.Item
-                  onClick={() => handlePage("favorite")}
+                  onClick={() => {
+                    setIsMenuOpen(false)
+                    handlePage("favorite")
+                  }}
                   className="d-flex align-items-center gap-2 text-black"
                   style={{ paddingLeft: "13px" }}
                 >

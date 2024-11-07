@@ -39,9 +39,11 @@ const Cart = () => {
                 {t("cart-product")}
               </span>
             </div>
-            {cartItems?.map((item) => (
-              <CartItem key={item.id || item._id} item={item} />
-            ))}
+            <div className={styles.productsCartMainBlock}>
+              {cartItems?.map((item) => (
+                <CartItem key={item.id || item._id} item={item} />
+              ))}
+            </div>
           </div>
           <div className={styles.cartSummarySection}>
             <CartSummary />

@@ -5,7 +5,8 @@
 .filterForm {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 20px;
 }
@@ -62,12 +63,17 @@
 }
 
 .productNameInput {
-  max-width: 1141px;
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
+}
+
+.productsFilterMainBlock {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 110px;
 }
 
 .inputs {
@@ -76,4 +82,24 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  .formBlock {
+    max-width: 100%;
+    width: 100%;
+  }
+  .productsFilterMainBlock {
+    padding: 0px 100px;
+  }
+}
+
+@media (max-width: 405px) {
+  .formBlock {
+    max-width: 100%;
+    width: 100%;
+  }
+  .productsFilterMainBlock {
+    padding: 0px 50px;
+  }
 }

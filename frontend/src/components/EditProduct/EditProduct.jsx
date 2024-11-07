@@ -83,7 +83,7 @@ const EditProduct = () => {
 
   return (
     <>
-      <Link to={"/my-products"} className="d-flex align-items-center">
+      <Link to={"/my-products"} className={styles.editPageLink}>
         <IoIosArrowBack />
         <CgProfile style={{ marginLeft: "2px", marginRight: "5px" }} />
         {t("edit-form-back-button")}

@@ -128,4 +128,15 @@
   .orderButton:hover {
     background-color: #21867a;
   }
+
+  @media (max-width: 1180px) {
+    .orderPage {
+      margin-top: 95px;
+    }
+  }
   
+  @media (max-width: 630px) {
+    .orderPage {
+        margin: 20px;
+    }
+  }
