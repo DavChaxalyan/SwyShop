@@ -174,7 +174,7 @@ const Profile = () => {
   };
 
   return (
-    <Container className="mt-4">
+    <Container className="mt-4 mb-4 main-profile-block">
       <Row>
         <Col md={4}>
           <Card className="mb-4">
