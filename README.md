@@ -4,6 +4,13 @@ SwayShop is an e-commerce web application developed using **React**, **Redux Thu
 
 The entire project is **fully responsive**, ensuring a seamless shopping experience across all devices, including desktops, tablets, and mobile phones.
 
+## Key Technologies
+
+- **Frontend**: React, Redux Thunk, CSS Modules
+- **Backend**: Express.js, MongoDB
+- **Multilingual Support**: Implemented using `i18n`, supporting English, Russian, and Armenian languages.
+- **Multi-Currency Support**: Uses an API to fetch real-time exchange rates (available currencies: RUB, USD, and AMD).
+
 ## Features
 
 ### 1. User Authentication
