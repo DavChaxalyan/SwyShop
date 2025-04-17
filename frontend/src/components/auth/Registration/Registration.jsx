@@ -39,7 +39,7 @@ const Registration = () => {
     if (state.auth.emailSent) {
       navigate("/verify-email", { state: { email: formData.email } });
     }
-  }, [state.auth.emailSent]);
+  }, [state.auth.emailSent, formData.email, navigate]);
 
   useEffect(() => {
     if (state.auth.error) {
