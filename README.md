@@ -1,5 +1,7 @@
 # SwayShop - Online Shopping Platform
 
+🔗 [View Live Site](https://swyshop.netlify.app/)
+
 SwayShop is an e-commerce web application developed using **React**, **Redux Thunk**, **Express.js**, and **MongoDB**. The platform allows users to explore and purchase products, manage their profiles, and enjoy various features such as language and currency selection.
 
 The entire project is **fully responsive**, ensuring a seamless shopping experience across all devices, including desktops, tablets, and mobile phones.
