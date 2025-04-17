@@ -56,8 +56,8 @@ function ProductModal(props) {
           <img
             src={
               props?.product?.statimage
-                ? `http://localhost:5000/${props?.product?.statimage}`
-                : `http://localhost:5000/${props?.product?.image}`
+                ? `https://swyshop.onrender.com/${props?.product?.statimage}`
+                : `https://swyshop.onrender.com/${props?.product?.image}`
             }
             alt="Description"
           />

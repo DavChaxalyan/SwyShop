@@ -17,7 +17,7 @@ import {
 export const addProductInCart = (id, token) => async (dispatch) => {
     try {
       await axios.post(
-        "http://localhost:5000/api/product/post",
+        "https://swyshop.onrender.com/api/product/post",
         { id },
         {
           headers: {
@@ -26,7 +26,7 @@ export const addProductInCart = (id, token) => async (dispatch) => {
         }
       );
   
-      const responseUpdated = await axios.get("http://localhost:5000/api/product/get");
+      const responseUpdated = await axios.get("https://swyshop.onrender.com/api/product/get");
       
       dispatch({ type: ADD_TO_CART_SUCCESS, payload: id });
       dispatch({ type: GET_PRODUCT_SUCCESS, payload: responseUpdated.data });
@@ -42,7 +42,7 @@ export const addProductInCart = (id, token) => async (dispatch) => {
   export const getProductInCart = (token) => async (dispatch) => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/product/cart",
+        "https://swyshop.onrender.com/api/product/cart",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -65,7 +65,7 @@ export const addProductInCart = (id, token) => async (dispatch) => {
   export const deleteProductInCart = (id, token) => async (dispatch) => {
     try {
       const response = await axios.delete(
-        "http://localhost:5000/api/product/delete-in-cart",
+        "https://swyshop.onrender.com/api/product/delete-in-cart",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -75,7 +75,7 @@ export const addProductInCart = (id, token) => async (dispatch) => {
       );
   
       const updatedCartResponse = await axios.get(
-        "http://localhost:5000/api/product/cart",
+        "https://swyshop.onrender.com/api/product/cart",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -98,7 +98,7 @@ export const addProductInCart = (id, token) => async (dispatch) => {
     try {
         dispatch({ type: INCREASE_COUNT_REQUEST });
 
-        const { data } = await axios.post('http://localhost:5000/api/product/increase-count', 
+        const { data } = await axios.post('https://swyshop.onrender.com/api/product/increase-count', 
             { productId },
             {
             headers: {
@@ -108,7 +108,7 @@ export const addProductInCart = (id, token) => async (dispatch) => {
         );
 
         const updatedCartResponse = await axios.get(
-            "http://localhost:5000/api/product/cart",
+            "https://swyshop.onrender.com/api/product/cart",
             {
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -133,7 +133,7 @@ export const decreaseProductCount = (productId, token) => async (dispatch) => {
     try {
         dispatch({ type: DECREASE_COUNT_REQUEST });
 
-        const { data } = await axios.post('http://localhost:5000/api/product/decrease-count', 
+        const { data } = await axios.post('https://swyshop.onrender.com/api/product/decrease-count', 
             { productId },
             {
             headers: {
@@ -143,7 +143,7 @@ export const decreaseProductCount = (productId, token) => async (dispatch) => {
         );
 
         const updatedCartResponse = await axios.get(
-            "http://localhost:5000/api/product/cart",
+            "https://swyshop.onrender.com/api/product/cart",
             {
               headers: {
                 Authorization: `Bearer ${token}`,

@@ -4,7 +4,7 @@ import { GET_USER_SUCCESS, GET_USER_FAIL } from "./types";
 export const getUser = (id, token) => async (dispatch) => {
   try {
     const response = await axios.get(
-      `http://localhost:5000/api/user/get/${id}`,
+      `https://swyshop.onrender.com/api/user/get/${id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -26,7 +26,7 @@ export const getUser = (id, token) => async (dispatch) => {
 
 export const putUser = (formDataEdit, token, id) => async (dispatch) => {
   try {
-    await axios.put("http://localhost:5000/api/user/put", formDataEdit, {
+    await axios.put("https://swyshop.onrender.com/api/user/put", formDataEdit, {
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "multipart/form-data",
@@ -34,7 +34,7 @@ export const putUser = (formDataEdit, token, id) => async (dispatch) => {
     });
 
     const response = await axios.get(
-      `http://localhost:5000/api/user/get/${id}`,
+      `https://swyshop.onrender.com/api/user/get/${id}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,

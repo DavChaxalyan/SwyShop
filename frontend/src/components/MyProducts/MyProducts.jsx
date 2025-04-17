@@ -54,8 +54,8 @@ const MyProducts = () => {
                     <img
                       src={
                         product.statimage
-                          ? `http://localhost:5000/${product.statimage}`
-                          : `http://localhost:5000/${product.image}`
+                          ? `https://swyshop.onrender.com/${product.statimage}`
+                          : `https://swyshop.onrender.com/${product.image}`
                       }
                       alt={product.name}
                       className={styles.productImage}

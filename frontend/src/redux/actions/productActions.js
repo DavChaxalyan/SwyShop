@@ -21,7 +21,7 @@ import {
 export const addProduct = (formData, token) => async (dispatch) => {
   try {
     const response = await axios.post(
-      "http://localhost:5000/api/product/add",
+      "https://swyshop.onrender.com/api/product/add",
       formData,
       {
         headers: {
@@ -42,7 +42,7 @@ export const addProduct = (formData, token) => async (dispatch) => {
 
 export const getProduct = () => async (dispatch) => {
   try {
-    const response = await axios.get("http://localhost:5000/api/product/get");
+    const response = await axios.get("https://swyshop.onrender.com/api/product/get");
 
     dispatch({ type: GET_PRODUCT_SUCCESS, payload: response.data });
     return response.data;
@@ -74,7 +74,7 @@ export const fetchProducts = () => {
   return async (dispatch) => {
       dispatch(fetchProductsRequest());
       try {
-          const { data } = await axios.get('http://localhost:5000/api/product/get/all');
+          const { data } = await axios.get('https://swyshop.onrender.com/api/product/get/all');
           dispatch(fetchProductsSuccess(data));
       } catch (error) {
           dispatch(fetchProductsFailure(error.message));
@@ -93,7 +93,7 @@ export const getMyProducts = () => async (dispatch) => {
       },
     };
 
-    const { data } = await axios.get('http://localhost:5000/api/product/my-products', config); 
+    const { data } = await axios.get('https://swyshop.onrender.com/api/product/my-products', config); 
 
     dispatch({ type: MY_PRODUCTS_SUCCESS, payload: data });
   } catch (error) {
@@ -115,7 +115,7 @@ export const putProduct = (formData, token) => async (dispatch) => {
           },
       };
 
-      const response = await axios.put('http://localhost:5000/api/product/put-product', formData, config);
+      const response = await axios.put('https://swyshop.onrender.com/api/product/put-product', formData, config);
       
       dispatch({ type: PUT_PRODUCT_SUCCESS, payload: response.data });
       return response.data; 
@@ -137,8 +137,8 @@ export const deleteProduct = (productId, token) => async (dispatch) => {
           data: { id: productId },
       };
 
-      await axios.delete(`http://localhost:5000/api/product/remove-product`, config);
-      const { data } = await axios.get('http://localhost:5000/api/product/my-products', config); 
+      await axios.delete(`https://swyshop.onrender.com/api/product/remove-product`, config);
+      const { data } = await axios.get('https://swyshop.onrender.com/api/product/my-products', config); 
 
       dispatch({ type: MY_PRODUCTS_SUCCESS, payload: data });
       dispatch({ type: DELETE_PRODUCT_SUCCESS, payload: productId });

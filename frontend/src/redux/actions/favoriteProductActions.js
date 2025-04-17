@@ -12,7 +12,7 @@ import {
 export const addProductInFavorite = (id, token) => async (dispatch) => {
     try {
       await axios.post(
-        "http://localhost:5000/api/product/add/favorite",
+        "https://swyshop.onrender.com/api/product/add/favorite",
         { id },
         {
           headers: {
@@ -22,7 +22,7 @@ export const addProductInFavorite = (id, token) => async (dispatch) => {
       );
   
       const updatedCartResponse = await axios.get(
-        "http://localhost:5000/api/product/cart",
+        "https://swyshop.onrender.com/api/product/cart",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -30,7 +30,7 @@ export const addProductInFavorite = (id, token) => async (dispatch) => {
         }
       );
   
-      const responseUpdated = await axios.get("http://localhost:5000/api/product/get");
+      const responseUpdated = await axios.get("https://swyshop.onrender.com/api/product/get");
       
       dispatch({ type: GET_PRODUCT_SUCCESS, payload: responseUpdated.data });
       dispatch({ type: GET_PRODUCT_IN_CART, payload: updatedCartResponse.data });
@@ -47,7 +47,7 @@ export const addProductInFavorite = (id, token) => async (dispatch) => {
   export const deleteProductInFavorite = (id, token) => async (dispatch) => {
     try {
       const response = await axios.delete(
-        "http://localhost:5000/api/product/delete-in-favorite",
+        "https://swyshop.onrender.com/api/product/delete-in-favorite",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -57,7 +57,7 @@ export const addProductInFavorite = (id, token) => async (dispatch) => {
       );
   
       const updatedCartResponse = await axios.get(
-        "http://localhost:5000/api/product/cart",
+        "https://swyshop.onrender.com/api/product/cart",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -65,10 +65,10 @@ export const addProductInFavorite = (id, token) => async (dispatch) => {
         }
       );
   
-      const responseUpdated = await axios.get("http://localhost:5000/api/product/get");
+      const responseUpdated = await axios.get("https://swyshop.onrender.com/api/product/get");
 
       const responseFavorite = await axios.get(
-        "http://localhost:5000/api/product/favorite",
+        "https://swyshop.onrender.com/api/product/favorite",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -93,7 +93,7 @@ export const addProductInFavorite = (id, token) => async (dispatch) => {
   export const getProductInFavorite = (token) => async (dispatch) => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/product/favorite",
+        "https://swyshop.onrender.com/api/product/favorite",
         {
           headers: {
             Authorization: `Bearer ${token}`,

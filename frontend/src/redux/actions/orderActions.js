@@ -24,13 +24,13 @@ export const createOrder = (orderData) => async (dispatch) => {
       })),
     };
     const response = await axios.post(
-        "http://localhost:5000/api/order/create",
+        "https://swyshop.onrender.com/api/order/create",
         transformedOrderData,
         config
     );
 
     const responseCart = await axios.get(
-      "http://localhost:5000/api/product/cart",
+      "https://swyshop.onrender.com/api/product/cart",
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -59,7 +59,7 @@ export const getOrders = () => async (dispatch) => {
       },
     };
     const response = await axios.get(
-      "http://localhost:5000/api/order/get",
+      "https://swyshop.onrender.com/api/order/get",
       config
     );
     dispatch({ type: GET_ORDERS_SUCCESS, payload: response.data });

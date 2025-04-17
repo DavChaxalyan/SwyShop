@@ -134,7 +134,7 @@ const Header = () => {
                   <img
                     src={
                       state?.profileImage
-                        ? `http://localhost:5000/${state?.profileImage}`
+                        ? `https://swyshop.onrender.com/${state?.profileImage}`
                         : imageProfile
                     }
                     className={styles.roundedCircle}

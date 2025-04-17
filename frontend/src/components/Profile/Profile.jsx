@@ -184,7 +184,7 @@ const Profile = () => {
                   profileImage
                     ? profileImage
                     : state?.profileImage
-                    ? `http://localhost:5000/${state?.profileImage}`
+                    ? `https://swyshop.onrender.com/${state?.profileImage}`
                     : imageProfile
                 }
                 alt="Profile"

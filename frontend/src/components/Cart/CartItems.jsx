@@ -47,8 +47,8 @@ const CartItem = ({ item }) => {
         <img
           src={
             item.statimage
-              ? `http://localhost:5000/${item.statimage}`
-              : `http://localhost:5000/${item.image}`
+              ? `https://swyshop.onrender.com/${item.statimage}`
+              : `https://swyshop.onrender.com/${item.image}`
           }
           alt={item.name}
           className={styles.cartItemImage}

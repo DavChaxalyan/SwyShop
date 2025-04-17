@@ -3,7 +3,7 @@ import { CHANGE_PASSWORD_FAIL, CHANGE_PASSWORD_SUCCESS, LOGIN_FAIL, LOGIN_SUCCES
 
 export const register = (formData) => async (dispatch) => {
     try {
-        await axios.post('http://localhost:5000/api/auth/register', formData);
+        await axios.post('https://swyshop.onrender.com/api/auth/register', formData);
         
         dispatch({ type: REGISTER_SUCCESS, payload: formData });
         dispatch({ type: REGISTER_FAIL, payload: '' });
@@ -14,7 +14,7 @@ export const register = (formData) => async (dispatch) => {
 
 export const login = (formData) => async (dispatch) => {
     try {
-        const res = await axios.post('http://localhost:5000/api/auth/login', formData);
+        const res = await axios.post('https://swyshop.onrender.com/api/auth/login', formData);
         dispatch({ type: LOGIN_SUCCESS, payload: res.data });
     } catch (error) {
         dispatch({ type: LOGIN_FAIL, payload: error.response.data.message });
@@ -23,7 +23,7 @@ export const login = (formData) => async (dispatch) => {
 
 export const verifyEmail = (email, code) => async (dispatch) => {
     try {
-      const response = await axios.post("http://localhost:5000/api/auth/verify-email", { email, code });
+      const response = await axios.post("https://swyshop.onrender.com/api/auth/verify-email", { email, code });
       const { token, userId } = response.data;
       
       localStorage.setItem('token', token);
@@ -38,7 +38,7 @@ export const verifyEmail = (email, code) => async (dispatch) => {
     try {
       dispatch({ type: "FORGOT_PASSWORD_REQUEST" });
   
-      const response = await axios.post("http://localhost:5000/api/auth/forgot-password", { email });
+      const response = await axios.post("https://swyshop.onrender.com/api/auth/forgot-password", { email });
   
       dispatch({
         type: "FORGOT_PASSWORD_SUCCESS",
@@ -60,7 +60,7 @@ export const verifyEmail = (email, code) => async (dispatch) => {
     try {
       dispatch({ type: "RESET_PASSWORD_REQUEST" });
   
-      const response = await axios.post(`http://localhost:5000/api/auth/reset-password/${token}`, {
+      const response = await axios.post(`https://swyshop.onrender.com/api/auth/reset-password/${token}`, {
         password,
       });
   
@@ -87,7 +87,7 @@ export const verifyEmail = (email, code) => async (dispatch) => {
 
     try {
         const token = localStorage.getItem('token');
-        const response = await axios.put('http://localhost:5000/api/auth/change-password', {
+        const response = await axios.put('https://swyshop.onrender.com/api/auth/change-password', {
             currentPassword,
             newPassword,
             userId

@@ -50,8 +50,8 @@ const OrderDetailsModal = ({ order, onClose, orderCount }) => {
               <img
                 src={
                   item.productId.statimage
-                    ? `http://localhost:5000/${item.productId.statimage}`
-                    : `http://localhost:5000/${item.productId.image}`
+                    ? `https://swyshop.onrender.com/${item.productId.statimage}`
+                    : `https://swyshop.onrender.com/${item.productId.image}`
                 }
                 alt={item.name}
                 className={styles.productImage}

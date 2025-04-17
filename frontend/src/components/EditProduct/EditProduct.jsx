@@ -156,8 +156,8 @@ const EditProduct = () => {
                     imagePreview
                       ? imagePreview
                       : foundProduct.statimage
-                      ? `http://localhost:5000/${foundProduct.statimage}`
-                      : `http://localhost:5000/${foundProduct.image}`
+                      ? `https://swyshop.onrender.com/${foundProduct.statimage}`
+                      : `https://swyshop.onrender.com/${foundProduct.image}`
                   }
                   alt={foundProduct.name}
                   className={styles.productImage}
