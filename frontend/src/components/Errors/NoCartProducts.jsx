@@ -30,8 +30,8 @@ const NoCartProductsFound = () => {
       >
         <img
           src={productNotFoundImg}
+          className={styles.productNotFoundImg}
           alt="product not found"
-          style={{ height: "450px" }}
         />
         <Link to={"/"}>
           <button className={styles.goToMainButton}>

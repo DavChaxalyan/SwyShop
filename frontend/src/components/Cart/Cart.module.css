@@ -209,3 +209,9 @@
     padding-left: 0px;
   }
 }
+
+@media (max-width: 450px) {
+  .cartContainer {
+    gap: 10px;
+  }
+}

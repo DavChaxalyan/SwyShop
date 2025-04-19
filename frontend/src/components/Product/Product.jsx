@@ -49,10 +49,10 @@ function Product() {
             : `https://swyshop.onrender.com/${product.image}`
         }
         alt={product.name}
-        style={{ width: "400px", height: "500px" }}
+        className={styles.productDetailsImg}
       />
-      <div className="d-flex flex-column gap-5">
-        <div className="d-flex flex-column gap-3">
+      <div className={styles.productDetailsMain}>
+        <div className={styles.productDetailsTitles}>
           <h2>{product.name}</h2>
           <p>
             {t("product-page-lb1")}: {product.category}

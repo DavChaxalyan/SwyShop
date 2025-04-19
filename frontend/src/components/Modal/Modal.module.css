@@ -128,3 +128,47 @@ svg {
     background-color: #e3f2fd;
   }
   
+
+  @media (max-width: 450px) {
+    .containerBlock {
+        padding: 0 10px 0 10px;
+    }
+
+    .imageBlock img {
+        width: 100%;
+        height: 250px;
+    }
+
+    .containerBlock {
+        gap: 5px;
+    }
+
+    .priceBlock {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .priceBlock p {
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 15px;
+    }
+
+    .priceBlock del p {
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 15px;
+    }
+
+    .categoryBlock p {
+        font-size: 13px;
+    }
+
+    .blockTextName h2 {
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 26px;
+        color: #242424;
+        cursor: pointer;
+    }
+  }
