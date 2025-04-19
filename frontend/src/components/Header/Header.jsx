@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import CartIcon from "../Cart/CartIcon";
 import { NavLink } from "react-router-dom";
 import styles from "./Header.module.css";
@@ -22,6 +22,7 @@ const Header = () => {
   const state = useSelector((state) => state.user.ProfileUser);
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const switcherRef = useRef(null);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -45,6 +46,20 @@ const Header = () => {
       }, 300);
     }
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (switcherRef.current && !switcherRef.current.contains(event.target)) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
@@ -53,7 +68,7 @@ const Header = () => {
           SwayShop
         </NavLink>
       </div>
-
+    <div ref={switcherRef}> 
       <div className={styles.hamburger} onClick={toggleMenu}>
         <FaBars />
       </div>
@@ -191,6 +206,7 @@ const Header = () => {
           </li>
         </ul>
       </nav>
+      </div>
     </header>
   );
 };

@@ -163,7 +163,7 @@ exports.forgotPassword = async (req, res) => {
       expiresIn: "1h",
     });
 
-    const url = `http://localhost:3000/reset-password/${token}`;
+    const url = `https://swyshop.netlify.app/reset-password/${token}`;
 
     const mailOptions = {
       from: process.env.EMAIL_USER,

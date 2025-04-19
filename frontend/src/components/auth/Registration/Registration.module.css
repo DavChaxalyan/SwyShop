@@ -4,7 +4,6 @@
     align-items: center;
     height: 70vh;
     padding: 20px;
-
   }
   
   .formContainer {
@@ -93,5 +92,11 @@
   @media (max-width: 1180px) {
     .registrationPage {
       padding-top: 100px;
+    }
+  }
+
+  @media (max-height: 850px) {
+    .registrationPage {
+      height: 80vh;
     }
   }

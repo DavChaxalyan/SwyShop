@@ -21,7 +21,7 @@
   }
   
   .dropdownContent {
-    display: none;
+    display: block;
     position: absolute;
     background-color: #f5f5f5;
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
@@ -46,7 +46,4 @@
     color: #4c84c0;
   }
   
-  .container:hover .dropdownContent {
-    display: block;
-  }
   
