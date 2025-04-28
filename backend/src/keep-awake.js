@@ -1,7 +1,8 @@
-const https = require('https'); 
+const https = require('https');
+const schedule = require('node-schedule');
 
-const url1 = 'https://swyshop.onrender.com/ping'; 
-const url2 = 'https://todo-app-yuun.onrender.com/ping'; 
+const url1 = 'https://swyshop.onrender.com/ping';
+const url2 = 'https://todo-app-yuun.onrender.com/ping';
 
 function sendPing(url) {
   console.log(`[${new Date().toISOString()}] Sending ping to ${url}...`);
@@ -13,10 +14,9 @@ function sendPing(url) {
   });
 }
 
-sendPing(url1);
-sendPing(url2);
-
-setInterval(() => {
+schedule.scheduleJob('0,14,28,42,56 * * * *', () => {
   sendPing(url1);
   sendPing(url2);
-}, 14 * 60 * 1000);
+});
+
+console.log('Scheduled pings every 14 minutes to keep the server awake!');
