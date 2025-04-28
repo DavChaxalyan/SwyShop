@@ -1,8 +1,9 @@
 const https = require('https'); 
 
-const url = 'https://swyshop.onrender.com/ping'; 
+const url1 = 'https://swyshop.onrender.com/ping'; 
+const url2 = 'https://todo-app-yuun.onrender.com/ping'; 
 
-function sendPing() {
+function sendPing(url) {
   console.log(`[${new Date().toISOString()}] Sending ping...`);
 
   https.get(url, (res) => {
@@ -12,6 +13,7 @@ function sendPing() {
   });
 }
 
-sendPing();
+sendPing(url1);
+sendPing(url2);
 
 setInterval(sendPing, 14 * 60 * 1000);
