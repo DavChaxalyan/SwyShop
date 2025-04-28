@@ -22,7 +22,7 @@ const NoFavoriteProducts = () => {
       </div>
     </div>
     <div className="d-flex justify-content-center align-items-center" style={{backgroundColor: '#ffffff00'}}>
-        <img src={productNotFoundImg} alt="product not found" style={{height: '450px'}}/>
+        <img src={productNotFoundImg} alt="product not found" className={styles.productNotFoundImg}/>
     </div>
     </>
   );

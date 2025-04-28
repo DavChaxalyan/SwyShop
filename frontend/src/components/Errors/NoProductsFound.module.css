@@ -5,8 +5,17 @@
     overflow: hidden;
   }
 
+  .containerNotProducts {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
   .productNotFoundImg {
     height: 450px;
+    width: 100%;
+    object-fit: contain;
   }
   
   .messageWrapper {
@@ -72,6 +81,12 @@
   
   .goToMainButton:hover {
     background-color: #504d52;
+  }
+
+  @media (max-width: 1180px) {
+    .containerNotProducts {
+      margin-top: 100px;
+    }
   }
 
   @media (max-width: 450px) {

@@ -8,7 +8,7 @@ const NoProductsFound = () => {
   const { t } = useTranslation();
   return (
     <>
-    <div className={styles.container}>
+    <div className={styles.containerNotProducts}>
       <div className={styles.messageWrapper}>
         <h1 className={styles.title}>{t("error-no-product-found-title")}</h1>
         <p className={styles.subtitle}>
@@ -22,7 +22,7 @@ const NoProductsFound = () => {
       </div>
     </div>
     <div className="d-flex justify-content-center align-items-center" style={{backgroundColor: '#ffffff00'}}>
-        <img src={productNotFoundImg} alt="product not found" style={{height: '450px'}}/>
+        <img src={productNotFoundImg} alt="product not found" className={styles.productNotFoundImg}/>
     </div>
     </>
   );
